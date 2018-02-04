@@ -1,0 +1,206 @@
+---
+title: "Advanced command line functions"
+author: "Arnaud Wolfer"
+date: "2017-12-30"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Advanced command line functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+While the following vignette details all command line functions available in `santaR` for reference and potential development work, these are not expected to be used on a day-to-day basis (more details are available in each functions help page).
+
+To analyse time-series data, refered to the [graphical user interface](santaR-GUI.pdf) or the [automated command line functions](automated-command-line.html) which implement these functions.
+
+This vignette will detail the following underlying functions:
+
+- Preparing input data
+- DF search functions
+- Fitting, Confidence bands and plotting
+- P-values calculation
+
+
+## Preparing input data
+
+As `santaR` is an univariate approach, this vignette will use one variable from the acute inflammation dataset detailed in [How to prepare input data for santaR](prepare-input-data.html).
+
+```{r}
+library(santaR)
+
+# data (keep the 3rd variable)
+var1_data <- acuteInflammation$data[,3]
+# metadata (common to all variables)
+var1_meta <- acuteInflammation$meta
+
+# 7 unique time-points
+unique(var1_meta$time)
+# 8 individuals
+unique(var1_meta$ind)
+# 2 groups
+unique(var1_meta$group)
+
+# 72 measurements for the given variable
+var1_data
+```
+
+
+The first step is to generate the input matrix by converting the vector of observation (_y_ response for the variable at one time-point for one individual) into a matrix IND (_row_) x TIME (_column_) using `get_ind_time_matrix()`:
+
+```{r, eval = FALSE}
+var1_input  <- get_ind_time_matrix( Yi=var1_data, ind=var1_meta$ind, time=var1_meta$time)
+var1_input
+```
+```{r, results = "asis", echo = FALSE}
+var1_input  <- get_ind_time_matrix( Yi=var1_data, ind=var1_meta$ind, time=var1_meta$time)
+pander::pandoc.table(var1_input)
+```
+
+
+In order to compare 2 groups, it is necessary to create a grouping matrix that list group membership for all individuals using `get_grouping()`:
+
+```{r, eval = FALSE}
+var1_group  <- get_grouping( ind=var1_meta$ind, group=var1_meta$group)
+var1_group
+```
+```{r, results = "asis", echo = FALSE}
+var1_group  <- get_grouping( ind=var1_meta$ind, group=var1_meta$group)
+pander::pandoc.table(var1_group)
+```
+
+
+## DF search functions
+
+The degree of freedom (_df_) is the parameter that controls how closely each individual's time-trajectory fit eachs data point, balancing the fitting of the raw data and the smoothing of measurements errors. An optimal _df_ value ensures that the spline is not overfitted or underfitted on the measurments. The degree of freedom should be established once for a dataset as it is a factor of 'complexity' of the time-trajectories under study, but does not change with different variables (same metadata, number of time-points,...)
+
+Refer to [santaR theoretical background](theoretical-background.html) and [Selecting an optimal number of degrees of freedom](selecting-optimal-df.html) for more details on _df_ and an intuitive approach for its selection.
+
+In order to assist in the selection of an optimal _df_ and visualise its impact, the following functions:
+
+- extract the eigen-splines across all time-trajectories of all individuals and all variables
+- provide metrics to select the _df_ that gives the best fit on the eigen-splines (as a guide value for the whole dataset)
+
+First we extract the eigen-splines across the whole dataset using `get_eigen_spline()`:
+```{r}
+var_eigen  <- get_eigen_spline( inputData=acuteInflammation$data, ind=acuteInflammation$meta$ind, time=acuteInflammation$meta$time)
+```
+```{r, eval=FALSE}
+# The projection of each eigen-spline at each time-point:
+var_eigen$matrix
+```
+```{r, results = "asis", echo = FALSE}
+pander::pandoc.table(var_eigen$matrix)
+```
+```{r}
+# The variance explained by each eigen-spline
+var_eigen$variance
+# PCA summary
+summary(var_eigen$model)
+```
+
+It is then possible to estimate the _df_ corresponding to the minimisation of a metric (penalised_residuals cross-validated, penalised_residuals general cross-validation, AIC, BIC or AICc) using `get_eigen_DF()`. The best _df_ can either be averaged over all eigen-splines `df` or weighted by the variance explained by each eigen-spline `wdf`:
+
+```{r, eval = FALSE}
+# The projection of each eigen-spline at each time-point:
+get_eigen_DF(var_eigen)
+
+# $df
+```
+```{r, results = "asis", echo = FALSE}
+tmpDF <- get_eigen_DF(var_eigen)
+pander::pandoc.table(tmpDF$df)
+```
+```{r, eval = FALSE}
+# $wdf
+```
+```{r, results = "asis", echo = FALSE}
+pander::pandoc.table(tmpDF$wdf)
+```
+
+The evolution of these metrics (_y_) depending on _df_ (_x_) can be plotted for each eigen-spline using `get_param_evolution()` and `plot_param_evolution()`:
+```{r, fig.width = 7, fig.height = 7, dpi = 80}
+library(gridExtra)
+
+# generate all the parameter values across df
+var_eigen_paramEvo  <- get_param_evolution(var_eigen, step=0.1)
+
+# plot the metric evolution
+plot(arrangeGrob(grobs=plot_param_evolution(var_eigen_paramEvo, scaled=FALSE)))
+
+# Scale the metrics for each eigen-spline between 0 and 1
+plot(arrangeGrob(grobs=plot_param_evolution(var_eigen_paramEvo, scaled=TRUE)))
+```
+
+As we can see, the recommended _df_ can vary widely depending on the metric selected. `get_eigen_DFoverlay_list()` will plot all eigen-projections (green points), a manually selected _df_ (blue line) and automatically fitted _df_ (red line), while grey lines represent splines at 0.2 _df_ intervals (default value):
+```{r, fig.width = 8, fig.height =8, dpi = 90}
+library(gridExtra)
+
+# plot all eigen-projections
+plot(arrangeGrob(grobs=get_eigen_DFoverlay_list(var_eigen, manualDf = 5)))
+```
+It should be noted that _df=2_ corresponds to a linear model. _df=number(time-points)_ corresponds to a curve that will go through all points (overfitted).
+
+A final factor to take into account is the number of points needed for each individuals depending on the _df_ selected:
+  
+  - the minimum number of time-points needed is the _df_
+  - if for example _df=10_, all individuals that have less than 10 time-points have to be rejected
+  
+Using `plot_nbTP_histogram()` we can visualise how many samples would have to be rejected for a given _df_. Due to the lack of missing values in the `acuteInflammation` dataset, the plots is not very informative.
+```{r, fig.width = 7, fig.height = 5, dpi = 80}
+# dfCutOff controls which cut-off is to be applied
+plot_nbTP_histogram(var_eigen, dfCutOff=5)
+```
+
+As it does not seem to be possible to automatically select the degree of freedom, a choice based on visualisation of the splines while being careful of overfitting, keeping in mind the 'expected' evolution of the underlying process is the most sensible approach.
+
+
+## Fitting, Confidence bands and plotting
+
+Fitting of each individual and group mean curves are achieved with `santaR_fit()` to generate a `SANTAObj` that is then used for processing:
+```{r}
+var1 <- santaR_fit(var1_input, df=5, groupin=var1_group)
+
+# it is possible to access the SANTAObj structure, which will be filled in the following steps
+var1$properties
+var1$general
+var1$groups$Group1
+```
+
+Confidence bands on the group mean curves can be calculated by bootstrapping using `santaR_CBand()`:
+```{r}
+var1 <- santaR_CBand(var1)
+```
+
+Plot is achieved using `santaR_plot()`, for more details see [Plotting options](plotting-options.html):
+```{r, fig.width = 7, fig.height = 5, dpi = 96}
+santaR_plot(var1)
+```
+
+
+## P-values calculation
+
+The _p_-values are calculated by the comparison of distance between group mean curves by random sampling of individuals. Due to the stochastic nature of the test, the _p_-value obtained can slighlty vary depending on the random draw. This can be compounded by using the lower and upper confidence range on the _p_-value that is estimated at the same time.
+
+`santaR_pvalue_dist()` will calculate the significance of the difference between two groups:
+```{r}
+var1 <- santaR_pvalue_dist(var1)
+# p-value
+var1$general$pval.dist
+# lower p-value confidence range
+var1$general$pval.dist.l
+# upper p-value confidence range
+var1$general$pval.dist.u
+# curve correlation coefficiant
+var1$general$pval.curveCorr
+```
+
+
+## See Also
+
+* [Getting Started with santaR](getting-started.html)
+* [How to prepare input data for santaR](prepare-input-data.html)
+* [santaR theoretical background](theoretical-background.html)
+* [Graphical user interface use](santaR-GUI.pdf)
+* [Automated command line analysis](automated-command-line.html)
+* [Plotting options](plotting-options.html)
+* [Selecting an optimal number of degrees of freedom](selecting-optimal-df.html)

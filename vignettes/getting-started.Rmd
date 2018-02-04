@@ -1,0 +1,71 @@
+---
+title: "Getting Started with the santaR package"
+author: "Arnaud Wolfer"
+date: "2017-12-30"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with the santaR package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Interactive package for _Short AsyNchronous Time-series Analysis_ (SANTA), implemented in `R` and `Shiny`
+
+## Installation
+
+Install the package from CRAN with:
+```{r, eval = FALSE}
+install.packages("santaR")
+```
+
+## Overview
+
+Longitudinal studies in Systems Biology face multiple challenges that are not suitably addressed by current time-series statistical methods, it is difficult to simultaneously account for with a _high number of variables_:
+
+* _biological variability_
+* _measurement error_
+* _missing observations_
+* _asynchronous sampling_
+* _nonlinearity_
+* _low number of time points_ (e.g. 4-10)
+
+To address these challenges, `santaR` (_Short AsyNchronous Time-series Analysis_) provides a Functional Data Analysis (_FDA_) approach -_where the fundamental units of analysis are curves representing each individual across time_-, in a graphical and automated pipeline for robust analysis of short time-series studies. 
+
+Analytes levels are descriptive of the underlying biological state and evolve smoothly through time. For a single analyte, the time trajectory of each individual is described with a smooth curve estimated by smoothing splines. For a group of individuals, a curve representing the group mean trajectory is also calculated. These individual and group mean curves become the new observational unit for subsequent data analysis, that is, the estimation of the intra-class variability and the identification of trajectories significantly altered between groups. 
+
+Designed initially for metabolomic, `santaR` is also suited for other Systems Biology disciplines. Implemented in `R` and `Shiny`, `santaR` is developed as a complete and easy-to-use statistical software package, which enables command line and GUI analysis, with fast and parallel automated analysis and reporting. Comprehensive plotting options as well as automated summaries allow clear identification of significantly altered analytes for non-specialist users.
+
+```{r, out.width = "700px", echo = FALSE}
+knitr::include_graphics("../man/figures/santaR-approach.jpg")
+```
+
+
+## Getting Started
+
+To get started `santaR`'s graphical user interface implements all the functions for short asynchronous time-series analysis:
+```{r, eval = FALSE}
+library(santaR)
+
+santaR_start_GUI(browser = TRUE)
+#  To exit press ESC in the command line
+```
+```{r, out.width = "700px", echo = FALSE}
+knitr::include_graphics("../man/figures/README-example-1.png")
+```
+
+The GUI is to be prefered to understand the methodology, select the best parameters on a subset of the data before running the command line, or to visually explore results.
+
+If a very high number of variables is to be processed, `santaR`'s command line functions are more efficient, as they can be integrated in scripts and the reporting automated.
+
+
+## Further Reading
+
+The following tutorials detail the use of `santaR`:
+
+* [How to prepare input data for santaR](prepare-input-data.html)
+* [santaR theoretical background](theoretical-background.html)
+* [Graphical user interface use](santaR-GUI.pdf)
+* [Automated command line analysis](automated-command-line.html)
+* [Plotting options](plotting-options.html)
+* [Selecting an optimal number of degrees of freedom](selecting-optimal-df.html)
+* [Advanced command line options](advanced-command-line-functions.html)

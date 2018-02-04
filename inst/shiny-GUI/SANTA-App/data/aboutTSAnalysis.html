@@ -1,0 +1,37 @@
+<h3 style="color:#3e648d;font-weight:bold">Analysis</h3>
+<p>Once the data imported, each variable can be fitted, plotted and analysed:</p>
+<h4 style="color:#3e648d">Fit</h4>
+<ul>
+	<li>The degree of freedom (<em>DF</em>) used for fitting can be selected. For recommendations on <em>DF</em> selection, refer to the <em>DF Search</em> section.</li>
+	<li>
+		Confidence bands (CBand) and p-values can be parallelised across multiple cores. <em>Force parallelisation</em> also parallelise fitting <em>(recommended only for extreme datasets such as high number of missing values or individuals. [variable fit ~millisecond vs parallelisation overhead ~second])</em>
+	</li>
+	<li>Confidence bands on the group time trajectory can be calculated by bootstrapping of individuals. The CBand indicate where the group time trajectory is 95% of the time when individuals are randomly resampled. The number of bootstrap rounds employed for CBand calculations can be modified (default 1000 rounds).</li>
+	<li>A column containing a group information for each sample can be selected (default "no Group"). The number of individuals in each group is returned. Advanced options allow to generate new groups by including / combining / excluding input groups, as well as modifying each class name.</li>
+	<li>Each group will be fitted separately (with it's own group time trajectory and CBand). If 2 groups are given or created, a p-value can be calculated for each variable highlighting significantly altered time profiles between the groups.</li>
+	<li>P-value Dist is based the area between the group time trajectories. The difference in trajectories is proportional to the area between group curves. Permutation of individual curves (permutation of group membership) enables to simulate a Null hypothesis (of no difference). The Alternate hypothesis (real group, real distance) is compared to the Null hypothesis distribution and a P-value for each variable is computed.</li>
+	<li>An second optional P-value measure is available: P-value Fit is based on the improvement on the goodness of fit (residuals) from fitting 1 group to fitting 2 groups. This improvement is compared to the Null hypothesis improvement (random groups by permutation of individual curves).</li>
+  <li>The number of permutation rounds employed for the calculation of p-values can be modified (default 1000 rounds): a higher number of permutations increases the precision of the p-value estimation at the cost of longer computations.
+	</li>
+	<li>Set parameters and press the <em>Run</em> button to fit the data.
+	</li>
+</ul>
+<h4 style="color:#3e648d">View Input</h4>
+<ul>
+	<li>Show the input data as fitted.</li>
+</ul>
+<h4 style="color:#3e648d">Plot</h4>
+<ul>
+	<li>Plot the fitted data with options to edit the figure (left panel).</li>
+</ul>
+<h4 style="color:#3e648d">P-value</h4>
+<ul>
+	<li>
+		Three false discovery rate correction <em>(Benjamini-Hochberg, Benjamini-Yekutieli, Bonferroni)</em>, as well as the confidence interval on the P-values can be selected on the top panel.
+	</li>
+	<li>Due to the stochastic nature of the estimated permuted P-value, a confidence interval on the p-values can be generated.</li>
+	<li>"Summary" highlight the number of variables with a p-value inferior to certain cut-offs.</li>
+	<li>"All" shows all the p-values calculated for each variable as well as the FDR corrections.</li>
+	<li>"P-value Dist" and "P-value Fit" show the resulting information for these P-value calculation approaches.</li>
+</ul>
+<hr/>

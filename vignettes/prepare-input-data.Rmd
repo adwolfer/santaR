@@ -1,0 +1,158 @@
+---
+title: "How to prepare input data for santaR"
+author: "Arnaud Wolfer"
+date: "2017-12-30"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to prepare input data for santaR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The `santaR` package is designed for the detection of significantly altered time trajectories between study groups, in short time-series. It is robust to missing values and noisy measurements without requiring synchronisation in time.
+
+This vignette will:
+
+* Detail the input format expected by the package
+* Present the provided example dataset _'acuteInflammation'_
+* Save _'acuteInflammation'_ in a `.csv` and `.RData` files to be used as input for the graphical interface tutorial.
+
+
+## Data format
+
+In short, for a given variable, each measurement (observation) is a row in a vector.
+
+If more than one variable has been measured at a given time, multiple measurement columns can be provided in a Data.Frame (`data`) with observations as rows and variables as columns.
+
+For each data point (row), the following metadata vectors are required (or can be stored in a Data.Frame `metadata`):
+
+* `time`, the time at which the observation has been taken.
+* `ind` identifying which subject (individual) is associated with the observation.
+
+Optionally:
+
+* `group` an identifier indicating to which study group the observation belongs.
+
+> All observations of a given individual need to be affected to the same group. If 2 groups exist, significantly altered time trajectories can be identified. If no group or more than 2 groups are provided, the trajectories can be plotted but significance cannot be calculated.
+
+`data` and `metadata` information can be stored as vectors, in one or in two separate Data.Frame. If a data-point is not available (no data value for any variables) the row should be discarded.
+If some of the variable measurements are missing for a given time-point, the value can be replace by `NaN`.
+Do not inpute data as the package is explicitely designed to be robust to missing values.
+
+Here is an example of `5` observations of `2` variables. Taken on `3` individual separated in `2` goups, covering `3` time-points:
+```{r, eval = FALSE}
+# Metadata
+```
+```{r, results = "asis", echo = FALSE}
+ind   <- c('ind_1','ind_1','ind_2','ind_2','ind_3')
+time  <- c(0, 5, 0, 10, 5)
+group <- c('group_A','group_A','group_B','group_B','group_A')
+outputMeta <- data.frame(ind, time, group, stringsAsFactors = FALSE)
+pander::pandoc.table(outputMeta)
+```
+```{r, eval = FALSE}
+# Data
+```
+```{r, results = "asis", echo = FALSE}
+variable1  <- c(1,3.5, 4,9.5,5)
+variable2  <- c(110.2, NaN, 79.1, 132.0, 528.3)
+outputData <- data.frame(variable1, variable2, stringsAsFactors = FALSE)
+pander::pandoc.table(outputData)
+```
+
+## Introducing the dataset _'acuteInflammation'_
+
+The `santaR` package is designed for the analysis of short noisy time-series as produced in most _'-omics'_ platforms, an example of which is provided.
+This dataset referred to as `acuteInflammation` contains the concentrations of 22 mediators of inflammation over an episode of acute inflammation. The mediators have been measured at 7 time-points on 8 subjects, concentration values have been unit-variance scaled for each variable.
+
+`acuteInflammation` is stored as two Data.Frame; `meta` for the 56 observations metadata, and `data` for the 22 variables measurements:
+```{r, eval = FALSE}
+library(santaR)
+
+## Metadata
+# number of rows
+nrow(acuteInflammation$meta)
+# number of columns
+ncol(acuteInflammation$meta)
+# a subset
+acuteInflammation$meta[12:20,]
+```
+```{r, results = "asis", echo = FALSE}
+library(santaR)
+nrow(acuteInflammation$meta)
+```
+
+```{r, results = "asis", echo = FALSE}
+library(santaR)
+ncol(acuteInflammation$meta)
+```
+
+```{r, results = "asis", echo = FALSE}
+library(santaR)
+pander::pandoc.table(acuteInflammation$meta[12:20,])
+```
+```{r, eval = FALSE}
+## Data
+# number of rows
+nrow(acuteInflammation$data)
+# number of columns
+ncol(acuteInflammation$data)
+# a subset
+acuteInflammation$data[12:20,1:4]
+```
+```{r, results = "asis", echo = FALSE}
+library(santaR)
+nrow(acuteInflammation$data)
+```
+
+```{r, results = "asis", echo = FALSE}
+library(santaR)
+ncol(acuteInflammation$data)
+```
+```{r, results = "asis", echo = FALSE}
+library(santaR)
+pander::pandoc.table(acuteInflammation$data[12:20,1:4])
+```
+
+
+## Preparing the csv input for the graphical user interface
+
+While the command line functions accept Data.Frame and vectors as input, the graphical user interface will read a `.csv` file.
+
+By concatenating `acuteInflammation`'s `data` and `metadata` tables and saving them in a `.csv` file, we can prepare the input dataset for the graphical user interface tutorial:
+
+```{r, eval = FALSE}
+library(santaR)
+
+# Concatenate
+outputTable <- cbind(acuteInflammation$meta, acuteInflammation$data)
+
+# Save to disk
+outputPath = file.path('path_to_my_output_folder', 'acuteInflammation_GUI_demo.csv') 
+write.csv(outputTable, file=outputPath, row.names=FALSE)
+```
+
+It is also possible to provide the data directly as 2 Data.Frames stored in a `.RData` file; containing the data in a DataFrame named `inData` and metadata in a DataFrame named `inMeta`:
+
+```{r, eval = FALSE}
+library(santaR)
+
+# Rename datasets
+inMeta <- acuteInflammation$meta
+inData <- acuteInflammation$data
+			
+# Save to disk
+outputPath = file.path('path_to_my_output_folder', 'acuteInflammation_GUI_demo.rdata') 
+save(inMeta, inData, file=outputPath, compress=TRUE)
+```
+
+
+## See Also
+
+* [Getting Started with santaR](getting-started.html)
+* [santaR theoretical background](theoretical-background.html)
+* [Graphical user interface use](santaR-GUI.pdf)
+* [Automated command line analysis](automated-command-line.html)
+* [Plotting options](plotting-options.html)
+* [Selecting an optimal number of degrees of freedom](selecting-optimal-df.html)
+* [Advanced command line options](advanced-command-line-functions.html)

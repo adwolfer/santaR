@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Arnaud Wolfer" />
+
+<meta name="date" content="2017-12-30" />
+
+<title>How to prepare input data for santaR</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">How to prepare input data for santaR</h1>
+<h4 class="author"><em>Arnaud Wolfer</em></h4>
+<h4 class="date"><em>2017-12-30</em></h4>
+
+
+
+<p>The <code>santaR</code> package is designed for the detection of significantly altered time trajectories between study groups, in short time-series. It is robust to missing values and noisy measurements without requiring synchronisation in time.</p>
+<p>This vignette will:</p>
+<ul>
+<li>Detail the input format expected by the package</li>
+<li>Present the provided example dataset <em>‘acuteInflammation’</em></li>
+<li>Save <em>‘acuteInflammation’</em> in a <code>.csv</code> and <code>.RData</code> files to be used as input for the graphical interface tutorial.</li>
+</ul>
+<div id="data-format" class="section level2">
+<h2>Data format</h2>
+<p>In short, for a given variable, each measurement (observation) is a row in a vector.</p>
+<p>If more than one variable has been measured at a given time, multiple measurement columns can be provided in a Data.Frame (<code>data</code>) with observations as rows and variables as columns.</p>
+<p>For each data point (row), the following metadata vectors are required (or can be stored in a Data.Frame <code>metadata</code>):</p>
+<ul>
+<li><code>time</code>, the time at which the observation has been taken.</li>
+<li><code>ind</code> identifying which subject (individual) is associated with the observation.</li>
+</ul>
+<p>Optionally:</p>
+<ul>
+<li><code>group</code> an identifier indicating to which study group the observation belongs.</li>
+</ul>
+<blockquote>
+<p>All observations of a given individual need to be affected to the same group. If 2 groups exist, significantly altered time trajectories can be identified. If no group or more than 2 groups are provided, the trajectories can be plotted but significance cannot be calculated.</p>
+</blockquote>
+<p><code>data</code> and <code>metadata</code> information can be stored as vectors, in one or in two separate Data.Frame. If a data-point is not available (no data value for any variables) the row should be discarded. If some of the variable measurements are missing for a given time-point, the value can be replace by <code>NaN</code>. Do not inpute data as the package is explicitely designed to be robust to missing values.</p>
+<p>Here is an example of <code>5</code> observations of <code>2</code> variables. Taken on <code>3</code> individual separated in <code>2</code> goups, covering <code>3</code> time-points:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Metadata</span></code></pre></div>
+<table style="width:33%;">
+<colgroup>
+<col width="11%"></col>
+<col width="9%"></col>
+<col width="12%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">ind</th>
+<th align="center">time</th>
+<th align="center">group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">ind_1</td>
+<td align="center">0</td>
+<td align="center">group_A</td>
+</tr>
+<tr class="even">
+<td align="center">ind_1</td>
+<td align="center">5</td>
+<td align="center">group_A</td>
+</tr>
+<tr class="odd">
+<td align="center">ind_2</td>
+<td align="center">0</td>
+<td align="center">group_B</td>
+</tr>
+<tr class="even">
+<td align="center">ind_2</td>
+<td align="center">10</td>
+<td align="center">group_B</td>
+</tr>
+<tr class="odd">
+<td align="center">ind_3</td>
+<td align="center">5</td>
+<td align="center">group_A</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Data</span></code></pre></div>
+<table style="width:33%;">
+<colgroup>
+<col width="16%"></col>
+<col width="16%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">variable1</th>
+<th align="center">variable2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">110.2</td>
+</tr>
+<tr class="even">
+<td align="center">3.5</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">79.1</td>
+</tr>
+<tr class="even">
+<td align="center">9.5</td>
+<td align="center">132</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">528.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="introducing-the-dataset-acuteinflammation" class="section level2">
+<h2>Introducing the dataset <em>‘acuteInflammation’</em></h2>
+<p>The <code>santaR</code> package is designed for the analysis of short noisy time-series as produced in most <em>‘-omics’</em> platforms, an example of which is provided. This dataset referred to as <code>acuteInflammation</code> contains the concentrations of 22 mediators of inflammation over an episode of acute inflammation. The mediators have been measured at 7 time-points on 8 subjects, concentration values have been unit-variance scaled for each variable.</p>
+<p><code>acuteInflammation</code> is stored as two Data.Frame; <code>meta</code> for the 56 observations metadata, and <code>data</code> for the 22 variables measurements:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(santaR)
+
+## Metadata
+<span class="co"># number of rows</span>
+<span class="kw">nrow</span>(acuteInflammation<span class="op">$</span>meta)
+<span class="co"># number of columns</span>
+<span class="kw">ncol</span>(acuteInflammation<span class="op">$</span>meta)
+<span class="co"># a subset</span>
+acuteInflammation<span class="op">$</span>meta[<span class="dv">12</span><span class="op">:</span><span class="dv">20</span>,]</code></pre></div>
+<p>[1] 56</p>
+<p>[1] 3</p>
+<table style="width:44%;">
+<colgroup>
+<col width="12%"></col>
+<col width="9%"></col>
+<col width="11%"></col>
+<col width="11%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">time</th>
+<th align="center">ind</th>
+<th align="center">group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>12</strong></td>
+<td align="center">4</td>
+<td align="center">ind_4</td>
+<td align="center">Group2</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>13</strong></td>
+<td align="center">4</td>
+<td align="center">ind_5</td>
+<td align="center">Group1</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>14</strong></td>
+<td align="center">4</td>
+<td align="center">ind_6</td>
+<td align="center">Group2</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>15</strong></td>
+<td align="center">4</td>
+<td align="center">ind_7</td>
+<td align="center">Group1</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>16</strong></td>
+<td align="center">4</td>
+<td align="center">ind_8</td>
+<td align="center">Group2</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>17</strong></td>
+<td align="center">8</td>
+<td align="center">ind_1</td>
+<td align="center">Group1</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>18</strong></td>
+<td align="center">8</td>
+<td align="center">ind_2</td>
+<td align="center">Group2</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>19</strong></td>
+<td align="center">8</td>
+<td align="center">ind_3</td>
+<td align="center">Group1</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>20</strong></td>
+<td align="center">8</td>
+<td align="center">ind_4</td>
+<td align="center">Group2</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Data
+<span class="co"># number of rows</span>
+<span class="kw">nrow</span>(acuteInflammation<span class="op">$</span>data)
+<span class="co"># number of columns</span>
+<span class="kw">ncol</span>(acuteInflammation<span class="op">$</span>data)
+<span class="co"># a subset</span>
+acuteInflammation<span class="op">$</span>data[<span class="dv">12</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</code></pre></div>
+<p>[1] 56</p>
+<p>[1] 22</p>
+<table style="width:72%;">
+<colgroup>
+<col width="12%"></col>
+<col width="13%"></col>
+<col width="15%"></col>
+<col width="15%"></col>
+<col width="15%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">var_1</th>
+<th align="center">var_2</th>
+<th align="center">var_3</th>
+<th align="center">var_4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>12</strong></td>
+<td align="center">2.498</td>
+<td align="center">1.307</td>
+<td align="center">0.08296</td>
+<td align="center">1.183</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>13</strong></td>
+<td align="center">-0.3399</td>
+<td align="center">-0.6434</td>
+<td align="center">0.03206</td>
+<td align="center">-0.8927</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>14</strong></td>
+<td align="center">2.668</td>
+<td align="center">2.464</td>
+<td align="center">1.365</td>
+<td align="center">1.743</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>15</strong></td>
+<td align="center">-0.3002</td>
+<td align="center">0.05366</td>
+<td align="center">0.4509</td>
+<td align="center">0.01572</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>16</strong></td>
+<td align="center">3.777</td>
+<td align="center">2.543</td>
+<td align="center">1.858</td>
+<td align="center">2.213</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>17</strong></td>
+<td align="center">-0.3275</td>
+<td align="center">0.1564</td>
+<td align="center">0.585</td>
+<td align="center">0.03299</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>18</strong></td>
+<td align="center">0.708</td>
+<td align="center">0.4893</td>
+<td align="center">-0.08219</td>
+<td align="center">0.9345</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>19</strong></td>
+<td align="center">-0.4101</td>
+<td align="center">-0.03727</td>
+<td align="center">-0.2914</td>
+<td align="center">-0.7239</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>20</strong></td>
+<td align="center">-0.1577</td>
+<td align="center">-0.6434</td>
+<td align="center">-0.7398</td>
+<td align="center">-0.2126</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="preparing-the-csv-input-for-the-graphical-user-interface" class="section level2">
+<h2>Preparing the csv input for the graphical user interface</h2>
+<p>While the command line functions accept Data.Frame and vectors as input, the graphical user interface will read a <code>.csv</code> file.</p>
+<p>By concatenating <code>acuteInflammation</code>’s <code>data</code> and <code>metadata</code> tables and saving them in a <code>.csv</code> file, we can prepare the input dataset for the graphical user interface tutorial:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(santaR)
+
+<span class="co"># Concatenate</span>
+outputTable &lt;-<span class="st"> </span><span class="kw">cbind</span>(acuteInflammation<span class="op">$</span>meta, acuteInflammation<span class="op">$</span>data)
+
+<span class="co"># Save to disk</span>
+outputPath =<span class="st"> </span><span class="kw">file.path</span>(<span class="st">'path_to_my_output_folder'</span>, <span class="st">'acuteInflammation_GUI_demo.csv'</span>) 
+<span class="kw">write.csv</span>(outputTable, <span class="dt">file=</span>outputPath, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p>It is also possible to provide the data directly as 2 Data.Frames stored in a <code>.RData</code> file; containing the data in a DataFrame named <code>inData</code> and metadata in a DataFrame named <code>inMeta</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(santaR)
+
+<span class="co"># Rename datasets</span>
+inMeta &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>meta
+inData &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>data
+            
+<span class="co"># Save to disk</span>
+outputPath =<span class="st"> </span><span class="kw">file.path</span>(<span class="st">'path_to_my_output_folder'</span>, <span class="st">'acuteInflammation_GUI_demo.rdata'</span>) 
+<span class="kw">save</span>(inMeta, inData, <span class="dt">file=</span>outputPath, <span class="dt">compress=</span><span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="see-also" class="section level2">
+<h2>See Also</h2>
+<ul>
+<li><a href="getting-started.html">Getting Started with santaR</a></li>
+<li><a href="theoretical-background.html">santaR theoretical background</a></li>
+<li><a href="santaR-GUI.pdf">Graphical user interface use</a></li>
+<li><a href="automated-command-line.html">Automated command line analysis</a></li>
+<li><a href="plotting-options.html">Plotting options</a></li>
+<li><a href="selecting-optimal-df.html">Selecting an optimal number of degrees of freedom</a></li>
+<li><a href="advanced-command-line-functions.html">Advanced command line options</a></li>
+</ul>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

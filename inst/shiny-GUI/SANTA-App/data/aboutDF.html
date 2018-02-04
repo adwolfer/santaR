@@ -1,0 +1,52 @@
+<h3 style="color:#3e648d;font-weight:bold">About DF search</h3>
+<p>
+  The single parameter to be set by the user is the number of degrees of freedom (<em>DF</em>) to employ. The <em>DF</em> parameter controls how closely the curve (spline) fits the input data. It is necessary to ensure that the curve is not over-fitting or under-fitting the data.<br/> This parameter is dependent on the study design <em>(number of time-points, sampling rate, time-scale of the function of time under study)</em> and therefore only needs to be selected once per dataset.
+</p>
+<p>
+	Some indications based on simulated data and diverse datasets can guide the selection of DF:
+<ul>
+  <li><em>DF</em> controls the "<em>complexity</em>" of the model employed. A substantial difference can be found when going from 2 to 10, but very little change will take place when going from 10 to 50 (the model only gets more complex, but the general shape won't change).</li>
+  <li>More time points do not automatically require a higher <em>DF</em>. More inflexions (<em>more complex shape</em>) could require a higher <em>DF</em> if the number of points is sufficient (and the sampling frequency high).</li>
+  <li>A lower <em>DF</em> value is often more suited and generalisable (less over-fitted).</li>
+  <li>If the <em>DF</em> is for example 10, all individuals trajectories with less of 10 time-points cannot be fitted and will be rejected.</li>
+  <li>On simulated data, the results (<em>p</em>-values) are resilient to most values of <em>DF</em>, however the plots can look dramatically different.</li>
+  <li>Try multiple values of <em>DF</em> on a subset of variables (using the GUI) and then select the fit that approximate the time evolution the best without over-fitting:
+	<ul>
+		<li><em>DF=5</em> is a reasonable starting point in most cases (<em>even more so if there less than 10 time-points are available</em>).</li>
+		<li>If the number of time-points is large and the curves seem very under-fitted, <em>DF</em> can be increased to 6, 7 or more. Values higher than 10 should rarely be required and will provide with a diminishing return. <em>DF=number of time-points</em> will result in a curve passing through all points (over-fitted).</li>
+		<li>If the number of time points is lower or the trajectories seem over-fitted, <em>DF</em> can be decreased to 4 or 3. (3 will be similar to a second degree polynomial, while 2 will be a linear model).</li>
+		<li>If the plots "<em>looks right</em>" and don't seem to "<em>invent</em>" information between measured data-points, the <em>DF</em> is close to optimal.</li>
+	</ul>
+	</li>
+</ul>
+</p>
+<p>While it does not seem possible to fully automate the selection of the number of degrees of freedom, <em>DF Search</em> implements visualisation approaches to assist in the selection of an adequate <em>DF</em> to apply across all variables for a given dataset.</p>
+<h4 style="color:#3e648d">Eigen-trajectories estimation</h4>
+<ul>
+  <li>A PCA extracts the eigen-trajectories across all variables. The <em>DF</em> that will best fit that subset of eigen-trajectories is expected to be satisfactory for all trajectories in the dataset.</li>
+  <li>Set parameters on the left and press the run button to generate the eigen-trajectories</li>
+</ul>
+<h4 style="color:#3e648d">Auto-Fit</h4>
+<ul>
+  <li>Auto-Fit returns the optimal <em>DF</em> based on different goodness of fit metrics.</li>
+</ul>
+<h4 style="color:#3e648d">Parameter Evolution</h4>
+<ul>
+  <li>Plot the evolution of different goodness of fit metrics for all possible <em>DF</em>.</li>
+  <li>
+    Set parameters and press the <em>update step</em> button to calculate the metrics.
+  </li>
+</ul>
+<h4 style="color:#3e648d">Plot Fit</h4>
+<ul>
+  <li>Plot eigen-trajectories fitted with a selected <em>DF</em> (left panel).</li>
+  <li>
+    Set parameters (automatic fitted spline in red) and press the <em>update</em>  button to generate the plot.
+  </li>
+</ul>
+<h4 style="color:#3e648d">Missing Value</h4>
+<ul>
+  <li>
+    The number of trajectories that must be rejected due to a too low number of observations <em>(depending on the <em>DF</em> selected)</em> can be visualised.
+  </li>
+</ul>
