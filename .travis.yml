@@ -17,6 +17,11 @@ bioc_required: true
 
 r_packages:
   - covr
+	
+addons:
+  apt:
+	  packages:
+		  - ghostscript
 
 after_success:
   - Rscript -e 'library(covr); codecov(line_exclusions = "R/zzz.R")'
