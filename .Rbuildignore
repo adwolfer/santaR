@@ -4,3 +4,4 @@
 .gitignore
 LICENSE
 cran-comments.md
+^.travis.yml

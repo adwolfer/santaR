@@ -3,6 +3,11 @@
 
 # santaR
 
+[![Build
+Status](https://travis-ci.org/adwolfer/santaR.svg?branch=develop)](https://travis-ci.org/adwolfer/santaR)
+[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/develop/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
+
 Interactive package for *Short AsyNchronous Time-series Analysis*
 (SANTA), implemented in `R` and `Shiny`
 
@@ -102,20 +107,20 @@ More information is available in the graphical user interface as well as
 in the following vignettes:
 
   - [Getting Started with
-    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/getting-started.html)
+    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/getting-started.html)
   - [How to prepare input data for
-    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/prepare-input-data.html)
+    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/prepare-input-data.html)
   - [santaR Graphical user interface use](inst/doc/santaR-GUI.pdf)
   - [santaR Theoretical
-    Background](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/theoretical-background.html)
+    Background](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/theoretical-background.html)
   - [Automated command line
-    analysis](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/automated-command-line.html)
+    analysis](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/automated-command-line.html)
   - [Plotting
-    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/plotting-options.html)
+    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/plotting-options.html)
   - [Selecting an optimal number of degrees of
-    freedom](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/selecting-optimal-df.html)
+    freedom](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/selecting-optimal-df.html)
   - [Advanced command line
-    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/advanced-command-line-functions.html)
+    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/advanced-command-line-functions.html)
 
 A dataset containing the concentrations of 22 mediators of inflammation
 over an episode of acute inflammation is also available. The mediators
