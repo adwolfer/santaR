@@ -5,7 +5,7 @@
 
 [![Build
 Status](https://travis-ci.org/adwolfer/santaR.svg?branch=develop)](https://travis-ci.org/adwolfer/santaR)
-[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/develop/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR)
+[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/develop/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR/branch/develop)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
 
 Interactive package for *Short AsyNchronous Time-series Analysis*

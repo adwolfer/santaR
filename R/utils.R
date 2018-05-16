@@ -102,7 +102,7 @@ get_ind_time_matrix       <- function(Yi,ind,time,orderVect) {
 #'
 #' @export
 get_grouping              <- function(ind,group) {
-  grouping            <- data.frame( matrix(nrow=length(unique(ind)), ncol=2, byrow=FALSE, data=c(unique(ind), group[match(unique(ind),ind)]) ))
+  grouping            <- data.frame( matrix(nrow=length(unique(ind)), ncol=2, byrow=FALSE, data=c(unique(ind), group[match(unique(ind),ind)]) ), stringsAsFactors=FALSE)
   colnames(grouping)  <- c('ind','group')
   return(grouping)
 }

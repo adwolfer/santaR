@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # santaR
-[![Build Status](https://travis-ci.org/adwolfer/santaR.svg?branch=develop)](https://travis-ci.org/adwolfer/santaR) [![codecov](https://codecov.io/gh/adwolfer/santaR/branch/develop/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
+[![Build Status](https://travis-ci.org/adwolfer/santaR.svg?branch=develop)](https://travis-ci.org/adwolfer/santaR) [![codecov](https://codecov.io/gh/adwolfer/santaR/branch/develop/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR/branch/develop) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
 
 Interactive package for _Short AsyNchronous Time-series Analysis_ (SANTA), implemented in `R` and `Shiny`
 
