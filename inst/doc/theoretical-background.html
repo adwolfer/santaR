@@ -20,46 +20,256 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 </head>
 
@@ -95,15 +305,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <div id="concept-of-functional-data-analysis" class="section level2">
 <h2>Concept of Functional Data Analysis</h2>
-<p>Traditional times-series methodologies consider each measurement (or observation) - for example a metabolic response value at a defined time-point - as the basic representative unit. In this context, a time trajectory is composed of a set of discrete observations taken at subsequent times. Functional data analysis<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> is a framework proposed by Ramsay and Silverman which models continuously each measured values as variable evolves (e.g. time). Contrary to traditional time-series approaches, FDA consider a subject’s entire time-trajectory as a single data point. This continuous representation of the variable through time is then employed for further data analysis.</p>
+<p>Traditional times-series methodologies consider each measurement (or observation) - for example a metabolic response value at a defined time-point - as the basic representative unit. In this context, a time trajectory is composed of a set of discrete observations taken at subsequent times. Functional data analysis<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> is a framework proposed by Ramsay and Silverman which models continuously each measured values as variable evolves (e.g. time). Contrary to traditional time-series approaches, FDA consider a subject’s entire time-trajectory as a single data point. This continuous representation of the variable through time is then employed for further data analysis.</p>
 <p>More precisely, FDA assumes that a variable’s time trajectory is the result of a smooth underlying function of time which must be estimated. Therefore, the analysis’ first step is to convert a subject’s successive observations to the underlying function <span class="math inline">\(F(t)\)</span> that can be evaluated at any desired time values</p>
 <p>Two main challenges prescribe the exact characterisation of the true underlying function of time <span class="math inline">\(F(t)\)</span>. First, the limited number of discrete observations constrains to a finite time interval and does not cover all possible values, while the true underlying smooth process is infinitely defined. Secondly, intrinsic limitations and variabilities of the analytical platforms mean that the discrete observations are not capturing the true underlying function values, but a succession of noisy realisations.</p>
 <p>A metabolite’s concentration over the duration of the experiment is the real quantity of interest. As the true smooth process <span class="math inline">\(F(t)\)</span> cannot be evaluated, due to the collection and analytical process only providing noisy snapshots of its value, an approximation of the underlying metabolite concentration <span class="math inline">\(f(t)\)</span> must be employed. This approximation can be computed by smoothing the multiple single measurements available.</p>
 <p>The approximation of the underlying function of time, of a single variable observed on a single subject, is generated by smoothing <span class="math inline">\(y_i\)</span> observations taken at the time <span class="math inline">\(t_i\)</span>, such as:</p>
 <p><span class="math display">\[y_{i}=f(t_{i})+\epsilon_{i}\]</span></p>
 <p>Where <span class="math inline">\(f(t)\)</span> is the smoothed function that can be evaluated at any desired time <span class="math inline">\(t\)</span> within the defined time domain, and <span class="math inline">\(\epsilon_i\)</span> is an error term allowing for measurement errors. By extension, if <span class="math inline">\(f(t)\)</span> is defined as representing the true variable level across a population, <span class="math inline">\(\epsilon\)</span> can allow for both individual specific deviation and measurement error.</p>
-<p>In order to parametrise and computationally manipulate the smooth approximation, the representation is projected onto a finite basis, which expresses the infinitesimally dimensional <span class="math inline">\(f(t)\)</span> as a linear combination of a set of basis functions. A wide range of basis functions (e.g. polynomials, splines, wavelets, Fourier basis) are available, even if the most commonly used are Fourier basis for periodic data and splines for aperiodic trajectories<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>.</p>
-<p>Following smoothing, a time-trajectory is expressed as a linear combination of a set of basis functions, for which values can be computer at any desired time without reconsidering the discrete observations. It is assumed that, if a satisfactory fit of the original data is obtained, both the new smooth approximation and the preceding noisy realisations should provide a similar representation of the underlying process<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> <a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<p>In order to parametrise and computationally manipulate the smooth approximation, the representation is projected onto a finite basis, which expresses the infinitesimally dimensional <span class="math inline">\(f(t)\)</span> as a linear combination of a set of basis functions. A wide range of basis functions (e.g. polynomials, splines, wavelets, Fourier basis) are available, even if the most commonly used are Fourier basis for periodic data and splines for aperiodic trajectories<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<p>Following smoothing, a time-trajectory is expressed as a linear combination of a set of basis functions, for which values can be computer at any desired time without reconsidering the discrete observations. It is assumed that, if a satisfactory fit of the original data is obtained, both the new smooth approximation and the preceding noisy realisations should provide a similar representation of the underlying process<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> <a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 <p>In practice, by assuming and parametrising <em>(explicitely or implicitely)</em> the smoothness of the function and leveraging multiple measurements in time as well as multiple individual trajectories, the smoothed representation can implicitly handle noisy metabolic responses. Additionally, as functional representations do not rely on the input data after their generation, smoothing approaches can handle irregular sampling and missing observations, translating to trajectories that can be compared without requiring missing values imputation. As such, the FDA framework and the smoothness assumption provide the necessary tools for the time-dependent analysis of short and noisy metabolic time-trajectories.</p>
 </div>
 <div id="main-hypothesis" class="section level2">
@@ -114,65 +324,65 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="signal-extraction-using-splines" class="section level2">
 <h2>Signal extraction using splines</h2>
-<p>Fitting splines to time trajectories is equivalent to a denoising or signal extraction problem: balancing the fitting of raw data versus the smoothing of the biological variability and measurement errors. Splines are piecewise polynomials with boundary continuity and smoothness constraints, which require a minimum of assumptions about the underlying form of the data<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a> <a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a> <a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>. The complexity of the fit is controlled by a single smoothing parameter <span class="math inline">\(\lambda\)</span>.</p>
+<p>Fitting splines to time trajectories is equivalent to a denoising or signal extraction problem: balancing the fitting of raw data versus the smoothing of the biological variability and measurement errors. Splines are piecewise polynomials with boundary continuity and smoothness constraints, which require a minimum of assumptions about the underlying form of the data<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> <a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> <a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. The complexity of the fit is controlled by a single smoothing parameter <span class="math inline">\(\lambda\)</span>.</p>
 <p>The data <span class="math inline">\(y_{ij}\)</span> of individual <span class="math inline">\(i\)</span>, <span class="math inline">\(i=1,.,n_k\)</span>, observed at time points <span class="math inline">\(t_{ij}\)</span>, <span class="math inline">\(j=1,.,m_i\)</span>, in a group of <span class="math inline">\(n_k\)</span> individuals, is modelled by a smoothing spline <span class="math inline">\(f_i(t_{ij})\)</span> of continuous first and second derivatives that minimizes the penalized residual sum of squares (<em>PRSS</em>) (Eq. 1):</p>
 <p><span class="math display">\[PRSS(f_{i},\lambda)=\sum_{j=1}^{m_{i}} \{y_{ij} - f_i(t_{ij})\}^2 + \lambda \int_{t_{min}}^{t_{max}}\{\ddot{f_i(t)}\}^2~dt\]</span> (Eq. 1)</p>
-<p>The first term of Eq. 1 is the squared error of employing the curve <span class="math inline">\(f_i(t)\)</span> to predict <span class="math inline">\(y_{ij}\)</span>, measuring the closeness of the function to the data. The second term penalises the curvature of the function while <span class="math inline">\(\lambda\)</span> controls the trade-off between both terms. The smoothing parameter <span class="math inline">\(\lambda\)</span> is shared among all individuals. The monotonic relationship between the smoothing parameter <span class="math inline">\(\lambda\)</span> and the desired equivalent number of degrees of freedom (<em>df</em>) of the corresponding fit (Eq. 2), allows us to control the closeness of curve fitting by varying <em>df</em><a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>.</p>
+<p>The first term of Eq. 1 is the squared error of employing the curve <span class="math inline">\(f_i(t)\)</span> to predict <span class="math inline">\(y_{ij}\)</span>, measuring the closeness of the function to the data. The second term penalises the curvature of the function while <span class="math inline">\(\lambda\)</span> controls the trade-off between both terms. The smoothing parameter <span class="math inline">\(\lambda\)</span> is shared among all individuals. The monotonic relationship between the smoothing parameter <span class="math inline">\(\lambda\)</span> and the desired equivalent number of degrees of freedom (<em>df</em>) of the corresponding fit (Eq. 2), allows us to control the closeness of curve fitting by varying <em>df</em><a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>.</p>
 <p><span class="math display">\[df_{\lambda}=trace(S_{\lambda})\]</span> (Eq. 2)</p>
-<p>where <span class="math inline">\(S_{\lambda}\)</span> is the smoother matrix (roughness matrix, or hat matrix) which transforms the observed data vector to the vector of fitted values (for more information see Eubank<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>, and Buja <em>et al</em>.<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a>).</p>
+<p>where <span class="math inline">\(S_{\lambda}\)</span> is the smoother matrix (roughness matrix, or hat matrix) which transforms the observed data vector to the vector of fitted values (for more information see Eubank<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>, and Buja <em>et al</em>.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>).</p>
 <p>The <em>df</em> parameter controls how closely the spline fits the input data. For example, when <em>df</em> is minimal (<em>df</em>=2), the smoothing is maximised and the original data points fitted with a straight line. On the other hand, when <em>df</em> approaches the number of time-points, every data point is fitted without smoothing, which can result in an over-fit of the raw measurements.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(gridExtra)
-<span class="kw">library</span>(grid)
-
-<span class="co"># Sample a gaussian distribution, add noise to it</span>
-x       &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="fl">1.5</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">0.5</span>,  <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)
-y       &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">log=</span><span class="ot">FALSE</span>)
-y_noise &lt;-<span class="st"> </span><span class="kw">jitter</span>(y, <span class="dv">90</span>)
-
-<span class="co"># Fit different smoothing splines, project on a grid for plotting</span>
-time     =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">0.01</span> )
-tmp_fit0 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y, <span class="dt">df=</span><span class="dv">13</span>)
-tmp_fit1 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y_noise, <span class="dt">df=</span><span class="dv">2</span>)
-tmp_fit2 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y_noise, <span class="dt">df=</span><span class="dv">5</span>)
-tmp_fit3 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y_noise, <span class="dt">df=</span><span class="dv">13</span>)
-
-pred0    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit0, <span class="dt">x=</span>time )
-pred1    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit1, <span class="dt">x=</span>time )
-pred2    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit2, <span class="dt">x=</span>time )
-pred3    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit3, <span class="dt">x=</span>time )
-
-tmpPred0 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred0<span class="op">$</span>x, <span class="dt">y=</span>pred0<span class="op">$</span>y)
-tmpPred1 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred1<span class="op">$</span>x, <span class="dt">y=</span>pred1<span class="op">$</span>y)
-tmpPred2 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred2<span class="op">$</span>x, <span class="dt">y=</span>pred2<span class="op">$</span>y)
-tmpPred3 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred3<span class="op">$</span>x, <span class="dt">y=</span>pred3<span class="op">$</span>y)
-
-tmpRaw   =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>x,  <span class="dt">y=</span>y)
-tmpNoisy =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>x,  <span class="dt">y=</span>y_noise)
-
-<span class="co"># Plot original data and spline representations</span>
-p0 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">0</span>), <span class="st">&quot;cm&quot;</span>))
-p0 &lt;-<span class="st"> </span>p0 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpRaw, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )
-p0 &lt;-<span class="st"> </span>p0 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred0, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'springgreen3'</span> )
-p0 &lt;-<span class="st"> </span>p0 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(<span class="st">'True underlying'</span>, <span class="kw">paste</span>(<span class="st">'function of time'</span>))))
-
-p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.25</span>), <span class="st">&quot;cm&quot;</span>))
-p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpNoisy, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )
-p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred1, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'blue'</span> )
-p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(lambda<span class="op">*</span><span class="st">' -&gt; '</span><span class="op">*</span>infinity, <span class="kw">paste</span>(<span class="st">'DF = 2'</span>))))
-
-p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.25</span>), <span class="st">&quot;cm&quot;</span>))
-p2 &lt;-<span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpNoisy, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )
-p2 &lt;-<span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred2, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'blue'</span> )
-p2 &lt;-<span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(<span class="st">'Optimal '</span><span class="op">*</span>lambda, <span class="kw">paste</span>(<span class="st">'Optimal DF'</span>, <span class="dt">sep=</span><span class="st">''</span>))))
-
-p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.25</span>), <span class="st">&quot;cm&quot;</span>))
-p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpNoisy, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )
-p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred3, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'blue'</span> )
-p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(lambda<span class="op">*</span><span class="st">' = 0'</span>, <span class="kw">paste</span>(<span class="st">'DF = N'</span>))))
-
-<span class="kw">grid.arrange</span>(p0,p1,p2,p3, <span class="dt">ncol=</span><span class="dv">4</span>)</code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(grid)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Sample a gaussian distribution, add noise to it</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">x       &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">-3</span>, <span class="dv">-2</span>, <span class="fl">-1.5</span>, <span class="dv">-1</span>, <span class="fl">-0.5</span>, <span class="dv">0</span>, <span class="fl">0.5</span>,  <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">y       &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">log=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">y_noise &lt;-<span class="st"> </span><span class="kw">jitter</span>(y, <span class="dv">90</span>)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># Fit different smoothing splines, project on a grid for plotting</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">time     =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">0.01</span> )</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">tmp_fit0 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y, <span class="dt">df=</span><span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">tmp_fit1 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y_noise, <span class="dt">df=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">tmp_fit2 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y_noise, <span class="dt">df=</span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">tmp_fit3 =<span class="st"> </span><span class="kw">smooth.spline</span>(x, y_noise, <span class="dt">df=</span><span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">pred0    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit0, <span class="dt">x=</span>time )</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">pred1    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit1, <span class="dt">x=</span>time )</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">pred2    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit2, <span class="dt">x=</span>time )</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">pred3    =<span class="st"> </span><span class="kw">predict</span>( <span class="dt">object=</span>tmp_fit3, <span class="dt">x=</span>time )</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">tmpPred0 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred0<span class="op">$</span>x, <span class="dt">y=</span>pred0<span class="op">$</span>y)</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">tmpPred1 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred1<span class="op">$</span>x, <span class="dt">y=</span>pred1<span class="op">$</span>y)</a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">tmpPred2 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred2<span class="op">$</span>x, <span class="dt">y=</span>pred2<span class="op">$</span>y)</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">tmpPred3 =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>pred3<span class="op">$</span>x, <span class="dt">y=</span>pred3<span class="op">$</span>y)</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">tmpRaw   =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>x,  <span class="dt">y=</span>y)</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">tmpNoisy =<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x=</span>x,  <span class="dt">y=</span>y_noise)</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb1-30" data-line-number="30"><span class="co"># Plot original data and spline representations</span></a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">p0 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="dv">0</span>), <span class="st">&quot;cm&quot;</span>))</a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">p0 &lt;-<span class="st"> </span>p0 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpRaw, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )</a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">p0 &lt;-<span class="st"> </span>p0 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred0, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'springgreen3'</span> )</a>
+<a class="sourceLine" id="cb1-34" data-line-number="34">p0 &lt;-<span class="st"> </span>p0 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(<span class="st">'True underlying'</span>, <span class="kw">paste</span>(<span class="st">'function of time'</span>))))</a>
+<a class="sourceLine" id="cb1-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb1-36" data-line-number="36">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.25</span>), <span class="st">&quot;cm&quot;</span>))</a>
+<a class="sourceLine" id="cb1-37" data-line-number="37">p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpNoisy, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )</a>
+<a class="sourceLine" id="cb1-38" data-line-number="38">p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred1, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'blue'</span> )</a>
+<a class="sourceLine" id="cb1-39" data-line-number="39">p1 &lt;-<span class="st"> </span>p1 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(lambda<span class="op">*</span><span class="st">' -&gt; '</span><span class="op">*</span>infinity, <span class="kw">paste</span>(<span class="st">'DF = 2'</span>))))</a>
+<a class="sourceLine" id="cb1-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb1-41" data-line-number="41">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.25</span>), <span class="st">&quot;cm&quot;</span>))</a>
+<a class="sourceLine" id="cb1-42" data-line-number="42">p2 &lt;-<span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpNoisy, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )</a>
+<a class="sourceLine" id="cb1-43" data-line-number="43">p2 &lt;-<span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred2, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'blue'</span> )</a>
+<a class="sourceLine" id="cb1-44" data-line-number="44">p2 &lt;-<span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(<span class="st">'Optimal '</span><span class="op">*</span>lambda, <span class="kw">paste</span>(<span class="st">'Optimal DF'</span>, <span class="dt">sep=</span><span class="st">''</span>))))</a>
+<a class="sourceLine" id="cb1-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb1-46" data-line-number="46">p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="ot">NULL</span>, <span class="kw">aes</span>(x), <span class="dt">environment =</span> <span class="kw">environment</span>()) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>(), <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(), <span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.25</span>), <span class="st">&quot;cm&quot;</span>))</a>
+<a class="sourceLine" id="cb1-47" data-line-number="47">p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">data=</span>tmpNoisy, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">size=</span><span class="fl">1.5</span> )</a>
+<a class="sourceLine" id="cb1-48" data-line-number="48">p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>( <span class="dt">data=</span>tmpPred3, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y), <span class="dt">linetype=</span><span class="dv">1</span>, <span class="dt">color=</span><span class="st">'blue'</span> )</a>
+<a class="sourceLine" id="cb1-49" data-line-number="49">p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="kw">expression</span>(<span class="kw">atop</span>(lambda<span class="op">*</span><span class="st">' = 0'</span>, <span class="kw">paste</span>(<span class="st">'DF = N'</span>))))</a>
+<a class="sourceLine" id="cb1-50" data-line-number="50"></a>
+<a class="sourceLine" id="cb1-51" data-line-number="51"><span class="kw">grid.arrange</span>(p0,p1,p2,p3, <span class="dt">ncol=</span><span class="dv">4</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 <blockquote>
 <p>Multiple smoothing-spline fits of noisy realisations generated from a true smooth underlying function of time . A true smooth underlying function (continuous green line) is observed at multiple time points (dots). Noise is added to these measurements and the underlying function is approximated using smooth-splines at multiple levels of smoothness (blue continuous line).</p>
 <ul>
@@ -198,7 +408,7 @@ p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> <
 <div id="intra-class-variability-confidence-bands-on-the-group-mean-curves" class="section level2">
 <h2>Intra-class variability (confidence bands on the group mean curves)</h2>
 <p>Confidence bands are employed to represent the uncertainty in an function’s estimate based on limited or noisy data. Pointwise confidence bands on the group mean curve can therefore provide a visualisation of the variance of the overall mean function through time. The confidence bands indicate for each possible time, values of the mean curve which could have been produced by the provided individual trajectories, with at least a given probability.</p>
-<p>As the underlying distribution of <span class="math inline">\(F(t)\)</span> is unknown and inaccessible, confidence on <span class="math inline">\(g(t)\)</span> must be estimated by sampling the approximate distribution available (i.e. the measurements), achieved by bootstrapping the observations<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a> <a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a> <a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a>. Bootstrap assumes that sampling the distribution under a good estimate of the truth (the measurements) should be close to sampling the distribution under the true process. Once a bootstrapped distribution of mean curve is estimated, using the percentile method a pointwise confidence interval on <span class="math inline">\(g(t)\)</span> can be calculated<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a> <a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a> <a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a> by taking the <span class="math inline">\(\alpha/2\)</span> and <span class="math inline">\(1-\alpha/2\)</span> quantiles at each time-point of interest (where <span class="math inline">\(\alpha\)</span> is the error quantile in percent).</p>
+<p>As the underlying distribution of <span class="math inline">\(F(t)\)</span> is unknown and inaccessible, confidence on <span class="math inline">\(g(t)\)</span> must be estimated by sampling the approximate distribution available (i.e. the measurements), achieved by bootstrapping the observations<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> <a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> <a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>. Bootstrap assumes that sampling the distribution under a good estimate of the truth (the measurements) should be close to sampling the distribution under the true process. Once a bootstrapped distribution of mean curve is estimated, using the percentile method a pointwise confidence interval on <span class="math inline">\(g(t)\)</span> can be calculated<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> <a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> <a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> by taking the <span class="math inline">\(\alpha/2\)</span> and <span class="math inline">\(1-\alpha/2\)</span> quantiles at each time-point of interest (where <span class="math inline">\(\alpha\)</span> is the error quantile in percent).</p>
 <p>As limited assumptions on the fitted model can be established, empirical confidence bands on the group mean curve are calculated based on a non-parametric bootstrapped distribution. Individual curves are sampled with replacement and group mean curves calculated. The distribution of group mean curve is then employed to estimate the pointwise confidence bands.</p>
 </div>
 <div id="detection-of-significantly-altered-time-trajectories" class="section level2">
@@ -217,8 +427,8 @@ p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> <
 <li><span class="math inline">\(H_1\)</span>: The two curves are not the same.</li>
 </ul>
 <p>Under the null hypothesis <span class="math inline">\(H_0\)</span>, the global distance between <span class="math inline">\(g_1(t)\)</span> and <span class="math inline">\(g_2(t)\)</span> can be generated by a randomly permuting the individuals between two groups. Under the alternate hypothesis <span class="math inline">\(H_1\)</span>, the two curves are different, and very few random assignment of individuals to groups will generate group mean curves that differ more than the observed ones (i.e. a larger global distance).</p>
-<p>In order to test the null hypothesis, the observed global distance must be compared to the expected global distance under the null hypothesis. The null distribution of the global distance measure is inferred by repeated permutations of the individual class labels<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>. Individual trajectories are fit using the chosen <em>df</em> and randomly assigned in one of two groups of size <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> (identical to the size of <span class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> respectively). The corresponding group mean curves <span class="math inline">\(g'_1(t)\)</span> and <span class="math inline">\(g'_2(t)\)</span> computed, and a global distance <span class="math inline">\(dist(g'_1,g'_2)\)</span> calculated. This is repeated many times to form the null distribution of the global distance. From this distribution a <span class="math inline">\(p\)</span>-value can be computed as the proportion of global distance as extreme or more extreme than the observed global distance (<span class="math inline">\(dist(g_1,g_2)\)</span>). The <span class="math inline">\(p\)</span>-value indicates the probability (if the null hypothesis was true) of a global difference as, or more, extreme than the observed one. If the <span class="math inline">\(p\)</span>-value is inferior to an agreed significance level, the null hypothesis is rejected.</p>
-<p>Due to the stochastic nature of the permutations, the null distribution sampled depends on the random draw, resulting in possible variation of the <span class="math inline">\(p\)</span>-value. Variation on the permuted <span class="math inline">\(p\)</span>-value can be described by confidence intervals. The <span class="math inline">\(p\)</span>-value is considered as the success probability parameter <span class="math inline">\(p\)</span> in <span class="math inline">\(n\)</span> independent Bernoulli trials, where <span class="math inline">\(n=B\)</span> the total number of permutation rounds<a href="#fn20" class="footnoteRef" id="fnref20"><sup>20</sup></a>. Confidence intervals on this binomial distribution of parameter <span class="math inline">\(p\)</span> and <span class="math inline">\(n\)</span> can then be computed. As extreme <span class="math inline">\(p\)</span>-values are possible (i.e close to 0) and the number of permutation rounds could be small, the Wilson score interval<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a> is employed to determine the confidence intervals (Eq. 5):</p>
+<p>In order to test the null hypothesis, the observed global distance must be compared to the expected global distance under the null hypothesis. The null distribution of the global distance measure is inferred by repeated permutations of the individual class labels<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>. Individual trajectories are fit using the chosen <em>df</em> and randomly assigned in one of two groups of size <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> (identical to the size of <span class="math inline">\(G_1\)</span> and <span class="math inline">\(G_2\)</span> respectively). The corresponding group mean curves <span class="math inline">\(g'_1(t)\)</span> and <span class="math inline">\(g'_2(t)\)</span> computed, and a global distance <span class="math inline">\(dist(g'_1,g'_2)\)</span> calculated. This is repeated many times to form the null distribution of the global distance. From this distribution a <span class="math inline">\(p\)</span>-value can be computed as the proportion of global distance as extreme or more extreme than the observed global distance (<span class="math inline">\(dist(g_1,g_2)\)</span>). The <span class="math inline">\(p\)</span>-value indicates the probability (if the null hypothesis was true) of a global difference as, or more, extreme than the observed one. If the <span class="math inline">\(p\)</span>-value is inferior to an agreed significance level, the null hypothesis is rejected.</p>
+<p>Due to the stochastic nature of the permutations, the null distribution sampled depends on the random draw, resulting in possible variation of the <span class="math inline">\(p\)</span>-value. Variation on the permuted <span class="math inline">\(p\)</span>-value can be described by confidence intervals. The <span class="math inline">\(p\)</span>-value is considered as the success probability parameter <span class="math inline">\(p\)</span> in <span class="math inline">\(n\)</span> independent Bernoulli trials, where <span class="math inline">\(n=B\)</span> the total number of permutation rounds<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. Confidence intervals on this binomial distribution of parameter <span class="math inline">\(p\)</span> and <span class="math inline">\(n\)</span> can then be computed. As extreme <span class="math inline">\(p\)</span>-values are possible (i.e close to 0) and the number of permutation rounds could be small, the Wilson score interval<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> is employed to determine the confidence intervals (Eq. 5):</p>
 <p><span class="math display">\[p_\pm = \frac{1}{1+\frac{1}{B}z^2}\left ( p + \frac{1}{2B}z^2 \pm z\sqrt{\frac{1}{B} p (1 - p) + \frac{1}{4B^2}z^2 }  \right )\]</span> (Eq. 5)</p>
 <p>Where:</p>
 <ul>
@@ -227,7 +437,7 @@ p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> <
 <li><span class="math inline">\(B\)</span> the total number of permutation rounds.</li>
 <li><span class="math inline">\(z\)</span> is the <span class="math inline">\(1-1/2\alpha\)</span> quantile of the standard normal distribution, with <span class="math inline">\(\alpha\)</span> the error quantile.</li>
 </ul>
-<p>Lastly, if a large number of variables are investigated for significantly altered trajectories, significance results must be corrected for multiple hypothesis testing. Here we employ the well-known Benjamini &amp; Hochberg false discovery rate approach<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a> as default, with other methods available as an option.</p>
+<p>Lastly, if a large number of variables are investigated for significantly altered trajectories, significance results must be corrected for multiple hypothesis testing. Here we employ the well-known Benjamini &amp; Hochberg false discovery rate approach<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> as default, with other methods available as an option.</p>
 </div>
 <div id="see-also" class="section level2">
 <h2>See Also</h2>
@@ -244,28 +454,28 @@ p3 &lt;-<span class="st"> </span>p3 <span class="op">+</span><span class="st"> <
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Ramsay, J. &amp; Silverman, B. W. <em>Functional Data Analysis</em> Springer, 431 (John Wiley &amp; Sons, Ltd, Chichester, UK, 2005)<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Ramsay, J., Hooker, G. &amp; Graves, S. <em>Functional data analysis with R and MATLAB</em> (Springer-Verlag, 2009)<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Ramsay, J. O. &amp; Silverman, B. <em>Applied functional data analysis: methods and case studies</em> (eds Ramsay, J. O. &amp; Silverman, B. W.) (Springer New York, New York, NY, 2002)<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>Ramsay, J. &amp; Silverman, B. W. <em>Functional Data Analysis</em> Springer, 431 (John Wiley &amp; Sons, Ltd, Chichester, UK, 2005)<a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p>Ramsay, J. &amp; Silverman, B. W. <em>Functional Data Analysis</em> Springer, 431 (John Wiley &amp; Sons, Ltd, Chichester, UK, 2005)<a href="#fnref5">↩</a></p></li>
-<li id="fn6"><p>Ramsay, J., Hooker, G. &amp; Graves, S. <em>Functional data analysis with R and MATLAB</em> (Springer-Verlag, 2009)<a href="#fnref6">↩</a></p></li>
-<li id="fn7"><p>Anselone, P. M. &amp; Laurent, P. J. A general method for the construction of interpolating or smoothing spline-functions. <em>Numer. Math</em>. 12, 66-82 (1968)<a href="#fnref7">↩</a></p></li>
-<li id="fn8"><p>Green, P. &amp; Silverman, B. W. <em>Nonparametric regression and generalized linear models: a roughness penalty approach</em>. (Chapman &amp; Hall/CRC, 1994)<a href="#fnref8">↩</a></p></li>
-<li id="fn9"><p>de Boor, C. <em>A Practical Guide to Splines</em>. (Springer-Verlag, 1978)<a href="#fnref9">↩</a></p></li>
-<li id="fn10"><p>Hastie, T., Tibshirani, R. &amp; Friedman, J. <em>The Elements of Statistical Learning</em>. (Springer, 2009)<a href="#fnref10">↩</a></p></li>
-<li id="fn11"><p>Eubank, R. . The hat matrix for smoothing splines. <em>Stat. Probab. Lett</em>. 2, 9-14 (1984)<a href="#fnref11">↩</a></p></li>
-<li id="fn12"><p>Buja, A., Hastie, T. &amp; Tibshirani, R. Linear Smoothers and Additive Models. <em>Ann. Stat</em>. 17, 453-510 (1989)<a href="#fnref12">↩</a></p></li>
-<li id="fn13"><p>Efron, B. Bootstrap Methods: Another Look at the Jackknife. <em>Ann. Stat</em>. 7, 1-26 (1979)<a href="#fnref13">↩</a></p></li>
-<li id="fn14"><p>Davison, A. &amp; Hinkley, D. <em>Bootstrap methods and their application</em>. (Cambridge University Press, 1997)<a href="#fnref14">↩</a></p></li>
-<li id="fn15"><p>Davison, A. C., Hinkley, D. V. &amp; Young, G. A. Recent Developments in Bootstrap Methodology. <em>Stat. Sci</em>. 18, 141-157 (2003)<a href="#fnref15">↩</a></p></li>
-<li id="fn16"><p>Claeskens, G. &amp; Van Keilegom, I. Bootstrap confidence bands for regression curves and their derivatives. <em>Ann. Stat</em>. 31, 1852-1884 (2003)<a href="#fnref16">↩</a></p></li>
-<li id="fn17"><p>DiCiccio, T. J. &amp; Efron, B. Bootstrap confidence intervals. <em>Stat. Sci</em>. 11, 189-228 (1996)<a href="#fnref17">↩</a></p></li>
-<li id="fn18"><p>Efron, B. Better bootstrap confidence intervals. <em>J. Am. Stat. Assoc</em>. 82, 171-185 (1987)<a href="#fnref18">↩</a></p></li>
-<li id="fn19"><p>Ernst, M. D. Permutation Methods: A Basis for Exact Inference. <em>Stat. Sci</em>. 19, 676-685 (2004)<a href="#fnref19">↩</a></p></li>
-<li id="fn20"><p>Li, J., Tai, B. C. &amp; Nott, D. J. Confidence interval for the bootstrap P-value and sample size calculation of the bootstrap test. <em>J. Nonparametr. Stat</em>. 21, 649-661 (2009)<a href="#fnref20">↩</a></p></li>
-<li id="fn21"><p>Wilson, E. B. Probable Inference, the Law of Succession, and Statistical Inference. <em>J. Am. Stat. Assoc</em>. 22, 209 (1927)<a href="#fnref21">↩</a></p></li>
-<li id="fn22"><p>Benjamini, Y. &amp; Hochberg, Y. Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing. <em>J. R. Stat. Soc. Ser. B</em> 57, 289 - 300 (1995)<a href="#fnref22">↩</a></p></li>
+<li id="fn1"><p>Ramsay, J. &amp; Silverman, B. W. <em>Functional Data Analysis</em> Springer, 431 (John Wiley &amp; Sons, Ltd, Chichester, UK, 2005)<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Ramsay, J., Hooker, G. &amp; Graves, S. <em>Functional data analysis with R and MATLAB</em> (Springer-Verlag, 2009)<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Ramsay, J. O. &amp; Silverman, B. <em>Applied functional data analysis: methods and case studies</em> (eds Ramsay, J. O. &amp; Silverman, B. W.) (Springer New York, New York, NY, 2002)<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Ramsay, J. &amp; Silverman, B. W. <em>Functional Data Analysis</em> Springer, 431 (John Wiley &amp; Sons, Ltd, Chichester, UK, 2005)<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Ramsay, J. &amp; Silverman, B. W. <em>Functional Data Analysis</em> Springer, 431 (John Wiley &amp; Sons, Ltd, Chichester, UK, 2005)<a href="#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Ramsay, J., Hooker, G. &amp; Graves, S. <em>Functional data analysis with R and MATLAB</em> (Springer-Verlag, 2009)<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Anselone, P. M. &amp; Laurent, P. J. A general method for the construction of interpolating or smoothing spline-functions. <em>Numer. Math</em>. 12, 66-82 (1968)<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>Green, P. &amp; Silverman, B. W. <em>Nonparametric regression and generalized linear models: a roughness penalty approach</em>. (Chapman &amp; Hall/CRC, 1994)<a href="#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>de Boor, C. <em>A Practical Guide to Splines</em>. (Springer-Verlag, 1978)<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>Hastie, T., Tibshirani, R. &amp; Friedman, J. <em>The Elements of Statistical Learning</em>. (Springer, 2009)<a href="#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>Eubank, R. . The hat matrix for smoothing splines. <em>Stat. Probab. Lett</em>. 2, 9-14 (1984)<a href="#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>Buja, A., Hastie, T. &amp; Tibshirani, R. Linear Smoothers and Additive Models. <em>Ann. Stat</em>. 17, 453-510 (1989)<a href="#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>Efron, B. Bootstrap Methods: Another Look at the Jackknife. <em>Ann. Stat</em>. 7, 1-26 (1979)<a href="#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p>Davison, A. &amp; Hinkley, D. <em>Bootstrap methods and their application</em>. (Cambridge University Press, 1997)<a href="#fnref14" class="footnote-back">↩</a></p></li>
+<li id="fn15"><p>Davison, A. C., Hinkley, D. V. &amp; Young, G. A. Recent Developments in Bootstrap Methodology. <em>Stat. Sci</em>. 18, 141-157 (2003)<a href="#fnref15" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p>Claeskens, G. &amp; Van Keilegom, I. Bootstrap confidence bands for regression curves and their derivatives. <em>Ann. Stat</em>. 31, 1852-1884 (2003)<a href="#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p>DiCiccio, T. J. &amp; Efron, B. Bootstrap confidence intervals. <em>Stat. Sci</em>. 11, 189-228 (1996)<a href="#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p>Efron, B. Better bootstrap confidence intervals. <em>J. Am. Stat. Assoc</em>. 82, 171-185 (1987)<a href="#fnref18" class="footnote-back">↩</a></p></li>
+<li id="fn19"><p>Ernst, M. D. Permutation Methods: A Basis for Exact Inference. <em>Stat. Sci</em>. 19, 676-685 (2004)<a href="#fnref19" class="footnote-back">↩</a></p></li>
+<li id="fn20"><p>Li, J., Tai, B. C. &amp; Nott, D. J. Confidence interval for the bootstrap P-value and sample size calculation of the bootstrap test. <em>J. Nonparametr. Stat</em>. 21, 649-661 (2009)<a href="#fnref20" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p>Wilson, E. B. Probable Inference, the Law of Succession, and Statistical Inference. <em>J. Am. Stat. Assoc</em>. 22, 209 (1927)<a href="#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p>Benjamini, Y. &amp; Hochberg, Y. Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing. <em>J. R. Stat. Soc. Ser. B</em> 57, 289 - 300 (1995)<a href="#fnref22" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

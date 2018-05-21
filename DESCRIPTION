@@ -31,7 +31,7 @@ Imports: plyr (>= 1.8.4),
     iterators (>= 1.0.9),
     shiny (>= 1.0.5),
     shinythemes (>= 1.1.1)
-biocViews: pcaMethods
+biocViews: pcaMethods (>= 1.70.0)
 Suggests: knitr,
     rmarkdown,
 		pander,

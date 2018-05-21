@@ -65,6 +65,3 @@ test_that('raise error', {
   wrong_time  <- c(0,5,10,0,5,10)
   expect_error(get_ind_time_matrix(wrong_Yi, wrong_ind, wrong_time), 'Check input, duplicate samples (same individual/time)', fixed=TRUE)
 })
-
-
-
