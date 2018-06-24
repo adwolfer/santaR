@@ -3,6 +3,7 @@ cache: packages
 
 os:
   - linux
+  - osx
 
 addons:
   apt:

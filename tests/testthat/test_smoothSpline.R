@@ -1,5 +1,6 @@
 context('stats::smooth.spline')
 
+
 ## Current fit of all 8 ind, for all 22 variables, from df=2 to 7
 result_allSmoothSplineFit  <- vector("list", 6)
 # iterate df

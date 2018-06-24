@@ -33,7 +33,7 @@ test_that('default values, parallel', {
   expect_equal(length(result_mat$messages), 0)
 })
 
-test_that('serial and parallel resuts match', {
+test_that('serial and parallel results match', {
   # results (output, warnings and messages)
   result_matSerial    <- evaluate_promise(get_eigen_spline_matrix(input_inputData, input_ind, input_time, ncores=0))
   result_matParallel  <- evaluate_promise(get_eigen_spline_matrix(input_inputData, input_ind, input_time, ncores=1))
