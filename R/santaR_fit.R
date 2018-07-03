@@ -72,7 +72,7 @@ santaR_fit                <- function(inputMatrix,df,grouping=NA,verbose=TRUE) {
   ## keep non-empty rows/cols
   inputMatrix  <- inputMatrix[ apply(!is.na(inputMatrix),1,sum) > 0, apply(!is.na(inputMatrix),2,sum) > 0]
   
-	## Input check (Broad conditions, some individuals might still fail later)
+  ## Input check (Broad conditions, some individuals might still fail later)
 	# DF must be numeric
 	if( !is.numeric(df) ){
     message("Error: Check input, 'df' should be numeric")
@@ -129,7 +129,7 @@ santaR_fit                <- function(inputMatrix,df,grouping=NA,verbose=TRUE) {
   } else {
     dataMatrix[[1]]   <- inputMatrix
   } 
-  
+
   ## for each group
   for (j in 1:length(dataMatrix)) {
     
@@ -146,58 +146,64 @@ santaR_fit                <- function(inputMatrix,df,grouping=NA,verbose=TRUE) {
     ptY.pred            <- numeric()
     groupData.in        <- matrix(ncol=length(time), nrow=0)
     groupData.pred      <- matrix(ncol=length(time), nrow=0)
-    
+
     ## for each ind
-    for (ind in 1 : length(rownames(dataMatrix[[j]])) ) {
+    # no ind
+    if (dim(dataMatrix[[j]])[1] == 0) {
+      # special case of no individual matching 
+      if(verbose){ message("No individuals left in group #", j, " once data is imported (remove NA rows and columns)") }
+      tmpGrp$curveInd                   <- NA             ## Signal that no IND exist in this subgroup
+      groupData.in                      <- NA
+      groupData.pred                    <- NA
       
-      notNA             <- !is.na(dataMatrix[[j]][ind,])
-      xInd              <- time[ notNA ]
-      yInd              <- as.numeric(dataMatrix[[j]][ ind, notNA ])
-      
-      if        ( length( yInd ) ==0 ) {                                                          # special case of no individual matching 
-        if(verbose){ message("No individual matching") }
-        tmpGrp$curveInd                   <- NA                                                   ## Signal that no IND exist in this subgroup
-        groupData.in                      <- NA
-        groupData.pred                    <- NA
-      } else if ( length( yInd ) < 4 ) {                                                          # no spline under 4 tp         -  n = #{unique x} = 4
-        if(verbose){ message(rownames(dataMatrix[[j]][ind,])," - #tp < 4") }
-        tmpGrp$rejectedInd[[ind]]         <- dataMatrix[[j]][ind,]
-        names(tmpGrp$rejectedInd)[[ind]]  <- rownames(dataMatrix[[j]][ind,])
-      } else if ( length( yInd ) < df ) {                                                         # no spline if less tp than df  -  1 < df <= n
-        if(verbose){ message(rownames(dataMatrix[[j]][ind,]), " - #tp(", length( yInd ), ") < df(", df, ")") }
-        tmpGrp$rejectedInd[[ind]]         <- dataMatrix[[j]][ind,]
-        names(tmpGrp$rejectedInd)[[ind]]  <- rownames(dataMatrix[[j]][ind,])
-      } else {
-        tmpGrp$curveInd[[ind]]            <- stats::smooth.spline(xInd, yInd, df=df)
-        names(tmpGrp$curveInd)[[ind]]     <- rownames(dataMatrix[[j]][ind,])
-        # input values
-        ptX.in                            <- c(ptX.in, xInd)
-        ptY.in                            <- c(ptY.in, yInd)
-        groupData.in                      <- rbind(groupData.in, dataMatrix[[j]][ind,])
-        # predicted values from Ind spline
-        ind.pred                          <- stats::predict( object=tmpGrp$curveInd[[ind]], x=time)
-        ptX.pred                          <- c(ptX.pred, ind.pred$x)
-        ptY.pred                          <- c(ptY.pred, ind.pred$y)
-        groupData.pred                    <- rbind(groupData.pred, ind.pred$y)
+    # iterate over individuals
+    } else {
+      for (ind in 1 : length(rownames(dataMatrix[[j]])) ) {
+        notNA             <- !is.na(dataMatrix[[j]][ind,])
+        xInd              <- time[ notNA ]
+        yInd              <- as.numeric(dataMatrix[[j]][ ind, notNA ])
+        
+        if (length( yInd ) < 4) {                       # no spline under 4 tp - n = #{unique x} = 4
+          if(verbose){ message(rownames(dataMatrix[[j]][ind,])," - #tp < 4") }
+          tmpGrp$rejectedInd[[ind]]         <- dataMatrix[[j]][ind,]
+          names(tmpGrp$rejectedInd)[[ind]]  <- rownames(dataMatrix[[j]][ind,])
+        } else if (length( yInd ) < df) {               # no spline if less tp than df - 1 < df <= n
+          if(verbose){ message(rownames(dataMatrix[[j]][ind,]), " - #tp(", length( yInd ), ") < df(", df, ")") }
+          tmpGrp$rejectedInd[[ind]]         <- dataMatrix[[j]][ind,]
+          names(tmpGrp$rejectedInd)[[ind]]  <- rownames(dataMatrix[[j]][ind,])
+        } else {
+          tmpGrp$curveInd[[ind]]            <- stats::smooth.spline(xInd, yInd, df=df)
+          names(tmpGrp$curveInd)[[ind]]     <- rownames(dataMatrix[[j]][ind,])
+          # input values
+          ptX.in                            <- c(ptX.in, xInd)
+          ptY.in                            <- c(ptY.in, yInd)
+          groupData.in                      <- rbind(groupData.in, dataMatrix[[j]][ind,])
+          # predicted values from Ind spline
+          ind.pred                          <- stats::predict( object=tmpGrp$curveInd[[ind]], x=time)
+          ptX.pred                          <- c(ptX.pred, ind.pred$x)
+          ptY.pred                          <- c(ptY.pred, ind.pred$y)
+          groupData.pred                    <- rbind(groupData.pred, ind.pred$y)
+        }
       }
     }
-    if(is.logical(groupData.in)) {                                                                  # if the group is empty
-      if(verbose){ message("No individual left matching 1") }
-      tmpGrp$curveInd                     <- NA                                                     ## Signal that no IND exist in this subgroup
-      groupData.in                        <- NA
-      groupData.pred                      <- NA
+    
+    if(is.logical(groupData.in)) {                                    # catch signal of no individual in the group signal (NA or empty initialised matrix)
+      if(verbose){ message("No individuals left in group #",j) }
+      tmpGrp$curveInd                   <- NA                         ## Signal that no IND exist in this subgroup
+      groupData.in                      <- NA
+      groupData.pred                    <- NA
     } else {
-      if( is.data.frame(groupData.in) ) {                                                           # if it wasn't already detected/taken care of
-        if( dim(groupData.in)[1]==0 ) {                                                             # case of no individuals matching
-          if(verbose){ message("No individual left matching 2") }
-          tmpGrp$curveInd                 <- NA                                                     ## Signal that no IND exist in this subgroup
-          groupData.in                    <- NA
-          groupData.pred                  <- NA
+      if( is.data.frame(groupData.in) ) {                             # if all individuals failed (shouldn't happen as a df is only created if one ind is appended to the init matrix)
+        if( dim(groupData.in)[1]==0 ) {                               # case of no individuals matching
+          if(verbose){ message("No individuals left in group #",j) }
+          tmpGrp$curveInd               <- NA                         ## Signal that no IND exist in this subgroup
+          groupData.in                  <- NA
+          groupData.pred                <- NA
         }
       }
     }
     ## groupMeanCurve
-    if( is.data.frame(groupData.in) ) {                                                           ## is a data.frame only if not empty (checked before)
+    if( is.data.frame(groupData.in) ) {                               ## is a data.frame only if not empty (checked before)
       meanVal                           <- colMeans(groupData.pred, na.rm=TRUE)
       notNA                             <- !is.na(meanVal)
       if( sum(notNA) >= df ) {
@@ -213,8 +219,8 @@ santaR_fit                <- function(inputMatrix,df,grouping=NA,verbose=TRUE) {
       tmpGrp$groupData.pred             <- data.frame(groupData.pred)
       colnames(tmpGrp$groupData.pred)   <- time
       rownames(tmpGrp$groupData.pred)   <- rownames(groupData.in)
-      SANTAObj$general$cleanData.in    <- rbind(SANTAObj$general$cleanData.in,  tmpGrp$groupData.in)
-      SANTAObj$general$cleanData.pred  <- rbind(SANTAObj$general$cleanData.pred,tmpGrp$groupData.pred)
+      SANTAObj$general$cleanData.in     <- rbind(SANTAObj$general$cleanData.in,  tmpGrp$groupData.in)
+      SANTAObj$general$cleanData.pred   <- rbind(SANTAObj$general$cleanData.pred,tmpGrp$groupData.pred)
     } else {
       tmpGrp$groupMeanCurve             <- NA
       tmpGrp$point.in                   <- NA
@@ -222,7 +228,7 @@ santaR_fit                <- function(inputMatrix,df,grouping=NA,verbose=TRUE) {
       tmpGrp$groupData.in               <- NA
       tmpGrp$groupData.pred             <- NA
     }
-    SANTAObj$groups[[j]]               <- tmpGrp
+    SANTAObj$groups[[j]]                <- tmpGrp
   }
   names(SANTAObj$groups) <- names(dataMatrix)
   
