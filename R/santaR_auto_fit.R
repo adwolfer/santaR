@@ -54,6 +54,10 @@ santaR_auto_fit             <- function(inputData,ind,time,group=NA,df,ncores=0,
   ##  Automate all steps of fitting, CBand, p-values calculation
   
   # Check input
+  if( !(class(inputData) %in% "data.frame") ){
+    message("Error: Check input, 'inputData' must be a data.frame")
+    stop("Check input, 'inputData' must be a 'data.frame'")
+  }
   if( is.factor(ind) ){
     message("Error: Check input, 'ind' should not be a factor")
     stop("Check input, 'ind' should not be a factor")
@@ -61,6 +65,10 @@ santaR_auto_fit             <- function(inputData,ind,time,group=NA,df,ncores=0,
   if( is.factor(time) ){
     message("Error: Check input, 'time' should not be a factor")
     stop("Check input, 'time' should not be a factor")
+  }
+  if( forceParIndTimeMat & ncores==0 ){
+    message("Warning: forceParIndTimeMat cannot be employed with ncores=0")
+    forceParIndTimeMat <- FALSE
   }
   
   # Get grouping
@@ -83,7 +91,7 @@ santaR_auto_fit             <- function(inputData,ind,time,group=NA,df,ncores=0,
   # get IND x TIME matrix
   ttime <- Sys.time()
   if( forceParIndTimeMat ) {
-    res.in        <- foreach::foreach( x=iterators::iter(inputData, by='col'), .export=c('get_ind_time_matrix'), .inorder=TRUE) %dopar% get_ind_time_matrix(x, ind, time)
+    res.in        <- foreach::foreach( x=iterators::iter(inputData, by='col'), .export=c('get_ind_time_matrix'), .inorder=TRUE) %dopar% get_ind_time_matrix(Yi=as.numeric(x), ind=ind, time=time)
     names(res.in) <- colnames(inputData)
   } else {
     res.in        <- apply( inputData, 2, function(x) get_ind_time_matrix( Yi=as.numeric(x), ind=ind, time=time))
@@ -102,6 +110,11 @@ santaR_auto_fit             <- function(inputData,ind,time,group=NA,df,ncores=0,
   ttime2 <- Sys.time()
   message('Spline fitted: ',round(as.double(difftime(ttime2,ttime)),2),' ',units( difftime(ttime2,ttime)))
   
+  # check there is any IND left after fitting
+  if (all(lapply(res.spline, function(x){dim(x$general$cleanData.in)[1]}) == 0)){
+    message("Error: all individuals have been rejected (#tp<4 or #tp<df)")
+    stop("Error: all individuals have been rejected (#tp<4 or #tp<df)")
+  }
   
   # Confidence Intervals
   if( CBand ) {

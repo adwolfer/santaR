@@ -9,3 +9,8 @@
   invisible()
 	}
 }
+
+.onAttach <- function(libname, pkgname) {
+  packageStartupMessage(
+    paste("\nThis is santaR version", utils::packageVersion("santaR"), "\n"))
+}
