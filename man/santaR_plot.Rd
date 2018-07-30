@@ -71,3 +71,5 @@ Other AutoProcess: \code{\link{santaR_auto_fit}},
   \code{\link{santaR_auto_summary}},
   \code{\link{santaR_start_GUI}}
 }
+\concept{Analysis}
+\concept{AutoProcess}

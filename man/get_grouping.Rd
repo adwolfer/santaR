@@ -52,3 +52,4 @@ Other Analysis: \code{\link{get_ind_time_matrix}},
   \code{\link{santaR_pvalue_fit}},
   \code{\link{santaR_start_GUI}}
 }
+\concept{Analysis}

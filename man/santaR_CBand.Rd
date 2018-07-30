@@ -49,3 +49,4 @@ Other Analysis: \code{\link{get_grouping}},
   \code{\link{santaR_pvalue_fit}},
   \code{\link{santaR_start_GUI}}
 }
+\concept{Analysis}
