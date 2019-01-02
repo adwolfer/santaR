@@ -113,6 +113,10 @@ santaR_pvalue_fit         <- function(SANTAObj,nPerm=1000,alpha=0.05) {
   }     # fit NULL and ALTERNATE models
   
   ## Init
+  if (length(SANTAObj$groups) != 2) {
+    message("Error: Check input, p-values can only be calculated on 2 groups")
+    stop("Error: Check input, p-values can only be calculated on 2 groups")
+  }
   z           <- stats::qnorm(1-0.5*alpha)
   df          <- SANTAObj$properties$df
   groupData1  <- list( inp=SANTAObj$groups[[1]]$groupData.in, pred=SANTAObj$groups[[1]]$groupData.pred )
