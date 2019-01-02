@@ -19,10 +19,10 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -35,13 +35,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,7 +81,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -295,49 +315,49 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="parallel-processing" class="section level2">
 <h2>Parallel processing</h2>
 <p>In a same experiment, multiple variables can be measured and explored dynamically (<em>e.g. NMR or MS features, genes</em>). As <code>santaR</code>’s analysis is an univariate approach, each variable can be fitted independently. This lack of dependency renders <code>santaR</code>’s analysis an embarrassingly parallel workload.</p>
-<p>The <code>santaR_auto_fit()</code> function is a wrapper for each of the analytical functions (i.e. <code>get_ind_time_matrix()</code>, <code>santaR_fit()</code>, <code>santaR_CBand()</code>, <code>santaR_pvalue_dist()</code> and <code>santaR_pvalue_fit()</code>), executing them in a parallel fashion (<em>for each individual function see the help and <a href="advanced-command-line-functions.html">advanced command line options vignette</a></em>). The parallelisation relies on the <code>doParallel</code> package for the instantiation of worker nodes and <code>foreach</code> for the distribution of tasks. This set of packages enable the parallelisation on all operating systems (<em>Windows, Mac OS and most Linux distributions</em>).</p>
+<p>The <code>santaR_auto_fit()</code> function is a wrapper for each of the analytical functions (i.e. <code>get_ind_time_matrix()</code>, <code>santaR_fit()</code>, <code>santaR_CBand()</code>, <code>santaR_pvalue_dist()</code> and <code>santaR_pvalue_fit()</code>), executing them in a parallel fashion (<em>for each individual function see the help and <a href="advanced-command-line-functions.html">advanced command line options vignette</a></em>). The parallelisation relies on the <code>doParallel</code> package for the instantiation of worker nodes and <code>foreach</code> for the distribution of tasks. This set of packages enable the parallelisation on all operating systems (<em>Windows, Mac OS and most Linux distributions</em>).</p>
 <p>Observation values are expected as a data-frame of samples as <em>rows</em> and variables as <em>columns</em>, the parallelisation taking place over the <em>columns</em>. For a selected number of CPU cores (<code>ncores</code> parameter), <code>santaR_auto_fit()</code> first instantiate worker nodes (<em>if <code>ncores=0</code>, the procedure is applied sequentially (no parallelisation)</em>). The conversion of inputs by <code>get_ind_time_matrix()</code> is however not parallelised by default as the parallelisation overhead time cost is superior to the time gain for all but the most complex datasets. When the number of individuals, unique time points, or variables is elevated, the <code>forceParIndTimeMat</code> parameter enables the parallelisation of this step. All subsequent analytical steps are automatically parallelised, with the calculation of confidence bands on the group mean curves and the identification of altered trajectory activated by default.</p>
 <p><code>santaR_auto_fit()</code> returns a list of <em>SANTAObj</em> containing each variable’s analysis results. In practice, <code>santaR_auto_fit()</code> is the function employed for command line analysis as it caters for all possible use cases.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(santaR)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Load example data</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">tmp_data  &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>data</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">tmp_meta  &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>meta</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># Analyse data, with confidence bands and p-value</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">res_acuteInf_df5 &lt;-<span class="st"> </span><span class="kw">santaR_auto_fit</span>(<span class="dt">inputData=</span>tmp_data, <span class="dt">ind=</span>tmp_meta<span class="op">$</span>ind, <span class="dt">time=</span>tmp_meta<span class="op">$</span>time, <span class="dt">group=</span>tmp_meta<span class="op">$</span>group, <span class="dt">df=</span><span class="dv">5</span>, <span class="dt">ncores=</span><span class="dv">4</span>, <span class="dt">CBand=</span><span class="ot">TRUE</span>, <span class="dt">pval.dist=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"># Input data generated: 0.13 secs</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># Spline fitted:        1.05 secs</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># ConfBands done:      18.98 secs</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"># p-val dist done:     35.43 secs</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"># total time:          55.59 secs</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">length</span>(res_acuteInf_df5)</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co"># [1] 22</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">names</span>(res_acuteInf_df5)</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#  [1] &quot;var_1&quot;  &quot;var_2&quot;  &quot;var_3&quot;  &quot;var_4&quot;  &quot;var_5&quot;  &quot;var_6&quot;  &quot;var_7&quot;  &quot;var_8&quot;  &quot;var_9&quot;  &quot;var_10&quot; &quot;var_11&quot; &quot;var_12&quot; &quot;var_13&quot; &quot;var_14&quot; &quot;var_15&quot; &quot;var_16&quot; &quot;var_17&quot; &quot;var_18&quot;</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co"># [19] &quot;var_19&quot; &quot;var_20&quot; &quot;var_21&quot; &quot;var_22&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(santaR)</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co"># Load example data</span></a>
+<a class="sourceLine" id="cb1-4" title="4">tmp_data  &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>data</a>
+<a class="sourceLine" id="cb1-5" title="5">tmp_meta  &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>meta</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co"># Analyse data, with confidence bands and p-value</span></a>
+<a class="sourceLine" id="cb1-8" title="8">res_acuteInf_df5 &lt;-<span class="st"> </span><span class="kw">santaR_auto_fit</span>(<span class="dt">inputData=</span>tmp_data, <span class="dt">ind=</span>tmp_meta<span class="op">$</span>ind, <span class="dt">time=</span>tmp_meta<span class="op">$</span>time, <span class="dt">group=</span>tmp_meta<span class="op">$</span>group, <span class="dt">df=</span><span class="dv">5</span>, <span class="dt">ncores=</span><span class="dv">4</span>, <span class="dt">CBand=</span><span class="ot">TRUE</span>, <span class="dt">pval.dist=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co"># Input data generated: 0.13 secs</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co"># Spline fitted:        1.05 secs</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co"># ConfBands done:      18.98 secs</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co"># p-val dist done:     35.43 secs</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co"># total time:          55.59 secs</span></a>
+<a class="sourceLine" id="cb1-14" title="14"></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="kw">length</span>(res_acuteInf_df5)</a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co"># [1] 22</span></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="kw">names</span>(res_acuteInf_df5)</a>
+<a class="sourceLine" id="cb1-18" title="18"><span class="co">#  [1] &quot;var_1&quot;  &quot;var_2&quot;  &quot;var_3&quot;  &quot;var_4&quot;  &quot;var_5&quot;  &quot;var_6&quot;  &quot;var_7&quot;  &quot;var_8&quot;  &quot;var_9&quot;  &quot;var_10&quot; &quot;var_11&quot; &quot;var_12&quot; &quot;var_13&quot; &quot;var_14&quot; &quot;var_15&quot; &quot;var_16&quot; &quot;var_17&quot; &quot;var_18&quot;</span></a>
+<a class="sourceLine" id="cb1-19" title="19"><span class="co"># [19] &quot;var_19&quot; &quot;var_20&quot; &quot;var_21&quot; &quot;var_22&quot;</span></a></code></pre></div>
 </div>
 <div id="automated-reporting" class="section level2">
 <h2>Automated Reporting</h2>
 <p>After multiple variables have been analysed using <code>santaR_auto_fit()</code>, a reporting function helps assess significant results and summarise them in an easily interpretable fashion. <code>santaR_auto_summary()</code> takes a list of <em>SANTAObj</em> as generated by <code>santaR_auto_fit()</code> as input.</p>
 <p>First, correction for multiple testing can be applied to generate Bonferroni, Benjamini-Hochberg or Benjamini-Yekutieli corrected <em>p</em>-values. <em>P</em>-values can be returned by the function, but also automatically saved to disk as <code>.csv</code>. For a given significance cut-off (<code>plotCutOff</code> parameter), the number of variables significantly altered is reported and plots are automatically saved to disk by increasing <em>p</em>-value. The aspect of the plots can be altered using multiple options such as the representation of confidence bands (<code>showConfBand</code> parameter) or the generation of a mean curve across all samples (<code>showTotalMeanCurve</code> parameter) which can help assess difference between groups when group sizes are unbalanced.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Generate a summary</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#   without a defined 'targetFolder', no csv or plots can be saved</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">pval_acuteInf_df5 &lt;-<span class="st"> </span><span class="kw">santaR_auto_summary</span>(<span class="dt">SANTAObjList=</span>res_acuteInf_df5, <span class="dt">targetFolder=</span><span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># p-value dist found</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co"># Benjamini-Hochberg corrected p-value</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">names</span>(pval_acuteInf_df5)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># [1] &quot;pval.all&quot;     &quot;pval.summary&quot;</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">pval_acuteInf_df5<span class="op">$</span>pval.summary</a></code></pre></div>
-<table style="width:60%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Generate a summary</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co">#   without a defined &#39;targetFolder&#39;, no csv or plots can be saved</span></a>
+<a class="sourceLine" id="cb2-3" title="3">pval_acuteInf_df5 &lt;-<span class="st"> </span><span class="kw">santaR_auto_summary</span>(<span class="dt">SANTAObjList=</span>res_acuteInf_df5, <span class="dt">targetFolder=</span><span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co"># p-value dist found</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co"># Benjamini-Hochberg corrected p-value</span></a>
+<a class="sourceLine" id="cb2-6" title="6"></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="kw">names</span>(pval_acuteInf_df5)</a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co"># [1] &quot;pval.all&quot;     &quot;pval.summary&quot;</span></a>
+<a class="sourceLine" id="cb2-9" title="9"></a>
+<a class="sourceLine" id="cb2-10" title="10">pval_acuteInf_df5<span class="op">$</span>pval.summary</a></code></pre></div>
+<table style="width:61%;">
 <colgroup>
 <col width="13%"></col>
 <col width="15%"></col>
 <col width="15%"></col>
-<col width="15%"></col>
+<col width="16%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -362,15 +382,15 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">pval_acuteInf_df5<span class="op">$</span>pval.all</a></code></pre></div>
-<table style="width:99%;">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">pval_acuteInf_df5<span class="op">$</span>pval.all</a></code></pre></div>
+<table>
 <colgroup>
-<col width="18%"></col>
-<col width="15%"></col>
-<col width="18%"></col>
-<col width="18%"></col>
+<col width="17%"></col>
+<col width="14%"></col>
+<col width="17%"></col>
+<col width="17%"></col>
 <col width="16%"></col>
-<col width="12%"></col>
+<col width="16%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -566,11 +586,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Save results for GUI</h2>
 <p>In practice, time-dependent patterns for a given biological question (<em>e.g. a grouping of individuals</em>) are assessed by parallelised fitting and analysis using <code>santaR_auto_fit()</code> and reporting using <code>santaR_auto_summary()</code>. When results are available, the most significantly altered variables can be identified using the reports and visually inspected for confirmation using the plots already saved to disk.</p>
 <p>Additionally analysis results can be loaded into the GUI for interactive visualisation or generation of plots. For that, the list of <em>SANTAObj</em> generated by <code>santaR_auto_fit()</code> must be saved under the variable name <code>inSp</code> in a <code>.RData</code> file:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># Rename the results</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">inSp        &lt;-<span class="st"> </span>res_acuteInf_df5</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co"># Save to disk</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">outputPath  &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="st">'path_to_my_output_folder'</span>, <span class="st">'acuteInf_results.rdata'</span>) </a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">save</span>(inSp, <span class="dt">file=</span>outputPath, <span class="dt">compress=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Rename the results</span></a>
+<a class="sourceLine" id="cb4-2" title="2">inSp        &lt;-<span class="st"> </span>res_acuteInf_df5</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co"># Save to disk</span></a>
+<a class="sourceLine" id="cb4-4" title="4">outputPath  &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&#39;path_to_my_output_folder&#39;</span>, <span class="st">&#39;acuteInf_results.rdata&#39;</span>) </a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">save</span>(inSp, <span class="dt">file=</span>outputPath, <span class="dt">compress=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="see-also" class="section level2">
 <h2>See Also</h2>

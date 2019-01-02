@@ -65,14 +65,14 @@ The graphical user interface is divided in 4 sections, corresponding to the main
 
 More information is available in the graphical user interface as well as in the following vignettes:
 
-* [Getting Started with santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/getting-started.html)
-* [How to prepare input data for santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/prepare-input-data.html)
-* [santaR Graphical user interface use](inst/doc/santaR-GUI.pdf)
-* [santaR Theoretical Background](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/theoretical-background.html)
-* [Automated command line analysis](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/automated-command-line.html)
-* [Plotting options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/plotting-options.html)
-* [Selecting an optimal number of degrees of freedom](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/selecting-optimal-df.html)
-* [Advanced command line options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/inst/doc/advanced-command-line-functions.html)
+* [Getting Started with santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/getting-started.html)
+* [How to prepare input data for santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/prepare-input-data.html)
+* [santaR Graphical user interface use](doc/santaR-GUI.pdf)
+* [santaR Theoretical Background](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/theoretical-background.html)
+* [Automated command line analysis](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/automated-command-line.html)
+* [Plotting options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/plotting-options.html)
+* [Selecting an optimal number of degrees of freedom](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/selecting-optimal-df.html)
+* [Advanced command line options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/advanced-command-line-functions.html)
 
 A dataset containing the concentrations of 22 mediators of inflammation over an episode of acute inflammation is also available. The mediators have been measured at 7 time-points on 8 subjects, concentration values have been unit-variance scaled for each variable. A subset of the data is presented below:
 ```{r, eval = FALSE}
@@ -110,6 +110,6 @@ If a very high number of variables is to be processed, `santaR`'s command line f
 
 As a summary, the GPLv3 license requires attribution, inclusion of copyright and license information, disclosure of source code and changes. Derivative work must be available under the same terms.
 
-&copy; Arnaud Wolfer (2017)
+&copy; Arnaud Wolfer (2019)
 
 
