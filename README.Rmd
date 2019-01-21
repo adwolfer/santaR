@@ -43,7 +43,7 @@ devtools::install_github("adwolfer/santaR", ref="develop")
 
 If the dependency `pcaMethods` is not successfully installed, `Bioconductor` must be added to the default repositories with:
 ```{r, eval = FALSE}
-setRepositories(ind=c(1:2))
+setRepositories(ind=c(1:5))
 ```
 
 

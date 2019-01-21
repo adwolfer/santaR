@@ -65,7 +65,7 @@ If the dependency `pcaMethods` is not successfully installed,
 `Bioconductor` must be added to the default repositories with:
 
 ``` r
-setRepositories(ind=c(1:2))
+setRepositories(ind=c(1:5))
 ```
 
 ## Usage
