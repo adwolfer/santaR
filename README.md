@@ -58,7 +58,14 @@ A development version can be obtained from GitHub with:
 ``` r
 # Install devtools
 if(!require("devtools")) install.packages("devtools")
-devtools::install_github("adwolfer/santaR")
+devtools::install_github("adwolfer/santaR", ref="develop")
+```
+
+If the dependency `pcaMethods` is not successfully installed,
+`Bioconductor` must be added to the default repositories with:
+
+``` r
+setRepositories(ind=c(1:2))
 ```
 
 ## Usage
@@ -133,7 +140,8 @@ is presented below:
 acuteInflammation$meta
 ```
 
-    #> Warning: package 'santaR' was built under R version 3.5.2
+    #> 
+    #> This is santaR version 1.1.1
 
 | time |  ind   | group  |
 | :--: | :----: | :----: |

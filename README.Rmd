@@ -38,8 +38,14 @@ A development version can be obtained from GitHub with:
 ```{r, eval = FALSE}
 # Install devtools
 if(!require("devtools")) install.packages("devtools")
-devtools::install_github("adwolfer/santaR")
+devtools::install_github("adwolfer/santaR", ref="develop")
 ```
+
+If the dependency `pcaMethods` is not successfully installed, `Bioconductor` must be added to the default repositories with:
+```{r, eval = FALSE}
+setRepositories(ind=c(1:2))
+```
+
 
 ## Usage
 
