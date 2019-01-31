@@ -22,7 +22,7 @@
 <style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -35,11 +35,13 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -329,12 +331,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </blockquote>
 <p><code>data</code> and <code>metadata</code> information can be stored as vectors, in one or in two separate Data.Frame. If a data-point is not available (no data value for any variables) the row should be discarded. If some of the variable measurements are missing for a given time-point, the value can be replace by <code>NaN</code>. Do not inpute data as the package is explicitely designed to be robust to missing values.</p>
 <p>Here is an example of <code>5</code> observations of <code>2</code> variables. Taken on <code>3</code> individual separated in <code>2</code> goups, covering <code>3</code> time-points:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Metadata</span></a></code></pre></div>
-<table style="width:35%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Metadata</span></a></code></pre></div>
+<table style="width:33%;">
 <colgroup>
 <col width="11%"></col>
 <col width="9%"></col>
-<col width="13%"></col>
+<col width="12%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -371,7 +373,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Data</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Data</span></a></code></pre></div>
 <table style="width:33%;">
 <colgroup>
 <col width="16%"></col>
@@ -411,23 +413,23 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Introducing the dataset <em>‘acuteInflammation’</em></h2>
 <p>The <code>santaR</code> package is designed for the analysis of short noisy time-series as produced in most <em>‘-omics’</em> platforms, an example of which is provided. This dataset referred to as <code>acuteInflammation</code> contains the concentrations of 22 mediators of inflammation over an episode of acute inflammation. The mediators have been measured at 7 time-points on 8 subjects, concentration values have been unit-variance scaled for each variable.</p>
 <p><code>acuteInflammation</code> is stored as two Data.Frame; <code>meta</code> for the 56 observations metadata, and <code>data</code> for the 22 variables measurements:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(santaR)</a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">## Metadata</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co"># number of rows</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="kw">nrow</span>(acuteInflammation<span class="op">$</span>meta)</a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co"># number of columns</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="kw">ncol</span>(acuteInflammation<span class="op">$</span>meta)</a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co"># a subset</span></a>
-<a class="sourceLine" id="cb3-9" title="9">acuteInflammation<span class="op">$</span>meta[<span class="dv">12</span><span class="op">:</span><span class="dv">20</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(santaR)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">## Metadata</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co"># number of rows</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">nrow</span>(acuteInflammation<span class="op">$</span>meta)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co"># number of columns</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">ncol</span>(acuteInflammation<span class="op">$</span>meta)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co"># a subset</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">acuteInflammation<span class="op">$</span>meta[<span class="dv">12</span><span class="op">:</span><span class="dv">20</span>,]</a></code></pre></div>
 <p>[1] 56</p>
 <p>[1] 3</p>
-<table style="width:46%;">
+<table style="width:44%;">
 <colgroup>
 <col width="12%"></col>
 <col width="9%"></col>
 <col width="11%"></col>
-<col width="12%"></col>
+<col width="11%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -494,13 +496,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">## Data</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co"># number of rows</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw">nrow</span>(acuteInflammation<span class="op">$</span>data)</a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co"># number of columns</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="kw">ncol</span>(acuteInflammation<span class="op">$</span>data)</a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co"># a subset</span></a>
-<a class="sourceLine" id="cb4-7" title="7">acuteInflammation<span class="op">$</span>data[<span class="dv">12</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">## Data</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># number of rows</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">nrow</span>(acuteInflammation<span class="op">$</span>data)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># number of columns</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">ncol</span>(acuteInflammation<span class="op">$</span>data)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># a subset</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">acuteInflammation<span class="op">$</span>data[<span class="dv">12</span><span class="op">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a></code></pre></div>
 <p>[1] 56</p>
 <p>[1] 22</p>
 <table style="width:72%;">
@@ -591,24 +593,24 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>Preparing the csv input for the graphical user interface</h2>
 <p>While the command line functions accept Data.Frame and vectors as input, the graphical user interface will read a <code>.csv</code> file.</p>
 <p>By concatenating <code>acuteInflammation</code>’s <code>data</code> and <code>metadata</code> tables and saving them in a <code>.csv</code> file, we can prepare the input dataset for the graphical user interface tutorial:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">library</span>(santaR)</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co"># Concatenate</span></a>
-<a class="sourceLine" id="cb5-4" title="4">outputTable &lt;-<span class="st"> </span><span class="kw">cbind</span>(acuteInflammation<span class="op">$</span>meta, acuteInflammation<span class="op">$</span>data)</a>
-<a class="sourceLine" id="cb5-5" title="5"></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co"># Save to disk</span></a>
-<a class="sourceLine" id="cb5-7" title="7">outputPath =<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&#39;path_to_my_output_folder&#39;</span>, <span class="st">&#39;acuteInflammation_GUI_demo.csv&#39;</span>) </a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="kw">write.csv</span>(outputTable, <span class="dt">file=</span>outputPath, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(santaR)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># Concatenate</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">outputTable &lt;-<span class="st"> </span><span class="kw">cbind</span>(acuteInflammation<span class="op">$</span>meta, acuteInflammation<span class="op">$</span>data)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co"># Save to disk</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">outputPath =<span class="st"> </span><span class="kw">file.path</span>(<span class="st">'path_to_my_output_folder'</span>, <span class="st">'acuteInflammation_GUI_demo.csv'</span>) </a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">write.csv</span>(outputTable, <span class="dt">file=</span>outputPath, <span class="dt">row.names=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <p>It is also possible to provide the data directly as 2 Data.Frames stored in a <code>.RData</code> file; containing the data in a DataFrame named <code>inData</code> and metadata in a DataFrame named <code>inMeta</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">library</span>(santaR)</a>
-<a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co"># Rename datasets</span></a>
-<a class="sourceLine" id="cb6-4" title="4">inMeta &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>meta</a>
-<a class="sourceLine" id="cb6-5" title="5">inData &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>data</a>
-<a class="sourceLine" id="cb6-6" title="6">            </a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co"># Save to disk</span></a>
-<a class="sourceLine" id="cb6-8" title="8">outputPath =<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&#39;path_to_my_output_folder&#39;</span>, <span class="st">&#39;acuteInflammation_GUI_demo.rdata&#39;</span>) </a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="kw">save</span>(inMeta, inData, <span class="dt">file=</span>outputPath, <span class="dt">compress=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(santaR)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># Rename datasets</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">inMeta &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>meta</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">inData &lt;-<span class="st"> </span>acuteInflammation<span class="op">$</span>data</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">            </a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co"># Save to disk</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">outputPath =<span class="st"> </span><span class="kw">file.path</span>(<span class="st">'path_to_my_output_folder'</span>, <span class="st">'acuteInflammation_GUI_demo.rdata'</span>) </a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="kw">save</span>(inMeta, inData, <span class="dt">file=</span>outputPath, <span class="dt">compress=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="see-also" class="section level2">
 <h2>See Also</h2>

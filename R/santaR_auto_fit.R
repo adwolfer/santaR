@@ -75,7 +75,7 @@ santaR_auto_fit             <- function(inputData,ind,time,group=NA,df,ncores=0,
   if (any(!is.na(group)))  {
     grouping <- get_grouping( ind=ind, group=group )
     # No p-value if more than 2 groups
-    if (unique(grouping[,2]) != 2 & (pval.dist | pval.fit)) {
+    if (length(unique(grouping[,2])) != 2 & (pval.dist | pval.fit)) {
       message('P-values can only be calculated with 2 groups')
       pval.dist <- FALSE
       pval.fit  <- FALSE
