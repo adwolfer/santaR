@@ -28,3 +28,6 @@ Meta/*
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+Rplots.pdf
+tests/testthat/Rplots.pdf
+.idea
