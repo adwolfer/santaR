@@ -64,7 +64,7 @@ The development version can be obtained from GitHub:
 ``` r
 # Install devtools
 if(!require("devtools")) install.packages("devtools")
-devtools::install_github("adwolfer/santaR", ref="develop")
+devtools::install_github("adwolfer/santaR", ref="master")
 ```
 
 If the dependency [pcaMethods](https://www.bioconductor.org/packages/release/bioc/html/pcaMethods.html) is not successfully installed, it can be installed from `Bioconductor`:
