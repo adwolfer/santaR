@@ -21,12 +21,13 @@ interface and command line tutorials.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/adwolfer}
+  \item \url{https://github.com/adwolfer/santaR}
+  \item Report bugs at \url{https://github.com/adwolfer/santaR/issues/new}
 }
 
 }
 \author{
-\strong{Maintainer}: Arnaud Wolfer \email{adwolfer@gmail.com}
+\strong{Maintainer}: Arnaud Wolfer \email{adwolfer@gmail.com} (0000-0001-5856-3218)
 
 Other contributors:
 \itemize{

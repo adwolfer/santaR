@@ -8,3 +8,6 @@ LICENSE
 cran-comments.md
 ^.travis.yml
 .idea
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

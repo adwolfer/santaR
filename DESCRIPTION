@@ -1,12 +1,11 @@
 Package: santaR
 Title: Short Asynchronous Time-Series Analysis
 Version: 1.1.2
-Date: 2019-09-10
+Date: 2019-10-03
 Authors@R: c(
-	person("Arnaud", "Wolfer", email = "adwolfer@gmail.com", role = c("aut", "cre")),
+	person("Arnaud", "Wolfer", email = "adwolfer@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5856-3218")),
 	person("Timothy", "Ebbels", email = "t.ebbels@imperial.ac.uk", role = "ctb"),
 	person("Joe", "Cheng", email = "joe@rstudio.com", role = c("ctb"), comment = "Shiny javascript custom-input control"))
-URL: https://github.com/adwolfer
 Description: A graphical and automated pipeline for the analysis 
 		of short time-series in R ('santaR'). This approach is designed to accommodate asynchronous 
 		time sampling (i.e. different time points for different individuals), 
@@ -19,6 +18,8 @@ Description: A graphical and automated pipeline for the analysis
 		options for non-specialist users.
 Depends: R (>= 3.4.0)
 License: GPL-3
+BugReports: https://github.com/adwolfer/santaR/issues/new
+URL: https://github.com/adwolfer/santaR
 Encoding: UTF-8
 LazyData: true
 Imports: plyr (>= 1.8.4),

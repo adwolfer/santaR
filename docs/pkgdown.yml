@@ -1,0 +1,15 @@
+pandoc: '2.6'
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  advanced-command-line-functions: advanced-command-line-functions.html
+  automated-command-line: automated-command-line.html
+  getting-started: getting-started.html
+  plotting-options: plotting-options.html
+  prepare-input-data: prepare-input-data.html
+  selecting-optimal-df: selecting-optimal-df.html
+  theoretical-background: theoretical-background.html
+urls:
+  reference: http://adwolfer.github.io/santaR/reference
+  article: http://adwolfer.github.io/santaR/articles
+

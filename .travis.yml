@@ -25,4 +25,4 @@ r_packages:
   - covr
 
 after_success:
-  - Rscript -e 'library(covr); codecov(line_exclusions = "R/zzz.R")'
+  - Rscript -e 'library(covr); codecov(line_exclusions = "R/zzz.R", "R/santaR_start_GUI.R")'

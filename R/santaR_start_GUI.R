@@ -14,7 +14,7 @@
 #' @return None, start GUI. To exit press \code{ESC} in the command line.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' ## Start graphical interface, press 'ESC' in the command line to stop.
 #' santaR_start_GUI()
 #' }

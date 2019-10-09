@@ -1,11 +1,9 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # santaR
 
 [![Build
-Status](https://travis-ci.org/adwolfer/santaR.svg?branch=develop)](https://travis-ci.org/adwolfer/santaR)
-[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/develop/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR/branch/develop)
+Status](https://travis-ci.org/adwolfer/santaR.svg?branch=master)](https://travis-ci.org/adwolfer/santaR)
+[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/master/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR/branch/master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
 
 Interactive package for *Short AsyNchronous Time-series Analysis*
@@ -13,14 +11,22 @@ Interactive package for *Short AsyNchronous Time-series Analysis*
 
 ## Overview
 
-Longitudinal studies in Systems Biology face multiple challenges that
-are not suitably addressed by current time-series statistical methods:
-it is difficult to simultaneously account for *biological variability*,
-*measurement error*, *missing observations*, *asynchronous sampling*,
-*nonlinearity* and *low number of time points* (e.g. 4-10) with a *high
-number of variables*.
 
-To address these challenges, `santaR` (*Short AsyNchronous Time-series
+[**santaR**](https://adwolfer.github.io/santaR) is an R package that implements functions for analysis of short asynchronous time-series analysis.
+
+`santaR` can deal with challenges not simultaneously addressed by current time-series statistical methods:
+ - missing observations
+ - asynchronous sampling
+ - measurement error
+ - low number of time points (*e.g. 4 to 10*)
+ - high number of variables
+ - biological variability
+ - nonlinearity
+ 
+The reference versions of `santaR` is available on [CRAN](https://cran.r-project.org/web/packages/santaR/index.html).
+Active development and issue tracking take place on the [github page](https://github.com/adwolfer/santaR/tree/develop), while an overview of the package, vignettes and documentation are available on the [supporting website](https://adwolfer.github.io/santaR).
+
+To address the challenges of time-series in Systems Biology, `santaR` (*Short AsyNchronous Time-series
 Analysis*) provides a Functional Data Analysis (*FDA*) approach -*where
 the fundamental units of analysis are curves representing each
 individual across time*-, in a graphical and automated pipeline for
@@ -47,13 +53,13 @@ altered analytes for non-specialist users.
 
 ## Installation
 
-`santaR` can directly be installed from CRAN with:
+Install the CRAN release of `santaR` with:
 
 ``` r
 install.packages("santaR")
 ```
 
-A development version can be obtained from GitHub with:
+The development version can be obtained from GitHub:
 
 ``` r
 # Install devtools
@@ -61,11 +67,12 @@ if(!require("devtools")) install.packages("devtools")
 devtools::install_github("adwolfer/santaR", ref="develop")
 ```
 
-If the dependency `pcaMethods` is not successfully installed,
-`Bioconductor` must be added to the default repositories with:
-
+If the dependency [pcaMethods](https://www.bioconductor.org/packages/release/bioc/html/pcaMethods.html) is not successfully installed, it can be installed from `Bioconductor`:
+ 
 ``` r
-setRepositories(ind=c(1:5))
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("pcaMethods")
 ```
 
 ## Usage
@@ -139,9 +146,6 @@ is presented below:
 ## Metadata
 acuteInflammation$meta
 ```
-
-    #> 
-    #> This is santaR version 1.1.1
 
 | time |  ind   | group  |
 | :--: | :----: | :----: |

@@ -23,7 +23,7 @@ santaR Graphical User Interface (GUI) implements all the functions for short asy
 \pkg{santaR}'s command line procedure is the most efficient approach for very high number of variables due to the added level of automation. However the GUI can help understand the use of the methodology, select the best parameters on a subset of the data, or to visually explore the results.
 }
 \examples{
-\donttest{
+\dontrun{
 ## Start graphical interface, press 'ESC' in the command line to stop.
 santaR_start_GUI()
 }
