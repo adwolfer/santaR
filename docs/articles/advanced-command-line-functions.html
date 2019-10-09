@@ -153,8 +153,8 @@
 ## [46] -1.03962428  0.36979758 -1.03962428  2.34452908 -0.85939701
 ## [51] -0.07503976 -1.03962428  0.58606071 -1.03962428  1.85572115
 ## [56] -1.03962428</code></pre>
-<p>The first step is to generate the input matrix by converting the vector of observation (<em>y</em> response for the variable at one time-point for one individual) into a matrix IND (<em>row</em>) x TIME (<em>column</em>) using <code><a href="https://rdrr.io/pkg/santaR/man/get_ind_time_matrix.html">get_ind_time_matrix()</a></code>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">var1_input  &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/get_ind_time_matrix.html">get_ind_time_matrix</a></span>( <span class="dt">Yi=</span>var1_data, <span class="dt">ind=</span>var1_meta<span class="op">$</span>ind, <span class="dt">time=</span>var1_meta<span class="op">$</span>time)</a>
+<p>The first step is to generate the input matrix by converting the vector of observation (<em>y</em> response for the variable at one time-point for one individual) into a matrix IND (<em>row</em>) x TIME (<em>column</em>) using <code><a href="../reference/get_ind_time_matrix.html">get_ind_time_matrix()</a></code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">var1_input  &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ind_time_matrix.html">get_ind_time_matrix</a></span>( <span class="dt">Yi=</span>var1_data, <span class="dt">ind=</span>var1_meta<span class="op">$</span>ind, <span class="dt">time=</span>var1_meta<span class="op">$</span>time)</a>
 <a class="sourceLine" id="cb11-2" title="2">var1_input</a></code></pre></div>
 <table class="table">
 <colgroup>
@@ -260,8 +260,8 @@
 </tr>
 </tbody>
 </table>
-<p>In order to compare 2 groups, it is necessary to create a grouping matrix that list group membership for all individuals using <code><a href="https://rdrr.io/pkg/santaR/man/get_grouping.html">get_grouping()</a></code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">var1_group  &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/get_grouping.html">get_grouping</a></span>( <span class="dt">ind=</span>var1_meta<span class="op">$</span>ind, <span class="dt">group=</span>var1_meta<span class="op">$</span>group)</a>
+<p>In order to compare 2 groups, it is necessary to create a grouping matrix that list group membership for all individuals using <code><a href="../reference/get_grouping.html">get_grouping()</a></code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">var1_group  &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_grouping.html">get_grouping</a></span>( <span class="dt">ind=</span>var1_meta<span class="op">$</span>ind, <span class="dt">group=</span>var1_meta<span class="op">$</span>group)</a>
 <a class="sourceLine" id="cb12-2" title="2">var1_group</a></code></pre></div>
 <table class="table">
 <colgroup>
@@ -318,14 +318,14 @@
 <li>extract the eigen-splines across all time-trajectories of all individuals and all variables</li>
 <li>provide metrics to select the <em>df</em> that gives the best fit on the eigen-splines (as a guide value for the whole dataset)</li>
 </ul>
-<p>First we extract the eigen-splines across the whole dataset using <code><a href="https://rdrr.io/pkg/santaR/man/get_eigen_spline.html">get_eigen_spline()</a></code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">var_eigen  &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/get_eigen_spline.html">get_eigen_spline</a></span>( <span class="dt">inputData=</span>acuteInflammation<span class="op">$</span>data, <span class="dt">ind=</span>acuteInflammation<span class="op">$</span>meta<span class="op">$</span>ind, <span class="dt">time=</span>acuteInflammation<span class="op">$</span>meta<span class="op">$</span>time)</a></code></pre></div>
+<p>First we extract the eigen-splines across the whole dataset using <code><a href="../reference/get_eigen_spline.html">get_eigen_spline()</a></code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">var_eigen  &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eigen_spline.html">get_eigen_spline</a></span>( <span class="dt">inputData=</span>acuteInflammation<span class="op">$</span>data, <span class="dt">ind=</span>acuteInflammation<span class="op">$</span>meta<span class="op">$</span>ind, <span class="dt">time=</span>acuteInflammation<span class="op">$</span>meta<span class="op">$</span>time)</a></code></pre></div>
 <pre><code>## nipals calculated PCA
 ## Importance of component(s):
 ##                  PC1    PC2     PC3     PC4     PC5      PC6
 ## R2            0.8281 0.0679 0.05191 0.02942 0.01436 0.008339
 ## Cumulative R2 0.8281 0.8960 0.94788 0.97731 0.99166 1.000000</code></pre>
-<pre><code>## total time: 0.83 secs</code></pre>
+<pre><code>## total time: 0.55 secs</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># The projection of each eigen-spline at each time-point:</span></a>
 <a class="sourceLine" id="cb16-2" title="2">var_eigen<span class="op">$</span>matrix</a></code></pre></div>
 <table class="table">
@@ -422,9 +422,9 @@
 ##                  PC1    PC2     PC3     PC4     PC5      PC6
 ## R2            0.8281 0.0679 0.05191 0.02942 0.01436 0.008339
 ## Cumulative R2 0.8281 0.8960 0.94788 0.97731 0.99166 1.000000</code></pre>
-<p>It is then possible to estimate the <em>df</em> corresponding to the minimisation of a metric (penalised_residuals cross-validated, penalised_residuals general cross-validation, AIC, BIC or AICc) using <code><a href="https://rdrr.io/pkg/santaR/man/get_eigen_DF.html">get_eigen_DF()</a></code>. The best <em>df</em> can either be averaged over all eigen-splines <code>df</code> or weighted by the variance explained by each eigen-spline <code>wdf</code>:</p>
+<p>It is then possible to estimate the <em>df</em> corresponding to the minimisation of a metric (penalised_residuals cross-validated, penalised_residuals general cross-validation, AIC, BIC or AICc) using <code><a href="../reference/get_eigen_DF.html">get_eigen_DF()</a></code>. The best <em>df</em> can either be averaged over all eigen-splines <code>df</code> or weighted by the variance explained by each eigen-spline <code>wdf</code>:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># The projection of each eigen-spline at each time-point:</span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/get_eigen_DF.html">get_eigen_DF</a></span>(var_eigen)</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="../reference/get_eigen_DF.html">get_eigen_DF</a></span>(var_eigen)</a>
 <a class="sourceLine" id="cb21-3" title="3"></a>
 <a class="sourceLine" id="cb21-4" title="4"><span class="co"># $df</span></a></code></pre></div>
 <table class="table">
@@ -474,23 +474,23 @@
 <td align="center">5.55</td>
 </tr></tbody>
 </table>
-<p>The evolution of these metrics (<em>y</em>) depending on <em>df</em> (<em>x</em>) can be plotted for each eigen-spline using <code><a href="https://rdrr.io/pkg/santaR/man/get_param_evolution.html">get_param_evolution()</a></code> and <code><a href="https://rdrr.io/pkg/santaR/man/plot_param_evolution.html">plot_param_evolution()</a></code>:</p>
+<p>The evolution of these metrics (<em>y</em>) depending on <em>df</em> (<em>x</em>) can be plotted for each eigen-spline using <code><a href="../reference/get_param_evolution.html">get_param_evolution()</a></code> and <code><a href="../reference/plot_param_evolution.html">plot_param_evolution()</a></code>:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gridExtra)</a>
 <a class="sourceLine" id="cb23-2" title="2"></a>
 <a class="sourceLine" id="cb23-3" title="3"><span class="co"># generate all the parameter values across df</span></a>
-<a class="sourceLine" id="cb23-4" title="4">var_eigen_paramEvo  &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/get_param_evolution.html">get_param_evolution</a></span>(var_eigen, <span class="dt">step=</span><span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb23-4" title="4">var_eigen_paramEvo  &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_param_evolution.html">get_param_evolution</a></span>(var_eigen, <span class="dt">step=</span><span class="fl">0.1</span>)</a>
 <a class="sourceLine" id="cb23-5" title="5"></a>
 <a class="sourceLine" id="cb23-6" title="6"><span class="co"># plot the metric evolution</span></a>
-<a class="sourceLine" id="cb23-7" title="7"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">arrangeGrob</span>(<span class="dt">grobs=</span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/plot_param_evolution.html">plot_param_evolution</a></span>(var_eigen_paramEvo, <span class="dt">scaled=</span><span class="ot">FALSE</span>)))</a></code></pre></div>
+<a class="sourceLine" id="cb23-7" title="7"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">arrangeGrob</span>(<span class="dt">grobs=</span><span class="kw"><a href="../reference/plot_param_evolution.html">plot_param_evolution</a></span>(var_eigen_paramEvo, <span class="dt">scaled=</span><span class="ot">FALSE</span>)))</a></code></pre></div>
 <p><img src="advanced-command-line-functions_files/figure-html/unnamed-chunk-14-1.png" width="560"></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Scale the metrics for each eigen-spline between 0 and 1</span></a>
-<a class="sourceLine" id="cb24-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">arrangeGrob</span>(<span class="dt">grobs=</span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/plot_param_evolution.html">plot_param_evolution</a></span>(var_eigen_paramEvo, <span class="dt">scaled=</span><span class="ot">TRUE</span>)))</a></code></pre></div>
+<a class="sourceLine" id="cb24-2" title="2"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">arrangeGrob</span>(<span class="dt">grobs=</span><span class="kw"><a href="../reference/plot_param_evolution.html">plot_param_evolution</a></span>(var_eigen_paramEvo, <span class="dt">scaled=</span><span class="ot">TRUE</span>)))</a></code></pre></div>
 <p><img src="advanced-command-line-functions_files/figure-html/unnamed-chunk-14-2.png" width="560"></p>
-<p>As we can see, the recommended <em>df</em> can vary widely depending on the metric selected. <code><a href="https://rdrr.io/pkg/santaR/man/get_eigen_DFoverlay_list.html">get_eigen_DFoverlay_list()</a></code> will plot all eigen-projections (green points), a manually selected <em>df</em> (blue line) and automatically fitted <em>df</em> (red line), while grey lines represent splines at 0.2 <em>df</em> intervals (default value):</p>
+<p>As we can see, the recommended <em>df</em> can vary widely depending on the metric selected. <code><a href="../reference/get_eigen_DFoverlay_list.html">get_eigen_DFoverlay_list()</a></code> will plot all eigen-projections (green points), a manually selected <em>df</em> (blue line) and automatically fitted <em>df</em> (red line), while grey lines represent splines at 0.2 <em>df</em> intervals (default value):</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gridExtra)</a>
 <a class="sourceLine" id="cb25-2" title="2"></a>
 <a class="sourceLine" id="cb25-3" title="3"><span class="co"># plot all eigen-projections</span></a>
-<a class="sourceLine" id="cb25-4" title="4"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">arrangeGrob</span>(<span class="dt">grobs=</span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/get_eigen_DFoverlay_list.html">get_eigen_DFoverlay_list</a></span>(var_eigen, <span class="dt">manualDf =</span> <span class="dv">5</span>)))</a></code></pre></div>
+<a class="sourceLine" id="cb25-4" title="4"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw">arrangeGrob</span>(<span class="dt">grobs=</span><span class="kw"><a href="../reference/get_eigen_DFoverlay_list.html">get_eigen_DFoverlay_list</a></span>(var_eigen, <span class="dt">manualDf =</span> <span class="dv">5</span>)))</a></code></pre></div>
 <p><img src="advanced-command-line-functions_files/figure-html/unnamed-chunk-15-1.png" width="720"> It should be noted that <em>df=2</em> corresponds to a linear model. <em>df=number(time-points)</em> corresponds to a curve that will go through all points (overfitted).</p>
 <p>A final factor to take into account is the number of points needed for each individuals depending on the <em>df</em> selected:</p>
 <ul>
@@ -498,17 +498,17 @@
 </li>
 <li>if for example <em>df=10</em>, all individuals that have less than 10 time-points have to be rejected</li>
 </ul>
-<p>Using <code><a href="https://rdrr.io/pkg/santaR/man/plot_nbTP_histogram.html">plot_nbTP_histogram()</a></code> we can visualise how many samples would have to be rejected for a given <em>df</em>. Due to the lack of missing values in the <code>acuteInflammation</code> dataset, the plots is not very informative.</p>
+<p>Using <code><a href="../reference/plot_nbTP_histogram.html">plot_nbTP_histogram()</a></code> we can visualise how many samples would have to be rejected for a given <em>df</em>. Due to the lack of missing values in the <code>acuteInflammation</code> dataset, the plots is not very informative.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># dfCutOff controls which cut-off is to be applied</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/plot_nbTP_histogram.html">plot_nbTP_histogram</a></span>(var_eigen, <span class="dt">dfCutOff=</span><span class="dv">5</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb26-2" title="2"><span class="kw"><a href="../reference/plot_nbTP_histogram.html">plot_nbTP_histogram</a></span>(var_eigen, <span class="dt">dfCutOff=</span><span class="dv">5</span>)</a></code></pre></div>
 <p><img src="advanced-command-line-functions_files/figure-html/unnamed-chunk-16-1.png" width="560"></p>
 <p>As it does not seem to be possible to automatically select the degree of freedom, a choice based on visualisation of the splines while being careful of overfitting, keeping in mind the ‘expected’ evolution of the underlying process is the most sensible approach.</p>
 </div>
 <div id="fitting-confidence-bands-and-plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-confidence-bands-and-plotting" class="anchor"></a>Fitting, Confidence bands and plotting</h2>
-<p>Fitting of each individual and group mean curves are achieved with <code><a href="https://rdrr.io/pkg/santaR/man/santaR_fit.html">santaR_fit()</a></code> to generate a <code>SANTAObj</code> that is then used for processing:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">var1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/santaR_fit.html">santaR_fit</a></span>(var1_input, <span class="dt">df=</span><span class="dv">5</span>, <span class="dt">groupin=</span>var1_group)</a>
+<p>Fitting of each individual and group mean curves are achieved with <code><a href="../reference/santaR_fit.html">santaR_fit()</a></code> to generate a <code>SANTAObj</code> that is then used for processing:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">var1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/santaR_fit.html">santaR_fit</a></span>(var1_input, <span class="dt">df=</span><span class="dv">5</span>, <span class="dt">groupin=</span>var1_group)</a>
 <a class="sourceLine" id="cb27-2" title="2"></a>
 <a class="sourceLine" id="cb27-3" title="3"><span class="co"># it is possible to access the SANTAObj structure, which will be filled in the following steps</span></a>
 <a class="sourceLine" id="cb27-4" title="4">var1<span class="op">$</span>properties</a></code></pre></div>
@@ -783,27 +783,27 @@
 ## ind_3 -0.07539689
 ## ind_5  0.58446600
 ## ind_7  1.84936123</code></pre>
-<p>Confidence bands on the group mean curves can be calculated by bootstrapping using <code><a href="https://rdrr.io/pkg/santaR/man/santaR_CBand.html">santaR_CBand()</a></code>:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">var1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/santaR_CBand.html">santaR_CBand</a></span>(var1)</a></code></pre></div>
-<p>Plot is achieved using <code><a href="https://rdrr.io/pkg/santaR/man/santaR_plot.html">santaR_plot()</a></code>, for more details see <a href="plotting-options.html">Plotting options</a>:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/santaR_plot.html">santaR_plot</a></span>(var1)</a></code></pre></div>
+<p>Confidence bands on the group mean curves can be calculated by bootstrapping using <code><a href="../reference/santaR_CBand.html">santaR_CBand()</a></code>:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">var1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/santaR_CBand.html">santaR_CBand</a></span>(var1)</a></code></pre></div>
+<p>Plot is achieved using <code><a href="../reference/santaR_plot.html">santaR_plot()</a></code>, for more details see <a href="plotting-options.html">Plotting options</a>:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw"><a href="../reference/santaR_plot.html">santaR_plot</a></span>(var1)</a></code></pre></div>
 <p><img src="advanced-command-line-functions_files/figure-html/unnamed-chunk-19-1.png" width="672"></p>
 </div>
 <div id="p-values-calculation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#p-values-calculation" class="anchor"></a>P-values calculation</h2>
 <p>The <em>p</em>-values are calculated by the comparison of distance between group mean curves by random sampling of individuals. Due to the stochastic nature of the test, the <em>p</em>-value obtained can slighlty vary depending on the random draw. This can be compounded by using the lower and upper confidence range on the <em>p</em>-value that is estimated at the same time.</p>
-<p><code><a href="https://rdrr.io/pkg/santaR/man/santaR_pvalue_dist.html">santaR_pvalue_dist()</a></code> will calculate the significance of the difference between two groups:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">var1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/santaR/man/santaR_pvalue_dist.html">santaR_pvalue_dist</a></span>(var1)</a>
+<p><code><a href="../reference/santaR_pvalue_dist.html">santaR_pvalue_dist()</a></code> will calculate the significance of the difference between two groups:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">var1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/santaR_pvalue_dist.html">santaR_pvalue_dist</a></span>(var1)</a>
 <a class="sourceLine" id="cb35-2" title="2"><span class="co"># p-value</span></a>
 <a class="sourceLine" id="cb35-3" title="3">var1<span class="op">$</span>general<span class="op">$</span>pval.dist</a></code></pre></div>
-<pre><code>## [1] 0.01198801</code></pre>
+<pre><code>## [1] 0.01298701</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># lower p-value confidence range</span></a>
 <a class="sourceLine" id="cb37-2" title="2">var1<span class="op">$</span>general<span class="op">$</span>pval.dist.l</a></code></pre></div>
-<pre><code>## [1] 0.006868897</code></pre>
+<pre><code>## [1] 0.007603209</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># upper p-value confidence range</span></a>
 <a class="sourceLine" id="cb39-2" title="2">var1<span class="op">$</span>general<span class="op">$</span>pval.dist.u</a></code></pre></div>
-<pre><code>## [1] 0.02084214</code></pre>
+<pre><code>## [1] 0.02209818</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># curve correlation coefficiant</span></a>
 <a class="sourceLine" id="cb41-2" title="2">var1<span class="op">$</span>general<span class="op">$</span>pval.curveCorr</a></code></pre></div>
 <pre><code>## [1] -0.1309867</code></pre>

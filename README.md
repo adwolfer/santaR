@@ -12,7 +12,7 @@ Interactive package for *Short AsyNchronous Time-series Analysis*
 ## Overview
 
 
-[**santaR**](https://adwolfer.github.io/santaR) is an R package that implements functions for analysis of short asynchronous time-series analysis.
+[**santaR**](https://adwolfer.github.io/santaR/) is an R package that implements functions for analysis of short asynchronous time-series analysis.
 
 `santaR` can deal with challenges not simultaneously addressed by current time-series statistical methods:
  - missing observations
@@ -24,7 +24,7 @@ Interactive package for *Short AsyNchronous Time-series Analysis*
  - nonlinearity
  
 The reference versions of `santaR` is available on [CRAN](https://cran.r-project.org/web/packages/santaR/index.html).
-Active development and issue tracking take place on the [github page](https://github.com/adwolfer/santaR/tree/develop), while an overview of the package, vignettes and documentation are available on the [supporting website](https://adwolfer.github.io/santaR).
+Active development and issue tracking take place on the [github page](https://github.com/adwolfer/santaR/tree/master), while an overview of the package, vignettes and documentation are available on the [supporting website](https://adwolfer.github.io/santaR/).
 
 To address the challenges of time-series in Systems Biology, `santaR` (*Short AsyNchronous Time-series
 Analysis*) provides a Functional Data Analysis (*FDA*) approach -*where
@@ -121,20 +121,20 @@ More information is available in the graphical user interface as well as
 in the following vignettes:
 
   - [Getting Started with
-    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/getting-started.html)
+    santaR](https://adwolfer.github.io/santaR/articles/getting-started.html)
   - [How to prepare input data for
-    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/prepare-input-data.html)
-  - [santaR Graphical user interface use](doc/santaR-GUI.pdf)
+    santaR](https://adwolfer.github.io/santaR/articles/prepare-input-data.html)
+  - [santaR Graphical user interface use](https://adwolfer.github.io/santaR/articles/santaR-GUI.html)
   - [santaR Theoretical
-    Background](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/theoretical-background.html)
+    Background](https://adwolfer.github.io/santaR/articles/theoretical-background.html)
   - [Automated command line
-    analysis](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/automated-command-line.html)
+    analysis](https://adwolfer.github.io/santaR/articles/automated-command-line.html)
   - [Plotting
-    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/plotting-options.html)
+    options](https://adwolfer.github.io/santaR/articles/develop/doc/plotting-options.html)
   - [Selecting an optimal number of degrees of
-    freedom](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/selecting-optimal-df.html)
+    freedom](https://adwolfer.github.io/santaR/articles/selecting-optimal-df.html)
   - [Advanced command line
-    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/advanced-command-line-functions.html)
+    options](https://adwolfer.github.io/santaR/articles/advanced-command-line-functions.html)
 
 A dataset containing the concentrations of 22 mediators of inflammation
 over an episode of acute inflammation is also available. The mediators

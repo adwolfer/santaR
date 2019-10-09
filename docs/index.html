@@ -113,7 +113,7 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p><a href="https://adwolfer.github.io/santaR"><strong>santaR</strong></a> is an R package that implements functions for analysis of short asynchronous time-series analysis.</p>
+<p><a href="https://adwolfer.github.io/santaR/"><strong>santaR</strong></a> is an R package that implements functions for analysis of short asynchronous time-series analysis.</p>
 <p><code>santaR</code> can deal with challenges not simultaneously addressed by current time-series statistical methods:</p>
 <ul>
 <li>missing observations</li>
@@ -124,7 +124,7 @@
 <li>biological variability</li>
 <li>nonlinearity</li>
 </ul>
-<p>The reference versions of <code>santaR</code> is available on <a href="https://cran.r-project.org/web/packages/santaR/index.html">CRAN</a>. Active development and issue tracking take place on the <a href="https://github.com/adwolfer/santaR/tree/develop">github page</a>, while an overview of the package, vignettes and documentation are available on the <a href="https://adwolfer.github.io/santaR">supporting website</a>.</p>
+<p>The reference versions of <code>santaR</code> is available on <a href="https://cran.r-project.org/web/packages/santaR/index.html">CRAN</a>. Active development and issue tracking take place on the <a href="https://github.com/adwolfer/santaR/tree/master">github page</a>, while an overview of the package, vignettes and documentation are available on the <a href="https://adwolfer.github.io/santaR/">supporting website</a>.</p>
 <p>To address the challenges of time-series in Systems Biology, <code>santaR</code> (<em>Short AsyNchronous Time-series Analysis</em>) provides a Functional Data Analysis (<em>FDA</em>) approach -<em>where the fundamental units of analysis are curves representing each individual across time</em>-, in a graphical and automated pipeline for robust analysis of short time-series studies.</p>
 <p>Analytes levels are descriptive of the underlying biological state and evolve smoothly through time. For a single analyte, the time trajectory of each individual is described with a smooth curve estimated by smoothing splines. For a group of individuals, a curve representing the group mean trajectory is also calculated. These individual and group mean curves become the new observational unit for subsequent data analysis, that is, the estimation of the intra-class variability and the identification of trajectories significantly altered between groups.</p>
 <p>Designed initially for metabolomic, <code>santaR</code> is also suited for other Systems Biology disciplines. Implemented in <code>R</code> and <code>Shiny</code>, <code>santaR</code> is developed as a complete and easy-to-use statistical software package, which enables command line and GUI analysis, with fast and parallel automated analysis and reporting. Comprehensive plotting options as well as automated summaries allow clear identification of significantly altered analytes for non-specialist users.</p>
@@ -168,14 +168,14 @@
 <a href="#vignettes-and-demo-data" class="anchor"></a>Vignettes and Demo data</h2>
 <p>More information is available in the graphical user interface as well as in the following vignettes:</p>
 <ul>
-<li><a href="http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/getting-started.html">Getting Started with santaR</a></li>
-<li><a href="http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/prepare-input-data.html">How to prepare input data for santaR</a></li>
-<li><a href="doc/santaR-GUI.pdf">santaR Graphical user interface use</a></li>
-<li><a href="http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/theoretical-background.html">santaR Theoretical Background</a></li>
-<li><a href="http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/automated-command-line.html">Automated command line analysis</a></li>
-<li><a href="http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/plotting-options.html">Plotting options</a></li>
-<li><a href="http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/selecting-optimal-df.html">Selecting an optimal number of degrees of freedom</a></li>
-<li><a href="http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/develop/doc/advanced-command-line-functions.html">Advanced command line options</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/getting-started.html">Getting Started with santaR</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/prepare-input-data.html">How to prepare input data for santaR</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/santaR-GUI.html">santaR Graphical user interface use</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/theoretical-background.html">santaR Theoretical Background</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/automated-command-line.html">Automated command line analysis</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/develop/doc/plotting-options.html">Plotting options</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/selecting-optimal-df.html">Selecting an optimal number of degrees of freedom</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/advanced-command-line-functions.html">Advanced command line options</a></li>
 </ul>
 <p>A dataset containing the concentrations of 22 mediators of inflammation over an episode of acute inflammation is also available. The mediators have been measured at 7 time-points on 8 subjects, concentration values have been unit-variance scaled for each variable. A subset of the data is presented below:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">## Metadata</span></a>
