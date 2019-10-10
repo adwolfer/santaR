@@ -4,8 +4,9 @@
 \alias{get_eigen_spline}
 \title{Compute eigenSplines across a dataset}
 \usage{
-get_eigen_spline(inputData, ind, time, nPC = NA, scaling = "scaling_UV",
-  method = "nipals", verbose = TRUE, centering = TRUE, ncores = 0)
+get_eigen_spline(inputData, ind, time, nPC = NA,
+  scaling = "scaling_UV", method = "nipals", verbose = TRUE,
+  centering = TRUE, ncores = 0)
 }
 \arguments{
 \item{inputData}{Matrix of measurements with observations as rows and variables as columns.}
@@ -102,3 +103,4 @@ Other DFsearch: \code{\link{get_eigen_DFoverlay_list}},
   \code{\link{plot_nbTP_histogram}},
   \code{\link{plot_param_evolution}}
 }
+\concept{DFsearch}

@@ -66,7 +66,7 @@ santaR_plot               <- function(SANTAObj,title='',legend=TRUE,showIndPoint
   ## Iterate over groups  
   for (j in 1: length(SANTAObj$groups)) {
     # points
-    if(showIndPoint && !is.na(SANTAObj$groups[[j]]$point.in)) {         # no NA here without reason
+    if(showIndPoint && !any(is.na(SANTAObj$groups[[j]]$point.in))) {         # no NA here without reason
       p   <- p + ggplot2::geom_point(data=data.frame(SANTAObj$groups[[j]]$point.in,grp=rep(grpName[j],dim(SANTAObj$groups[[j]]$point.in)[1])), ggplot2::aes_string(x="x", y="y", col="grp"), shape=1, size=4 )
     }
     # mean curve
@@ -90,7 +90,7 @@ santaR_plot               <- function(SANTAObj,title='',legend=TRUE,showIndPoint
       }
     }
     # confidence band
-    if(showConfBand && SANTAObj$properties$CBand$status && !is.na(SANTAObj$groups[[j]]$groupCBand$lowerFit) && !is.na(SANTAObj$groups[[j]]$groupCBand$lowerFit)) {
+    if(showConfBand && SANTAObj$properties$CBand$status && !any(is.na(SANTAObj$groups[[j]]$groupCBand$lowerFit)) && !any(is.na(SANTAObj$groups[[j]]$groupCBand$lowerFit))) {
       rng               <- range(time)
       lower.band        <- data.frame( stats::predict(SANTAObj$groups[[j]]$groupCBand$lowerFit, seq( rng[1], rng[2], (rng[2]-rng[1])/sampling)) )
       upper.band        <- data.frame( stats::predict(SANTAObj$groups[[j]]$groupCBand$upperFit, seq( rng[1], rng[2], (rng[2]-rng[1])/sampling)) )

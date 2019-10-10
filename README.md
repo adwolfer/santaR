@@ -1,21 +1,32 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # santaR
+
+[![Build
+Status](https://travis-ci.org/adwolfer/santaR.svg?branch=master)](https://travis-ci.org/adwolfer/santaR)
+[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/master/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR/branch/master)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
 
 Interactive package for *Short AsyNchronous Time-series Analysis*
 (SANTA), implemented in `R` and `Shiny`
 
 ## Overview
 
-Longitudinal studies in Systems Biology face multiple challenges that
-are not suitably addressed by current time-series statistical methods:
-it is difficult to simultaneously account for *biological variability*,
-*measurement error*, *missing observations*, *asynchronous sampling*,
-*nonlinearity* and *low number of time points* (e.g. 4-10) with a *high
-number of variables*.
 
-To address these challenges, `santaR` (*Short AsyNchronous Time-series
+[**santaR**](https://adwolfer.github.io/santaR/) is an R package that implements functions for analysis of short asynchronous time-series analysis.
+
+`santaR` can deal with challenges not simultaneously addressed by current time-series statistical methods:
+ - missing observations
+ - asynchronous sampling
+ - measurement error
+ - low number of time points (*e.g. 4 to 10*)
+ - high number of variables
+ - biological variability
+ - nonlinearity
+ 
+The reference versions of `santaR` is available on [CRAN](https://cran.r-project.org/web/packages/santaR/index.html).
+Active development and issue tracking take place on the [github page](https://github.com/adwolfer/santaR/tree/master), while an overview of the package, vignettes and documentation are available on the [supporting website](https://adwolfer.github.io/santaR/).
+
+To address the challenges of time-series in Systems Biology, `santaR` (*Short AsyNchronous Time-series
 Analysis*) provides a Functional Data Analysis (*FDA*) approach -*where
 the fundamental units of analysis are curves representing each
 individual across time*-, in a graphical and automated pipeline for
@@ -42,18 +53,26 @@ altered analytes for non-specialist users.
 
 ## Installation
 
-`santaR` can directly be installed from CRAN with:
+Install the CRAN release of `santaR` with:
 
 ``` r
 install.packages("santaR")
 ```
 
-A development version can be obtained from GitHub with:
+The development version can be obtained from GitHub:
 
 ``` r
 # Install devtools
 if(!require("devtools")) install.packages("devtools")
-devtools::install_github("adwolfer/santaR")
+devtools::install_github("adwolfer/santaR", ref="master")
+```
+
+If the dependency [pcaMethods](https://www.bioconductor.org/packages/release/bioc/html/pcaMethods.html) is not successfully installed, it can be installed from `Bioconductor`:
+ 
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("pcaMethods")
 ```
 
 ## Usage
@@ -102,20 +121,20 @@ More information is available in the graphical user interface as well as
 in the following vignettes:
 
   - [Getting Started with
-    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/getting-started.html)
+    santaR](https://adwolfer.github.io/santaR/articles/getting-started.html)
   - [How to prepare input data for
-    santaR](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/prepare-input-data.html)
-  - [santaR Graphical user interface use](inst/doc/santaR-GUI.pdf)
+    santaR](https://adwolfer.github.io/santaR/articles/prepare-input-data.html)
+  - [santaR Graphical user interface use](https://adwolfer.github.io/santaR/articles/santaR-GUI.html)
   - [santaR Theoretical
-    Background](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/theoretical-background.html)
+    Background](https://adwolfer.github.io/santaR/articles/theoretical-background.html)
   - [Automated command line
-    analysis](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/automated-command-line.html)
+    analysis](https://adwolfer.github.io/santaR/articles/automated-command-line.html)
   - [Plotting
-    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/plotting-options.html)
+    options](https://adwolfer.github.io/santaR/articles/develop/doc/plotting-options.html)
   - [Selecting an optimal number of degrees of
-    freedom](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/selecting-optimal-df.html)
+    freedom](https://adwolfer.github.io/santaR/articles/selecting-optimal-df.html)
   - [Advanced command line
-    options](http://htmlpreview.github.io/?https://github.com/adwolfer/santaR/blob/master/inst/doc/advanced-command-line-functions.html)
+    options](https://adwolfer.github.io/santaR/articles/advanced-command-line-functions.html)
 
 A dataset containing the concentrations of 22 mediators of inflammation
 over an episode of acute inflammation is also available. The mediators
@@ -170,4 +189,4 @@ As a summary, the GPLv3 license requires attribution, inclusion of
 copyright and license information, disclosure of source code and
 changes. Derivative work must be available under the same terms.
 
-© Arnaud Wolfer (2017)
+© Arnaud Wolfer (2019)

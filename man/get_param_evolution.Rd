@@ -65,3 +65,4 @@ Other DFsearch: \code{\link{get_eigen_DFoverlay_list}},
   \code{\link{plot_nbTP_histogram}},
   \code{\link{plot_param_evolution}}
 }
+\concept{DFsearch}

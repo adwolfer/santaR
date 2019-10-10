@@ -1,6 +1,13 @@
+^Meta$
+^doc$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
 .gitignore
 LICENSE
 cran-comments.md
+^.travis.yml
+.idea
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

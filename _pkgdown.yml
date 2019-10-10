@@ -1,0 +1,74 @@
+destination: docs
+
+title: santaR
+url: https://adwolfer.github.io/santaR/
+
+reference:
+  - title: Example dataset
+    desc: Acute inflammation
+    contents:
+      - acuteInflammation
+  - title: Quick start
+    desc: Functions designed for graphical or automated analysis
+    contents:
+      - santaR
+      - santaR_start_GUI
+      - santaR_auto_fit
+      - santaR_auto_summary
+      - santaR_plot
+  - title: Exported Functions
+    desc: Functions exported by santaR
+    contents:
+      - santaR_fit
+      - santaR_CBand
+      - santaR_pvalue_dist
+      - santaR_pvalue_fit
+      - santaR_pvalue_dist_within
+      - santaR_pvalue_fit_within
+  - title: Internals
+    desc: Internal functions and helpers
+    contents:
+      - AICc_smooth_spline
+      - AIC_smooth_spline
+      - BIC_smooth_spline
+      - get_eigen_DF
+      - get_eigen_DFoverlay_list
+      - get_eigen_spline
+      - get_eigen_spline_matrix
+      - get_grouping
+      - get_ind_time_matrix
+      - get_param_evolution
+      - loglik_smooth_spline
+      - plot_nbTP_histogram
+      - plot_param_evolution
+      - scaling_mean
+      - scaling_UV
+
+navbar:
+  type: default
+  left:
+    - text: Intro
+      href: articles/getting-started.html
+    - text: Reference
+      href: reference/index.html
+    - text: Articles
+      menu:
+        - text: Getting started
+          href: articles/getting-started.html
+        - text: How to prepare input for santaR
+          href: articles/prepare-input-data.html
+        - text: Graphical User Interface
+          href: articles/santaR-GUI.html
+        - text: santaR theoretical background
+          href: articles/theoretical-background.html
+        - text: Selecting an optimal number of degrees of freedom
+          href: articles/selecting-optimal-df.html
+        - text: Automated command line analysis
+          href: articles/automated-command-line.html
+        - text: Plotting options
+          href: articles/plotting-options.html
+        - text: Advanced command line functions
+          href: articles/advanced-command-line-functions.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/adwolfer/santaR

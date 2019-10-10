@@ -51,3 +51,4 @@ Other Analysis: \code{\link{get_grouping}},
   \code{\link{santaR_pvalue_dist}},
   \code{\link{santaR_start_GUI}}
 }
+\concept{Analysis}

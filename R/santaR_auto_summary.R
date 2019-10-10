@@ -144,11 +144,11 @@ santaR_auto_summary         <- function(SANTAObjList,targetFolder=NA,summaryCSV=
 		# Summary
 		targetFileSum   <- paste(targetFolder,'/',CSVName,'_summary.csv',sep='')
     message('Summary of p-values saved in ',targetFileSum)
-		utils::write.csv(pval.summary, file = targetFileSum, row.names=FALSE)
+		utils::write.csv(pval.summary, file = targetFileSum, row.names=FALSE, fileEncoding="UTF-8")
 		# Pvalue-all
     targetFileAll   <- paste(targetFolder,'/',CSVName,'_pvalue-all.csv',sep='')
     message('All p-values saved in ',targetFileAll)
-		utils::write.csv(cbind(var=rownames(pval.all),pval.all), file = targetFileAll, row.names=FALSE)
+		utils::write.csv(cbind(var=rownames(pval.all),pval.all), file = targetFileAll, row.names=FALSE, fileEncoding="UTF-8")
 		# Pvalue-dist
     if(dist) {
 			targetFileDist   <- paste(targetFolder,'/',CSVName,'_pvalue-dist.csv',sep='')
@@ -161,7 +161,7 @@ santaR_auto_summary         <- function(SANTAObjList,targetFolder=NA,summaryCSV=
       if(fdrBonf){ out.table <- cbind( out.table, dist_Bonf=pval.all$dist_Bonf) }
       out.table   <- cbind( out.table, curveCorr=pval.all$curveCorr)
       out.table   <- out.table[order(pval.dist),]
-			utils::write.csv(out.table, file = targetFileDist, row.names=FALSE)
+			utils::write.csv(out.table, file = targetFileDist, row.names=FALSE, fileEncoding="UTF-8")
     }
 		# Pvalue-fit
     if(fit)  {
@@ -174,7 +174,7 @@ santaR_auto_summary         <- function(SANTAObjList,targetFolder=NA,summaryCSV=
       if(fdrBY)  { out.table <- cbind( out.table, fit_BY=pval.all$fit_BY) }
       if(fdrBonf){ out.table <- cbind( out.table, fit_Bonf=pval.all$fit_Bonf) }
       out.table <- out.table[order(pval.fit),]
-			utils::write.csv(out.table, file = targetFileFit, row.names=FALSE)
+			utils::write.csv(out.table, file = targetFileFit, row.names=FALSE, fileEncoding="UTF-8")
     }
   }
   

@@ -12,7 +12,7 @@
   <li>On simulated data, the results (<em>p</em>-values) are resilient to most values of <em>DF</em>, however the plots can look dramatically different.</li>
   <li>Try multiple values of <em>DF</em> on a subset of variables (using the GUI) and then select the fit that approximate the time evolution the best without over-fitting:
 	<ul>
-		<li><em>DF=5</em> is a reasonable starting point in most cases (<em>even more so if there less than 10 time-points are available</em>).</li>
+		<li><em>DF=5</em> is a reasonable starting point in most cases (<em>even more so if less than 10 time-points are available</em>).</li>
 		<li>If the number of time-points is large and the curves seem very under-fitted, <em>DF</em> can be increased to 6, 7 or more. Values higher than 10 should rarely be required and will provide with a diminishing return. <em>DF=number of time-points</em> will result in a curve passing through all points (over-fitted).</li>
 		<li>If the number of time points is lower or the trajectories seem over-fitted, <em>DF</em> can be decreased to 4 or 3. (3 will be similar to a second degree polynomial, while 2 will be a linear model).</li>
 		<li>If the plots "<em>looks right</em>" and don't seem to "<em>invent</em>" information between measured data-points, the <em>DF</em> is close to optimal.</li>

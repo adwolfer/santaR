@@ -30,6 +30,7 @@ get_eigen_spline_matrix   <- function(inputData,ind,time,ncores=0) {
     doParallel::registerDoParallel( cl )
     
     splineMatrix <- foreach::foreach(x=iterators::iter(inputData, by='col'), .combine='rbind', .export=c("get_ind_time_matrix")) %dopar% get_ind_time_matrix(x, ind, time)
+    rownames(splineMatrix) <- c(1:dim(splineMatrix)[1])
     
     parallel::stopCluster( cl )
   } else {
