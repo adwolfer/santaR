@@ -168,10 +168,10 @@ tabPanel("Import",
 
         p("Input Data, ",span(em("group"))," will be selected in the \"Analysis\" tab", style="color:black"),
         h3("Metadata"),
-        dataTableOutput("table_meta_in"),
+        DT::dataTableOutput("table_meta_in"),
         tags$hr(),
         h3("Data"),
-        div( dataTableOutput("table_data_in"), style = 'width:400px;')
+        div( DT::dataTableOutput("table_data_in"), style = 'width:400px;')
       ), # end conditionalPanel
 
     # if importFittedData

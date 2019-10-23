@@ -1,7 +1,7 @@
 # ui.R
 
 # SANTA-App
-# Based on SANTA v1.1.2, R >= 3.4.0, shiny >= 1.0.2, shinythemes >= 1.1.1
+# Based on SANTA v1.1.2, R >= 3.4.0, shiny >= 1.3.2, shinythemes >= 1.1.2
 # Arnaud M. Wolfer
 # Computational and Systems Medicine 
 # Imperial College London

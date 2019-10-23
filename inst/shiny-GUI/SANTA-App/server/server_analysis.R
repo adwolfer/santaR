@@ -384,8 +384,8 @@
   ## View Input - TAB ------------------
 
   # generate metadata and data tables
-  output$table_meta_plot <- renderDataTable({ meta() }, options = list(pageLength=10,orderClasses=TRUE))
-  output$table_data_plot <- renderDataTable({ data() }, options = list(pageLength=10,orderClasses=TRUE))
+  output$table_meta_plot <- DT::renderDataTable({ meta() }, options = list(pageLength=10,orderClasses=TRUE), rownames=FALSE)
+  output$table_data_plot <- DT::renderDataTable({ data() }, options = list(pageLength=10,orderClasses=TRUE), rownames=FALSE)
 
 	# show input data tables
   output$inputDataPanelUI <- renderUI ({
@@ -394,10 +394,10 @@
 			if( input$go_fit!=0 ) {
 				tagList(
 					h3("Metadata"),
-					dataTableOutput("table_meta_plot"),
+					DT::dataTableOutput("table_meta_plot"),
 					tags$hr(),
 					h3("Data"),
-					div( dataTableOutput("table_data_plot"), style = 'width:400px;')
+					div( DT::dataTableOutput("table_data_plot"), style = 'width:400px;')
 				)
 			} else {
 				tagList(
@@ -620,21 +620,23 @@
 
 
   # all p-values (with or without fdr, CI)
-  output$table_pAll <- renderDataTable ({
-    cbind(var=rownames(pval()$pval.all), pval()$pval.all)
-  }, options=list(orderClasses=TRUE))
+  output$table_pAll <- DT::renderDataTable ({
+    DT::datatable(cbind(var=rownames(pval()$pval.all), pval()$pval.all),
+                options=list(orderClasses=TRUE),
+                rownames= FALSE)
+  })
 
   output$all_pval <- renderUI ({
 	# import .csv or .RData
 		if( importType()=='CSV' | importType()=='RData' ){
-			if( sp()[[1]]$properties$pval.dist$status | sp()[[1]]$properties$pval.fit$status ) return( dataTableOutput("table_pAll") )
+			if( sp()[[1]]$properties$pval.dist$status | sp()[[1]]$properties$pval.fit$status ) return( DT::dataTableOutput("table_pAll") )
 
 			HTML("<br><div class=\"alert alert-dismissible alert-info\"> <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button> <p\">No p-value calculated!</p></div>")
 		}
 
 	# import FittedData
 		else if( importType()=='FittedData') {
-			if( inSpReac()[[1]]$properties$pval.dist$status | inSpReac()[[1]]$properties$pval.fit$status ) return( dataTableOutput("table_pAll") )
+			if( inSpReac()[[1]]$properties$pval.dist$status | inSpReac()[[1]]$properties$pval.fit$status ) return( DT::dataTableOutput("table_pAll") )
 
 			HTML("<br><div class=\"alert alert-dismissible alert-info\"> <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button> <p\">No p-value calculated!</p></div>")
 		}

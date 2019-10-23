@@ -395,7 +395,7 @@
 
 ## View Input
   # view metadata and data tables
-  output$table_meta_in <- renderDataTable( tmpMeta(), options = list(pageLength = 10) )
-  output$table_data_in <- renderDataTable( tmpData(), options = list(pageLength = 10) )
+  output$table_meta_in <- DT::renderDataTable( tmpMeta(), options = list(pageLength = 10), rownames=FALSE )
+  output$table_data_in <- DT::renderDataTable( tmpData(), options = list(pageLength = 10), rownames=FALSE )
 
 
