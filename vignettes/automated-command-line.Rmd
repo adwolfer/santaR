@@ -1,7 +1,7 @@
 ---
 title: "Automated command line analysis"
 author: "Arnaud Wolfer"
-date: "2017-12-30"
+date: "2019-10-03"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Automated command line analysis}
