@@ -118,7 +118,7 @@ get_grouping              <- function(ind,group) {
 #' @return Matrix of measurements UV-scaled columnwise.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' inputMat <- data.frame(matrix(c(1,4,7, 8,4,0, 3,6,9), nrow=3))
 #' scaling_UV(inputMat)
 #' #       X1 X2 X3
@@ -145,7 +145,7 @@ scaling_UV                <- function(inputMat) {
 #' @return Matrix of measurements mean-scaled columnwise.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' inputMat <- data.frame(matrix(c(1,4,7, 8,4,0, 3,6,9), nrow=3))
 #' scaling_mean(inputMat)
 #' #          X1 X2  X3
