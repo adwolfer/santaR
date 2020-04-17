@@ -17,7 +17,7 @@ Scale each variable (column) by the mean. Mean-scaling applied as (value - mean)
 As \code{\link{scaling_UV}} might give too much importance to flat trajectories due to the division by the standard deviation, by dividing by the mean, high intensity values will have a lower influence and the low intensity will be boosted.
 }
 \examples{
-\donttest{
+\dontrun{
 inputMat <- data.frame(matrix(c(1,4,7, 8,4,0, 3,6,9), nrow=3))
 scaling_mean(inputMat)
 #          X1 X2  X3

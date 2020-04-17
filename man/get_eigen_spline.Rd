@@ -4,9 +4,17 @@
 \alias{get_eigen_spline}
 \title{Compute eigenSplines across a dataset}
 \usage{
-get_eigen_spline(inputData, ind, time, nPC = NA,
-  scaling = "scaling_UV", method = "nipals", verbose = TRUE,
-  centering = TRUE, ncores = 0)
+get_eigen_spline(
+  inputData,
+  ind,
+  time,
+  nPC = NA,
+  scaling = "scaling_UV",
+  method = "nipals",
+  verbose = TRUE,
+  centering = TRUE,
+  ncores = 0
+)
 }
 \arguments{
 \item{inputData}{Matrix of measurements with observations as rows and variables as columns.}
@@ -97,10 +105,11 @@ get_eigen_spline(inputData, ind, time, nPC=NA, scaling="scaling_UV", method="nip
 \seealso{
 Graphical implementation with \code{\link{santaR_start_GUI}}
 
-Other DFsearch: \code{\link{get_eigen_DFoverlay_list}},
-  \code{\link{get_eigen_DF}},
-  \code{\link{get_param_evolution}},
-  \code{\link{plot_nbTP_histogram}},
-  \code{\link{plot_param_evolution}}
+Other DFsearch: 
+\code{\link{get_eigen_DFoverlay_list}()},
+\code{\link{get_eigen_DF}()},
+\code{\link{get_param_evolution}()},
+\code{\link{plot_nbTP_histogram}()},
+\code{\link{plot_param_evolution}()}
 }
 \concept{DFsearch}

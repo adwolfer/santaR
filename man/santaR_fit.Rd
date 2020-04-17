@@ -78,14 +78,15 @@ resultSANTAObj <- santaR_fit(inputMatrix, df=5, grouping=grouping, verbose=TRUE)
 
 }
 \seealso{
-Other Analysis: \code{\link{get_grouping}},
-  \code{\link{get_ind_time_matrix}},
-  \code{\link{santaR_CBand}},
-  \code{\link{santaR_auto_fit}},
-  \code{\link{santaR_auto_summary}},
-  \code{\link{santaR_plot}},
-  \code{\link{santaR_pvalue_dist}},
-  \code{\link{santaR_pvalue_fit}},
-  \code{\link{santaR_start_GUI}}
+Other Analysis: 
+\code{\link{get_grouping}()},
+\code{\link{get_ind_time_matrix}()},
+\code{\link{santaR_CBand}()},
+\code{\link{santaR_auto_fit}()},
+\code{\link{santaR_auto_summary}()},
+\code{\link{santaR_plot}()},
+\code{\link{santaR_pvalue_dist}()},
+\code{\link{santaR_pvalue_fit}()},
+\code{\link{santaR_start_GUI}()}
 }
 \concept{Analysis}

@@ -30,18 +30,21 @@ santaR_start_GUI()
 
 }
 \seealso{
-Other AutoProcess: \code{\link{santaR_auto_fit}},
-  \code{\link{santaR_auto_summary}},
-  \code{\link{santaR_plot}}
+Other AutoProcess: 
+\code{\link{santaR_auto_fit}()},
+\code{\link{santaR_auto_summary}()},
+\code{\link{santaR_plot}()}
 
-Other Analysis: \code{\link{get_grouping}},
-  \code{\link{get_ind_time_matrix}},
-  \code{\link{santaR_CBand}},
-  \code{\link{santaR_auto_fit}},
-  \code{\link{santaR_auto_summary}},
-  \code{\link{santaR_fit}}, \code{\link{santaR_plot}},
-  \code{\link{santaR_pvalue_dist}},
-  \code{\link{santaR_pvalue_fit}}
+Other Analysis: 
+\code{\link{get_grouping}()},
+\code{\link{get_ind_time_matrix}()},
+\code{\link{santaR_CBand}()},
+\code{\link{santaR_auto_fit}()},
+\code{\link{santaR_auto_summary}()},
+\code{\link{santaR_fit}()},
+\code{\link{santaR_plot}()},
+\code{\link{santaR_pvalue_dist}()},
+\code{\link{santaR_pvalue_fit}()}
 }
 \concept{Analysis}
 \concept{AutoProcess}

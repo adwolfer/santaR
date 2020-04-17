@@ -17,7 +17,7 @@ Unit-Variance (UV) scale each variable (column). UV-scaling applied as (value - 
 Unit-Variance Scaling or Autoscaling, is commonly applied and uses the standard deviation as the scaling factor. After autoscaling, all metabolites have a standard deviation of one and therefore the data is analyzed on the basis of correlations instead of covariances.
 }
 \examples{
-\donttest{
+\dontrun{
 inputMat <- data.frame(matrix(c(1,4,7, 8,4,0, 3,6,9), nrow=3))
 scaling_UV(inputMat)
 #       X1 X2 X3

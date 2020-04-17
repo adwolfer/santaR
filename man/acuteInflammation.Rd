@@ -4,13 +4,15 @@
 \name{acuteInflammation}
 \alias{acuteInflammation}
 \title{Measurement of 22 inflammatory mediators across time}
-\format{List of 2 data frames of 56 rows each, containing the 22 measured variables (data) and the corresponding sampling metadata (meta):
+\format{
+List of 2 data frames of 56 rows each, containing the 22 measured variables (data) and the corresponding sampling metadata (meta):
 \describe{
   	\item{data: var}{mediator concentration, unit-variance scaled}
 	\item{meta: time}{time of the measurement, in hour}
 	\item{meta: ind}{subject ID for the measurement}
 	\item{meta: group}{group membership of the subject/measurement}
-}}
+}
+}
 \usage{
 acuteInflammation
 }
