@@ -1,5 +1,5 @@
-pandoc: '2.6'
-pkgdown: 1.4.1
+pandoc: 2.14.0.3
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   advanced-command-line-functions: advanced-command-line-functions.html
@@ -9,7 +9,8 @@ articles:
   prepare-input-data: prepare-input-data.html
   selecting-optimal-df: selecting-optimal-df.html
   theoretical-background: theoretical-background.html
+last_built: 2021-12-20T17:16Z
 urls:
-  reference: https://adwolfer.github.io/santaR//reference
-  article: https://adwolfer.github.io/santaR//articles
+  reference: https://adwolfer.github.io/santaR/reference
+  article: https://adwolfer.github.io/santaR/articles
 
