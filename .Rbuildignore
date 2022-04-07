@@ -4,6 +4,7 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 .gitignore
+.github
 LICENSE
 cran-comments.md
 ^.travis.yml
