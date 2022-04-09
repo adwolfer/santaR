@@ -30,7 +30,7 @@ test_that('default values', {
   result_eigenDF  <- evaluate_promise(get_eigen_DF(input_eigen))
   
   # Check results
-  expect_equal(result_eigenDF$result, expected_eigenDF)
+  expect_equal(result_eigenDF$result, expected_eigenDF, tolerance=5e-3)
   
   # Check result messages (time taken)
   expect_equal(length(result_eigenDF$messages), 0)
