@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">santaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -100,7 +100,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Automated command line analysis</h1>
-                        <h4 data-toc-skip class="author">Arnaud Wolfer</h4>
+                        <h4 data-toc-skip class="author">Arnaud
+Wolfer</h4>
             
             <h4 data-toc-skip class="date">2019-10-03</h4>
       
@@ -111,23 +112,60 @@
 
     
     
-<p>The <code>santaR</code> package is designed for the detection of significantly altered time trajectories between study groups, in short time-series. Command line parallelisation and reporting functions allow the automated analysis of multiple variables.</p>
-<p>The automated command line functions are to be prefered to the GUI for the processing of very high number of variables, as they are more efficient and can be integrated in scripts.</p>
+<p>The <code>santaR</code> package is designed for the detection of
+significantly altered time trajectories between study groups, in short
+time-series. Command line parallelisation and reporting functions allow
+the automated analysis of multiple variables.</p>
+<p>The automated command line functions are to be prefered to the GUI
+for the processing of very high number of variables, as they are more
+efficient and can be integrated in scripts.</p>
 <p>Using an example dataset, this vignette will:</p>
 <ul>
 <li>Detail the parallel processing function</li>
 <li>Detail the automated reporting function</li>
-<li>Save the processing results in a <code>.RData</code> file to be opened with the graphical interface for further analysis</li>
+<li>Save the processing results in a <code>.RData</code> file to be
+opened with the graphical interface for further analysis</li>
 </ul>
 <div class="section level2">
 <h2 id="parallel-processing">Parallel processing<a class="anchor" aria-label="anchor" href="#parallel-processing"></a>
 </h2>
-<p>In a same experiment, multiple variables can be measured and explored dynamically (<em>e.g. NMR or MS features, genes</em>). As <code>santaR</code>’s analysis is an univariate approach, each variable can be fitted independently. This lack of dependency renders <code>santaR</code>’s analysis an embarrassingly parallel workload.</p>
-<p>The <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> function is a wrapper for each of the analytical functions (i.e. <code><a href="../reference/get_ind_time_matrix.html">get_ind_time_matrix()</a></code>, <code><a href="../reference/santaR_fit.html">santaR_fit()</a></code>, <code><a href="../reference/santaR_CBand.html">santaR_CBand()</a></code>, <code><a href="../reference/santaR_pvalue_dist.html">santaR_pvalue_dist()</a></code> and <code><a href="../reference/santaR_pvalue_fit.html">santaR_pvalue_fit()</a></code>), executing them in a parallel fashion (<em>for each individual function see the help and <a href="advanced-command-line-functions.html">advanced command line options vignette</a></em>). The parallelisation relies on the <code>doParallel</code> package for the instantiation of worker nodes and <code>foreach</code> for the distribution of tasks. This set of packages enable the parallelisation on all operating systems (<em>Windows, Mac OS and most Linux distributions</em>).</p>
-<p>Observation values are expected as a data-frame of samples as <em>rows</em> and variables as <em>columns</em>, the parallelisation taking place over the <em>columns</em>. For a selected number of CPU cores (<code>ncores</code> parameter), <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> first instantiate worker nodes (<em>if <code>ncores=0</code>, the procedure is applied sequentially (no parallelisation)</em>). The conversion of inputs by <code><a href="../reference/get_ind_time_matrix.html">get_ind_time_matrix()</a></code> is however not parallelised by default as the parallelisation overhead time cost is superior to the time gain for all but the most complex datasets. When the number of individuals, unique time points, or variables is elevated, the <code>forceParIndTimeMat</code> parameter enables the parallelisation of this step. All subsequent analytical steps are automatically parallelised, with the calculation of confidence bands on the group mean curves and the identification of altered trajectory activated by default.</p>
-<p><code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> returns a list of <em>SANTAObj</em> containing each variable’s analysis results. In practice, <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> is the function employed for command line analysis as it caters for all possible use cases.</p>
+<p>In a same experiment, multiple variables can be measured and explored
+dynamically (<em>e.g. NMR or MS features, genes</em>). As
+<code>santaR</code>’s analysis is an univariate approach, each variable
+can be fitted independently. This lack of dependency renders
+<code>santaR</code>’s analysis an embarrassingly parallel workload.</p>
+<p>The <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> function is a wrapper for each of
+the analytical functions (i.e. <code><a href="../reference/get_ind_time_matrix.html">get_ind_time_matrix()</a></code>,
+<code><a href="../reference/santaR_fit.html">santaR_fit()</a></code>, <code><a href="../reference/santaR_CBand.html">santaR_CBand()</a></code>,
+<code><a href="../reference/santaR_pvalue_dist.html">santaR_pvalue_dist()</a></code> and <code><a href="../reference/santaR_pvalue_fit.html">santaR_pvalue_fit()</a></code>),
+executing them in a parallel fashion (<em>for each individual function
+see the help and <a href="advanced-command-line-functions.html">advanced
+command line options vignette</a></em>). The parallelisation relies on
+the <code>doParallel</code> package for the instantiation of worker
+nodes and <code>foreach</code> for the distribution of tasks. This set
+of packages enable the parallelisation on all operating systems
+(<em>Windows, Mac OS and most Linux distributions</em>).</p>
+<p>Observation values are expected as a data-frame of samples as
+<em>rows</em> and variables as <em>columns</em>, the parallelisation
+taking place over the <em>columns</em>. For a selected number of CPU
+cores (<code>ncores</code> parameter), <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code>
+first instantiate worker nodes (<em>if <code>ncores=0</code>, the
+procedure is applied sequentially (no parallelisation)</em>). The
+conversion of inputs by <code><a href="../reference/get_ind_time_matrix.html">get_ind_time_matrix()</a></code> is however
+not parallelised by default as the parallelisation overhead time cost is
+superior to the time gain for all but the most complex datasets. When
+the number of individuals, unique time points, or variables is elevated,
+the <code>forceParIndTimeMat</code> parameter enables the
+parallelisation of this step. All subsequent analytical steps are
+automatically parallelised, with the calculation of confidence bands on
+the group mean curves and the identification of altered trajectory
+activated by default.</p>
+<p><code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> returns a list of <em>SANTAObj</em>
+containing each variable’s analysis results. In practice,
+<code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> is the function employed for command line
+analysis as it caters for all possible use cases.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer" class="external-link">santaR</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer/santaR" class="external-link">santaR</a></span><span class="op">)</span>
 
 <span class="co"># Load example data</span>
 <span class="va">tmp_data</span>  <span class="op">&lt;-</span> <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">data</span>
@@ -150,8 +188,24 @@
 <div class="section level2">
 <h2 id="automated-reporting">Automated Reporting<a class="anchor" aria-label="anchor" href="#automated-reporting"></a>
 </h2>
-<p>After multiple variables have been analysed using <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code>, a reporting function helps assess significant results and summarise them in an easily interpretable fashion. <code><a href="../reference/santaR_auto_summary.html">santaR_auto_summary()</a></code> takes a list of <em>SANTAObj</em> as generated by <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> as input.</p>
-<p>First, correction for multiple testing can be applied to generate Bonferroni, Benjamini-Hochberg or Benjamini-Yekutieli corrected <em>p</em>-values. <em>P</em>-values can be returned by the function, but also automatically saved to disk as <code>.csv</code>. For a given significance cut-off (<code>plotCutOff</code> parameter), the number of variables significantly altered is reported and plots are automatically saved to disk by increasing <em>p</em>-value. The aspect of the plots can be altered using multiple options such as the representation of confidence bands (<code>showConfBand</code> parameter) or the generation of a mean curve across all samples (<code>showTotalMeanCurve</code> parameter) which can help assess difference between groups when group sizes are unbalanced.</p>
+<p>After multiple variables have been analysed using
+<code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code>, a reporting function helps assess
+significant results and summarise them in an easily interpretable
+fashion. <code><a href="../reference/santaR_auto_summary.html">santaR_auto_summary()</a></code> takes a list of
+<em>SANTAObj</em> as generated by <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> as
+input.</p>
+<p>First, correction for multiple testing can be applied to generate
+Bonferroni, Benjamini-Hochberg or Benjamini-Yekutieli corrected
+<em>p</em>-values. <em>P</em>-values can be returned by the function,
+but also automatically saved to disk as <code>.csv</code>. For a given
+significance cut-off (<code>plotCutOff</code> parameter), the number of
+variables significantly altered is reported and plots are automatically
+saved to disk by increasing <em>p</em>-value. The aspect of the plots
+can be altered using multiple options such as the representation of
+confidence bands (<code>showConfBand</code> parameter) or the generation
+of a mean curve across all samples (<code>showTotalMeanCurve</code>
+parameter) which can help assess difference between groups when group
+sizes are unbalanced.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Generate a summary</span>
 <span class="co">#   without a defined 'targetFolder', no csv or plots can be saved</span>
@@ -393,8 +447,18 @@
 <div class="section level2">
 <h2 id="save-results-for-gui">Save results for GUI<a class="anchor" aria-label="anchor" href="#save-results-for-gui"></a>
 </h2>
-<p>In practice, time-dependent patterns for a given biological question (<em>e.g. a grouping of individuals</em>) are assessed by parallelised fitting and analysis using <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> and reporting using <code><a href="../reference/santaR_auto_summary.html">santaR_auto_summary()</a></code>. When results are available, the most significantly altered variables can be identified using the reports and visually inspected for confirmation using the plots already saved to disk.</p>
-<p>Additionally analysis results can be loaded into the GUI for interactive visualisation or generation of plots. For that, the list of <em>SANTAObj</em> generated by <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> must be saved under the variable name <code>inSp</code> in a <code>.RData</code> file:</p>
+<p>In practice, time-dependent patterns for a given biological question
+(<em>e.g. a grouping of individuals</em>) are assessed by parallelised
+fitting and analysis using <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> and reporting
+using <code><a href="../reference/santaR_auto_summary.html">santaR_auto_summary()</a></code>. When results are available,
+the most significantly altered variables can be identified using the
+reports and visually inspected for confirmation using the plots already
+saved to disk.</p>
+<p>Additionally analysis results can be loaded into the GUI for
+interactive visualisation or generation of plots. For that, the list of
+<em>SANTAObj</em> generated by <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code> must be
+saved under the variable name <code>inSp</code> in a <code>.RData</code>
+file:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Rename the results</span>
 <span class="va">inSp</span>        <span class="op">&lt;-</span> <span class="va">res_acuteInf_df5</span>
@@ -407,12 +471,16 @@
 </h2>
 <ul>
 <li><a href="getting-started.html">Getting Started with santaR</a></li>
-<li><a href="prepare-input-data.html">How to prepare input data for santaR</a></li>
-<li><a href="theoretical-background.html">santaR theoretical background</a></li>
+<li><a href="prepare-input-data.html">How to prepare input data for
+santaR</a></li>
+<li><a href="theoretical-background.html">santaR theoretical
+background</a></li>
 <li><a href="santaR-GUI.pdf">Graphical user interface use</a></li>
 <li><a href="plotting-options.html">Plotting options</a></li>
-<li><a href="selecting-optimal-df.html">Selecting an optimal number of degrees of freedom</a></li>
-<li><a href="advanced-command-line-functions.html">Advanced command line options</a></li>
+<li><a href="selecting-optimal-df.html">Selecting an optimal number of
+degrees of freedom</a></li>
+<li><a href="advanced-command-line-functions.html">Advanced command line
+options</a></li>
 </ul>
 </div>
   </div>
@@ -434,7 +502,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

@@ -31,7 +31,7 @@ Imports: plyr (>= 1.8.4),
     reshape2 (>= 1.4.3),
     iterators (>= 1.0.9),
     shiny (>= 1.3.2),
-    shinythemes (>= 1.1.2),
+    bslib,
     DT (>= 0.9)
 biocViews: pcaMethods (>= 1.70.0)
 Suggests: knitr,

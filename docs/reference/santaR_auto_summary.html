@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">santaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -29,7 +29,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -171,11 +171,11 @@
 <span class="r-in"><span class="va">group</span>         <span class="op">&lt;-</span> <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">meta</span><span class="op">$</span><span class="va">group</span></span>
 <span class="r-in"><span class="va">SANTAObjList</span>  <span class="op">&lt;-</span> <span class="fu"><a href="santaR_auto_fit.html">santaR_auto_fit</a></span><span class="op">(</span><span class="va">inputData</span>, <span class="va">ind</span>, <span class="va">time</span>, <span class="va">group</span>, df<span class="op">=</span><span class="fl">5</span>, ncores<span class="op">=</span><span class="fl">0</span>, CBand<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span class="r-in">                                pval.dist<span class="op">=</span><span class="cn">TRUE</span>, nBoot<span class="op">=</span><span class="fl">100</span>, nPerm<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Input data generated: 0.01 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Spline fitted: 0.05 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ConfBands done: 0.41 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> p-val dist done: 0.44 secs</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> total time: 0.91 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Input data generated: 0 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Spline fitted: 0.02 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ConfBands done: 0.36 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> p-val dist done: 0.46 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> total time: 0.85 secs</span>
 <span class="r-in"><span class="co"># Input data generated: 0.02 secs</span></span>
 <span class="r-in"><span class="co"># Spline fitted: 0.03 secs</span></span>
 <span class="r-in"><span class="co"># ConfBands done: 0.53 secs</span></span>
@@ -187,8 +187,8 @@
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $pval.all</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             dist dist_upper  dist_lower     curveCorr    dist_BH</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> var_1 0.01980198 0.06971592 0.005416447 -0.2429725352 0.02970297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> var_2 0.02970297 0.08409910 0.010102704  0.0006572238 0.02970297</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> var_1 0.01980198 0.06971592 0.005416447 -0.2429725352 0.01980198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> var_2 0.01980198 0.06971592 0.005416447  0.0006572238 0.01980198</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $pval.summary</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Test Inf 0.05 Inf 0.01 Inf 0.001</span>
@@ -219,7 +219,8 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer></div>

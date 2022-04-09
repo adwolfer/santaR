@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">santaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -100,7 +100,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Plotting options</h1>
-                        <h4 data-toc-skip class="author">Arnaud Wolfer</h4>
+                        <h4 data-toc-skip class="author">Arnaud
+Wolfer</h4>
             
             <h4 data-toc-skip class="date">2019-10-03</h4>
       
@@ -111,54 +112,66 @@
 
     
     
-<p>The <code>santaR</code> package is designed for the detection of significantly altered time trajectories between study groups, in short time-series.</p>
-<p>As the visualisation of significantly altered time-trajectories is critical to the interpretation of the process under study, this vignette will detail the plotting options present in <code>santaR</code>. <code><a href="../reference/santaR_plot.html">santaR_plot()</a></code> returns a <code>ggplot2 plotObject</code> that can be further modified using <code>ggplot2</code> grammar.</p>
+<p>The <code>santaR</code> package is designed for the detection of
+significantly altered time trajectories between study groups, in short
+time-series.</p>
+<p>As the visualisation of significantly altered time-trajectories is
+critical to the interpretation of the process under study, this vignette
+will detail the plotting options present in <code>santaR</code>.
+<code><a href="../reference/santaR_plot.html">santaR_plot()</a></code> returns a <code>ggplot2 plotObject</code>
+that can be further modified using <code>ggplot2</code> grammar.</p>
 <div class="section level2">
 <h2 id="plotting-options">Plotting options<a class="anchor" aria-label="anchor" href="#plotting-options"></a>
 </h2>
-<p>First we can analyse a subset of data using <code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code>, returning a list of <em>SANTAObj</em>.</p>
+<p>First we can analyse a subset of data using
+<code><a href="../reference/santaR_auto_fit.html">santaR_auto_fit()</a></code>, returning a list of
+<em>SANTAObj</em>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer" class="external-link">santaR</a></span><span class="op">)</span>
-
-<span class="co"># Load a subset of the example data</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer/santaR" class="external-link">santaR</a></span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## This is santaR version 1.2.0</span></code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load a subset of the example data</span>
 <span class="va">tmp_data</span>  <span class="op">&lt;-</span> <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
 <span class="va">tmp_meta</span>  <span class="op">&lt;-</span> <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">meta</span>
 
 <span class="co"># Analyse data, with confidence bands and p-value</span>
 <span class="va">res_acuteInf_df5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/santaR_auto_fit.html">santaR_auto_fit</a></span><span class="op">(</span>inputData<span class="op">=</span><span class="va">tmp_data</span>, ind<span class="op">=</span><span class="va">tmp_meta</span><span class="op">$</span><span class="va">ind</span>, time<span class="op">=</span><span class="va">tmp_meta</span><span class="op">$</span><span class="va">time</span>, group<span class="op">=</span><span class="va">tmp_meta</span><span class="op">$</span><span class="va">group</span>, df<span class="op">=</span><span class="fl">5</span>, ncores<span class="op">=</span><span class="fl">0</span>, CBand<span class="op">=</span><span class="cn">TRUE</span>, pval.dist<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Input data generated: 0.01 secs</span></code></pre>
-<pre><code><span class="co">## Spline fitted: 0.07 secs</span></code></pre>
-<pre><code><span class="co">## ConfBands done: 6.46 secs</span></code></pre>
-<pre><code><span class="co">## total time: 6.54 secs</span></code></pre>
+<pre><code><span class="co">## Spline fitted: 0.05 secs</span></code></pre>
+<pre><code><span class="co">## ConfBands done: 5.52 secs</span></code></pre>
+<pre><code><span class="co">## total time: 5.58 secs</span></code></pre>
 <div class="section level3">
 <h3 id="basic-plot">Basic plot<a class="anchor" aria-label="anchor" href="#basic-plot"></a>
 </h3>
-<p>Each variable can be accessed either by its list position or variable name:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p>Each variable can be accessed either by its list position or variable
+name:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Default plot</span>
 <span class="co"># individual points, individual trajectories, group mean curves and confidence bands</span>
 
   <span class="co"># access by list position</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># access by variable name</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-2-2.png" width="672"></p>
-<p>The individual points, trajectories, group mean curves and confidence bands can be turned on or off:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>The individual points, trajectories, group mean curves and confidence
+bands can be turned on or off:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># only groupMeanCurve</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, showIndPoint<span class="op">=</span><span class="cn">FALSE</span>, showIndCurve<span class="op">=</span><span class="cn">FALSE</span>, showGroupMeanCurve<span class="op">=</span><span class="cn">TRUE</span>, showConfBand<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># only Individuals</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, showIndPoint<span class="op">=</span><span class="cn">TRUE</span>, showIndCurve<span class="op">=</span><span class="cn">TRUE</span>, showGroupMeanCurve<span class="op">=</span><span class="cn">FALSE</span>, showConfBand<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-3-2.png" width="672"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># add confidence bands (only available if  previously calculated)</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, showIndPoint<span class="op">=</span><span class="cn">TRUE</span>, showIndCurve<span class="op">=</span><span class="cn">TRUE</span>, showGroupMeanCurve<span class="op">=</span><span class="cn">TRUE</span>, showConfBand<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-3-3.png" width="672"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># add a totalMeanCurve (grey)</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, showTotalMeanCurve<span class="op">=</span><span class="cn">TRUE</span> <span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-3-4.png" width="672"></p>
@@ -167,19 +180,19 @@
 <h3 id="adding-options">Adding options<a class="anchor" aria-label="anchor" href="#adding-options"></a>
 </h3>
 <p>Title and axis can be altered to suit the analysis:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># add title</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, title<span class="op">=</span><span class="st">'A figure title'</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># remove the legend</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, title<span class="op">=</span><span class="st">'A variable, no legend'</span>, legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-4-2.png" width="672"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># force purple and green color</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>,  title<span class="op">=</span><span class="st">'A variable in different colors'</span>, colorVect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'purple'</span>,<span class="st">'green'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-4-3.png" width="672"></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Default colors are in order: "blue", "red", "green", "orange", "purple", "seagreen", "darkturquoise", "violetred", "saddlebrown", "black"</span>
 
   <span class="co"># add x and y labels</span>
@@ -189,38 +202,32 @@
 <div class="section level3">
 <h3 id="updating-plot-with-ggplot2-grammar">Updating plot with ggplot2 grammar<a class="anchor" aria-label="anchor" href="#updating-plot-with-ggplot2-grammar"></a>
 </h3>
-<p><code><a href="../reference/santaR_plot.html">santaR_plot()</a></code> returns a <code>ggplot2 plotObject</code> that can be modified using all the range of <code>ggplot2</code> grammar:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<p><code><a href="../reference/santaR_plot.html">santaR_plot()</a></code> returns a <code>ggplot2 plotObject</code>
+that can be modified using all the range of <code>ggplot2</code>
+grammar:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
   <span class="co"># add x and y labels by adding it outside the plotting function [not useful but shows that any ggplot command can be added to the plot]</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, title<span class="op">=</span><span class="st">'A variable'</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">'Time'</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">'Variable value'</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># Constrain the x axis (will remove points and raise warnings)</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, showConfBand<span class="op">=</span><span class="cn">FALSE</span>, title<span class="op">=</span><span class="st">'A variable'</span>, xlab<span class="op">=</span><span class="st">'Time'</span>, ylab<span class="op">=</span><span class="st">'Variable value'</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">48</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Warning: Removed 4 rows containing missing values (geom_point).</span></code></pre>
 <pre><code><span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span></code></pre>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span></code></pre>
 <pre><code><span class="co">## Warning: Removed 4 rows containing missing values (geom_point).</span></code></pre>
 <pre><code><span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span>
-
-<span class="co">## Warning: Removed 84 row(s) containing missing values (geom_path).</span></code></pre>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span>
+<span class="co">## Removed 84 row(s) containing missing values (geom_path).</span></code></pre>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-5-2.png" width="672"></p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># Looser y limits</span>
 <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_5</span>, title<span class="op">=</span><span class="st">'A variable'</span>, xlab<span class="op">=</span><span class="st">'Time'</span>, ylab<span class="op">=</span><span class="st">'Variable value'</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-5-3.png" width="672"></p>
@@ -228,25 +235,26 @@
 <div class="section level3">
 <h3 id="multiplots">Multiplots<a class="anchor" aria-label="anchor" href="#multiplots"></a>
 </h3>
-<p>Plots can be stored in a variables and combined in multiplots using <code>gridExtra grid.arrange()</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<p>Plots can be stored in a variables and combined in multiplots using
+<code>gridExtra grid.arrange()</code>:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span>
 
   <span class="co"># store plot in a variable, plot multiple variables...</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_3</span>, title<span class="op">=</span><span class="st">'First variable'</span>, xlab<span class="op">=</span><span class="st">'Time'</span>, ylab<span class="op">=</span><span class="st">'Variable value'</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_4</span>, title<span class="op">=</span><span class="st">'Second variable'</span>, xlab<span class="op">=</span><span class="st">'Time'</span>, ylab<span class="op">=</span><span class="st">'Variable value'</span><span class="op">)</span>
 
   <span class="co"># multiplot</span>
 <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-6-2.png" width="672"></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># force them side by side</span>
 <span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html" class="external-link">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p><img src="plotting-options_files/figure-html/unnamed-chunk-6-3.png" width="672"></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R">  <span class="co"># Force both plots on the same y limits (remove legend from plots)</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_3</span>, title<span class="op">=</span><span class="st">'First variable'</span>, xlab<span class="op">=</span><span class="st">'Time'</span>, ylab<span class="op">=</span><span class="st">'Variable value'</span>, legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/santaR_plot.html">santaR_plot</a></span><span class="op">(</span><span class="va">res_acuteInf_df5</span><span class="op">$</span><span class="va">var_4</span>, title<span class="op">=</span><span class="st">'Second variable'</span>, xlab<span class="op">=</span><span class="st">'Time'</span>, ylab<span class="op">=</span><span class="st">'Variable value'</span>, legend<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
@@ -263,12 +271,17 @@
 </h2>
 <ul>
 <li><a href="getting-started.html">Getting Started with santaR</a></li>
-<li><a href="prepare-input-data.html">How to prepare input data for santaR</a></li>
-<li><a href="theoretical-background.html">santaR theoretical background</a></li>
+<li><a href="prepare-input-data.html">How to prepare input data for
+santaR</a></li>
+<li><a href="theoretical-background.html">santaR theoretical
+background</a></li>
 <li><a href="santaR-GUI.pdf">Graphical user interface use</a></li>
-<li><a href="automated-command-line.html">Automated command line analysis</a></li>
-<li><a href="selecting-optimal-df.html">Selecting an optimal number of degrees of freedom</a></li>
-<li><a href="advanced-command-line-functions.html">Advanced command line options</a></li>
+<li><a href="automated-command-line.html">Automated command line
+analysis</a></li>
+<li><a href="selecting-optimal-df.html">Selecting an optimal number of
+degrees of freedom</a></li>
+<li><a href="advanced-command-line-functions.html">Advanced command line
+options</a></li>
 </ul>
 </div>
   </div>
@@ -290,7 +303,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

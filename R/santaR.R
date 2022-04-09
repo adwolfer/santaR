@@ -45,7 +45,7 @@
 #' @import foreach
 #' @import doParallel
 #' @import shiny
-#' @import shinythemes
+#' @import bslib
 #'
 "_PACKAGE"
 #> [1] "_PACKAGE"

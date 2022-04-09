@@ -1,14 +1,14 @@
 # server.R
 
 # SANTA-App
-# Based on SANTA v1.1.2, R >= 3.4.0, shiny >= 1.3.2, shinythemes >= 1.1.2
+# Based on SANTA v1.2.0, R >= 3.4.0, shiny >= 1.3.2, bslib
 # Arnaud M. Wolfer
 # Computational and Systems Medicine 
 # Imperial College London
-# 10/10/2019
+# 09/04/2022
 # Licensed under GPLv3
 #
-# Copyright (C) {2019}  {Arnaud M. Wolfer}
+# Copyright (C) {2022}  {Arnaud M. Wolfer}
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

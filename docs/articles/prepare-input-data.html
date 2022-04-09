@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">santaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -100,7 +100,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How to prepare input data for santaR</h1>
-                        <h4 data-toc-skip class="author">Arnaud Wolfer</h4>
+                        <h4 data-toc-skip class="author">Arnaud
+Wolfer</h4>
             
             <h4 data-toc-skip class="date">2019-10-03</h4>
       
@@ -111,36 +112,59 @@
 
     
     
-<p>The <code>santaR</code> package is designed for the detection of significantly altered time trajectories between study groups, in short time-series. It is robust to missing values and noisy measurements without requiring synchronisation in time.</p>
+<p>The <code>santaR</code> package is designed for the detection of
+significantly altered time trajectories between study groups, in short
+time-series. It is robust to missing values and noisy measurements
+without requiring synchronisation in time.</p>
 <p>This vignette will:</p>
 <ul>
 <li>Detail the input format expected by the package</li>
-<li>Present the provided example dataset <em>‘acuteInflammation’</em>
+<li>Present the provided example dataset
+<em>‘acuteInflammation’</em>
 </li>
-<li>Save <em>‘acuteInflammation’</em> in a <code>.csv</code> and <code>.RData</code> files to be used as input for the graphical interface tutorial.</li>
+<li>Save <em>‘acuteInflammation’</em> in a <code>.csv</code> and
+<code>.RData</code> files to be used as input for the graphical
+interface tutorial.</li>
 </ul>
 <div class="section level2">
 <h2 id="data-format">Data format<a class="anchor" aria-label="anchor" href="#data-format"></a>
 </h2>
-<p>In short, for a given variable, each measurement (observation) is a row in a vector.</p>
-<p>If more than one variable has been measured at a given time, multiple measurement columns can be provided in a Data.Frame (<code>data</code>) with observations as rows and variables as columns.</p>
-<p>For each data point (row), the following metadata vectors are required (or can be stored in a Data.Frame <code>metadata</code>):</p>
+<p>In short, for a given variable, each measurement (observation) is a
+row in a vector.</p>
+<p>If more than one variable has been measured at a given time, multiple
+measurement columns can be provided in a Data.Frame (<code>data</code>)
+with observations as rows and variables as columns.</p>
+<p>For each data point (row), the following metadata vectors are
+required (or can be stored in a Data.Frame <code>metadata</code>):</p>
 <ul>
 <li>
-<code>time</code>, the time at which the observation has been taken.</li>
+<code>time</code>, the time at which the observation has been
+taken.</li>
 <li>
-<code>ind</code> identifying which subject (individual) is associated with the observation.</li>
+<code>ind</code> identifying which subject (individual) is
+associated with the observation.</li>
 </ul>
 <p>Optionally:</p>
 <ul>
 <li>
-<code>group</code> an identifier indicating to which study group the observation belongs.</li>
+<code>group</code> an identifier indicating to which study group the
+observation belongs.</li>
 </ul>
 <blockquote>
-<p>All observations of a given individual need to be affected to the same group. If 2 groups exist, significantly altered time trajectories can be identified. If no group or more than 2 groups are provided, the trajectories can be plotted but significance cannot be calculated.</p>
+<p>All observations of a given individual need to be affected to the
+same group. If 2 groups exist, significantly altered time trajectories
+can be identified. If no group or more than 2 groups are provided, the
+trajectories can be plotted but significance cannot be calculated.</p>
 </blockquote>
-<p><code>data</code> and <code>metadata</code> information can be stored as vectors, in one or in two separate Data.Frame. If a data-point is not available (no data value for any variables) the row should be discarded. If some of the variable measurements are missing for a given time-point, the value can be replace by <code>NaN</code>. Do not inpute data as the package is explicitely designed to be robust to missing values.</p>
-<p>Here is an example of <code>5</code> observations of <code>2</code> variables. Taken on <code>3</code> individual separated in <code>2</code> goups, covering <code>3</code> time-points:</p>
+<p><code>data</code> and <code>metadata</code> information can be stored
+as vectors, in one or in two separate Data.Frame. If a data-point is not
+available (no data value for any variables) the row should be discarded.
+If some of the variable measurements are missing for a given time-point,
+the value can be replace by <code>NaN</code>. Do not inpute data as the
+package is explicitely designed to be robust to missing values.</p>
+<p>Here is an example of <code>5</code> observations of <code>2</code>
+variables. Taken on <code>3</code> individual separated in
+<code>2</code> goups, covering <code>3</code> time-points:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Metadata</span></code></pre></div>
 <table style="width:35%;" class="table">
@@ -220,10 +244,19 @@
 <div class="section level2">
 <h2 id="introducing-the-dataset-acuteinflammation">Introducing the dataset <em>‘acuteInflammation’</em><a class="anchor" aria-label="anchor" href="#introducing-the-dataset-acuteinflammation"></a>
 </h2>
-<p>The <code>santaR</code> package is designed for the analysis of short noisy time-series as produced in most <em>‘-omics’</em> platforms, an example of which is provided. This dataset referred to as <code>acuteInflammation</code> contains the concentrations of 22 mediators of inflammation over an episode of acute inflammation. The mediators have been measured at 7 time-points on 8 subjects, concentration values have been unit-variance scaled for each variable.</p>
-<p><code>acuteInflammation</code> is stored as two Data.Frame; <code>meta</code> for the 56 observations metadata, and <code>data</code> for the 22 variables measurements:</p>
+<p>The <code>santaR</code> package is designed for the analysis of short
+noisy time-series as produced in most <em>‘-omics’</em> platforms, an
+example of which is provided. This dataset referred to as
+<code>acuteInflammation</code> contains the concentrations of 22
+mediators of inflammation over an episode of acute inflammation. The
+mediators have been measured at 7 time-points on 8 subjects,
+concentration values have been unit-variance scaled for each
+variable.</p>
+<p><code>acuteInflammation</code> is stored as two Data.Frame;
+<code>meta</code> for the 56 observations metadata, and
+<code>data</code> for the 22 variables measurements:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer" class="external-link">santaR</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer/santaR" class="external-link">santaR</a></span><span class="op">)</span>
 
 <span class="co">## Metadata</span>
 <span class="co"># number of rows</span>
@@ -232,6 +265,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">acuteInflammation</span><span class="op">$</span><span class="va">meta</span><span class="op">)</span>
 <span class="co"># a subset</span>
 <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">meta</span><span class="op">[</span><span class="fl">12</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">## This is santaR version 1.2.0</span></code></pre>
 <p>[1] 56</p>
 <p>[1] 3</p>
 <table style="width:46%;" class="table">
@@ -304,7 +339,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Data</span>
 <span class="co"># number of rows</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">acuteInflammation</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
@@ -399,10 +434,15 @@
 <div class="section level2">
 <h2 id="preparing-the-csv-input-for-the-graphical-user-interface">Preparing the csv input for the graphical user interface<a class="anchor" aria-label="anchor" href="#preparing-the-csv-input-for-the-graphical-user-interface"></a>
 </h2>
-<p>While the command line functions accept Data.Frame and vectors as input, the graphical user interface will read a <code>.csv</code> file.</p>
-<p>By concatenating <code>acuteInflammation</code>’s <code>data</code> and <code>metadata</code> tables and saving them in a <code>.csv</code> file, we can prepare the input dataset for the graphical user interface tutorial:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer" class="external-link">santaR</a></span><span class="op">)</span>
+<p>While the command line functions accept Data.Frame and vectors as
+input, the graphical user interface will read a <code>.csv</code>
+file.</p>
+<p>By concatenating <code>acuteInflammation</code>’s <code>data</code>
+and <code>metadata</code> tables and saving them in a <code>.csv</code>
+file, we can prepare the input dataset for the graphical user interface
+tutorial:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer/santaR" class="external-link">santaR</a></span><span class="op">)</span>
 
 <span class="co"># Concatenate</span>
 <span class="va">outputTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">acuteInflammation</span><span class="op">$</span><span class="va">meta</span>, <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
@@ -410,9 +450,12 @@
 <span class="co"># Save to disk</span>
 <span class="va">outputPath</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">'path_to_my_output_folder'</span>, <span class="st">'acuteInflammation_GUI_demo.csv'</span><span class="op">)</span> 
 <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">outputTable</span>, file<span class="op">=</span><span class="va">outputPath</span>, row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>It is also possible to provide the data directly as 2 Data.Frames stored in a <code>.RData</code> file; containing the data in a DataFrame named <code>inData</code> and metadata in a DataFrame named <code>inMeta</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer" class="external-link">santaR</a></span><span class="op">)</span>
+<p>It is also possible to provide the data directly as 2 Data.Frames
+stored in a <code>.RData</code> file; containing the data in a DataFrame
+named <code>inData</code> and metadata in a DataFrame named
+<code>inMeta</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer/santaR" class="external-link">santaR</a></span><span class="op">)</span>
 
 <span class="co"># Rename datasets</span>
 <span class="va">inMeta</span> <span class="op">&lt;-</span> <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">meta</span>
@@ -427,12 +470,16 @@
 </h2>
 <ul>
 <li><a href="getting-started.html">Getting Started with santaR</a></li>
-<li><a href="theoretical-background.html">santaR theoretical background</a></li>
+<li><a href="theoretical-background.html">santaR theoretical
+background</a></li>
 <li><a href="santaR-GUI.pdf">Graphical user interface use</a></li>
-<li><a href="automated-command-line.html">Automated command line analysis</a></li>
+<li><a href="automated-command-line.html">Automated command line
+analysis</a></li>
 <li><a href="plotting-options.html">Plotting options</a></li>
-<li><a href="selecting-optimal-df.html">Selecting an optimal number of degrees of freedom</a></li>
-<li><a href="advanced-command-line-functions.html">Advanced command line options</a></li>
+<li><a href="selecting-optimal-df.html">Selecting an optimal number of
+degrees of freedom</a></li>
+<li><a href="advanced-command-line-functions.html">Advanced command line
+options</a></li>
 </ul>
 </div>
   </div>
@@ -454,7 +501,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
