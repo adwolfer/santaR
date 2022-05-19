@@ -49,6 +49,7 @@ shinyServer( function(input, output, session){
   session$onSessionEnded(stopApp)
 
   # get santaR version
+  output$santaR_ver  <- renderText({ paste("santaR v",packageVersion('santaR'),sep="") })
   output$spline.ver1 <- renderText({ paste("santaR v",packageVersion('santaR'),sep="") })
   output$spline.ver2 <- renderText({ paste("santaR v",packageVersion('santaR'),sep="") })
   output$spline.ver3 <- renderText({ paste("santaR v",packageVersion('santaR'),sep="") })

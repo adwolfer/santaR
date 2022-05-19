@@ -26,10 +26,11 @@
 #require(shiny)
 #require(bslib)
 
-shinyUI(fluidPage(theme = bslib::bs_theme(bootswatch = "spacelab"),
-  navbarPage("santaR",
-    inverse = TRUE,
+shinyUI(fluidPage(theme = bslib::bs_theme(bootswatch = "yeti"), title='santaR',
+  navbarPage(title = textOutput("santaR_ver"),
+    inverse = FALSE,
     collapsible = TRUE,
+    windowTitle = textOutput("santaR_ver"),
 
   # -- About Tab --
     source(file.path("ui", "ui_about.R"),  local = TRUE)$value,
