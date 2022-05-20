@@ -269,5 +269,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@master
         with:
-          name: ${{ runner.os }}-r-4.1-results
+          name: ${{ runner.os }}-r-4.2-results
           path: check
