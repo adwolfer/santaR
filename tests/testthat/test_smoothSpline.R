@@ -33,6 +33,6 @@ if ((as.numeric(R.Version()$major) >= 4) && (as.numeric(R.Version()$minor) >= 2.
     
   test_that('stats::smooth.spline() fit is consistent', {
     # current vs reference smooth.spline fit
-    expect_equal(result_allSmoothSplineFit, expected_allSmoothSplineFit)
+    expect_equal(result_allSmoothSplineFit, expected_allSmoothSplineFit, tolerance=1e-7)
   })
 }
