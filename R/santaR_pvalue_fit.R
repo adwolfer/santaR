@@ -99,13 +99,13 @@ santaR_pvalue_fit         <- function(SANTAObj,nPerm=1000,alpha=0.05) {
     # Fit NULL model
     group.null  <- rbind(group1$inp,group2$inp)
     fit.null    <- fit.mean.curve( rbind(group1$pred,group2$pred),df)  
-    if(class(fit.null)!='smooth.spline'){ return(NA) }          # detect failure in fitting mean curve
+    if(! inherits(fit.null, 'smooth.spline')) { return(NA) }    # detect failure in fitting mean curve
     model.null  <- list(obs=group.null, fit=stats::predict(fit.null,y=as.numeric(colnames(group.null)))$y)
     
     # Fit ALTERNATE model
     fit.alt1   <- fit.mean.curve(group1$pred,df)
     fit.alt2   <- fit.mean.curve(group2$pred,df)
-    if( (class(fit.alt1)!='smooth.spline') & (class(fit.alt2)!='smooth.spline') ){ return(NA) }
+    if( (! inherits(fit.alt1, 'smooth.spline')) & (! inherits(fit.alt2, 'smooth.spline')) ) { return(NA) }
     model.alt1 <- list(obs=group1$inp, fit=stats::predict(fit.alt1,y=as.numeric(colnames(group1$pred)))$y)
     model.alt2 <- list(obs=group2$inp, fit=stats::predict(fit.alt2,y=as.numeric(colnames(group2$pred)))$y)
     

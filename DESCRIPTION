@@ -1,6 +1,6 @@
 Package: santaR
 Title: Short Asynchronous Time-Series Analysis
-Version: 1.2.1
+Version: 1.2.2
 Date: 2022-05-20
 Authors@R: c(
 	person("Arnaud", "Wolfer", email = "adwolfer@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5856-3218")),

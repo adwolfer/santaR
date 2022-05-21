@@ -1,7 +1,8 @@
 context('stats::smooth.spline')
 
 
-if ((as.numeric(R.Version()$major) >= 4) && (as.numeric(R.Version()$minor) >= 2.0)) {
+if ((as.numeric(R.Version()$major) >= 4) && (as.numeric(R.Version()$minor) >= 2.0) &&
+    (.Platform$OS.type == "windows")) {
 
   ## Current fit of all 8 ind, for all 22 variables, from df=2 to 7
   result_allSmoothSplineFit  <- vector("list", 6)

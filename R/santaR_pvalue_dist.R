@@ -94,7 +94,7 @@ santaR_pvalue_dist        <- function(SANTAObj,nPerm=1000,nStep=5000,alpha=0.05)
     
     fit.grp1   <- fit.mean.curve(group1$pred,df)
     fit.grp2   <- fit.mean.curve(group2$pred,df)
-    if( (class(fit.grp1)!='smooth.spline') & (class(fit.grp2)!='smooth.spline') ) { return(NA) }
+    if( (! inherits(fit.grp1, 'smooth.spline')) & (! inherits(fit.grp2, 'smooth.spline')) ) { return(NA) }
     model.grp1 <- list(obs=group1$inp, fit=fit.grp1)                  # obs only needed in dist.fit to get time range (colnames in SANTAObj$groups[[x]]$groupData.in shared across all groups)
     model.grp2 <- list(obs=group2$inp, fit=fit.grp2)
     
@@ -232,7 +232,7 @@ santaR_pvalue_dist_within <- function(SANTAGroup,nPerm=1000,nStep=5000) {
     
     fit.grp1   <- fit.mean.curve(group1$pred)
     fit.grp2   <- fit.mean.curve(group2$pred)
-    if( (class(fit.grp1)!='smooth.spline') & (class(fit.grp2)!='smooth.spline') ) { return(NA) }
+    if( (! inherits(fit.grp1, 'smooth.spline')) & (! inherits(fit.grp2, 'smooth.spline')) ) { return(NA) }
     model.grp1 <- list(obs=group1$inp, fit=fit.grp1)                  # obs only needed in dist.fit to get time range
     model.grp2 <- list(obs=group2$inp, fit=fit.grp2)
     

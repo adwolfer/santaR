@@ -45,7 +45,7 @@ test_that('default values', {
   result_paramEvo  <- evaluate_promise(get_param_evolution(input_eigen))
   
   # Check results
-  expect_equal(result_paramEvo$result, expected_paramEvo, tolerance=1e-7)
+  expect_equal(result_paramEvo$result, expected_paramEvo, tolerance=1e-5)
   
   # Check result messages (time taken)
   expect_equal(length(result_paramEvo$messages), 0)
@@ -83,7 +83,7 @@ test_that('change step size', {
   result_paramEvo  <- evaluate_promise(get_param_evolution(input_eigen, step=1))
   
   # Check results
-  expect_equal(result_paramEvo$result, expected_paramEvoStep, tolerance=1e-7)
+  expect_equal(result_paramEvo$result, expected_paramEvoStep, tolerance=1e-5)
   
   # Check result messages (time taken)
   expect_equal(length(result_paramEvo$messages), 0)
