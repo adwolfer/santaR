@@ -244,7 +244,7 @@ jobs:
       #  shell: Rscript {0}
 
       - name: Test coverage
-        if: env.run_covr == 'true' && runner.os == 'Linux'
+        if: env.run_covr == 'true' && ((runner.os == 'Linux') || (runner.os == 'Windows'))
         run: |
           covr::codecov()
         shell: Rscript {0}
