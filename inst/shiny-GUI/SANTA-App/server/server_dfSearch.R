@@ -36,7 +36,7 @@
     if(ntimeInput() <= 20) {
       sliderInput("df_eigen",
         label = "Degree of Freedom",
-        min = 2, max = ntimeInput(), value = 5, step= 1 # step 0.1
+        min = 2, max = ntimeInput(), value = min(ntimeInput(),5), step= 1 # step 0.1
       )
     } else {
       numericInput("df_eigen",

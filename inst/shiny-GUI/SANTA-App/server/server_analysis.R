@@ -598,21 +598,23 @@
 
   # generate tables
   # summary
-  output$table_summary <- renderTable ({
-    pval()$pval.summary
-  }, include.rownames = FALSE)
+  output$table_summary <- DT::renderDataTable ({
+    DT::datatable(cbind(var=rownames(pval()$pval.summary), pval()$pval.summary),
+                options=list(orderClasses=TRUE),
+                rownames= FALSE)
+  })
 
   output$summary_pval <- renderUI ({
 	# import .csv or .RData
 		if( importType()=='CSV' | importType()=='RData' ){
-			if( sp()[[1]]$properties$pval.dist$status | sp()[[1]]$properties$pval.fit$status ) return( tableOutput("table_summary") )
+			if( sp()[[1]]$properties$pval.dist$status | sp()[[1]]$properties$pval.fit$status ) return( DT::dataTableOutput("table_summary") )
 
 			HTML("<br><div class=\"alert alert-dismissible alert-info\"> <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button> <p\">No p-value calculated!</p></div>")
 		}
 
 	# import FittedData
 		else if( importType()=='FittedData') {
-			if( inSpReac()[[1]]$properties$pval.dist$status | inSpReac()[[1]]$properties$pval.fit$status ) return( tableOutput("table_summary") )
+			if( inSpReac()[[1]]$properties$pval.dist$status | inSpReac()[[1]]$properties$pval.fit$status ) return( DT::dataTableOutput("table_summary") )
 
 			HTML("<br><div class=\"alert alert-dismissible alert-info\"> <button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button> <p\">No p-value calculated!</p></div>")
 		}

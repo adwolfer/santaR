@@ -25,7 +25,7 @@
 #' @import foreach
 #' @import doParallel
 #' @import shiny
-#' @import shinythemes
+#' @import bslib
 #'
 #' @export
 santaR_start_GUI 								<- function(browser=TRUE) {

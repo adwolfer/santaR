@@ -1,8 +1,7 @@
 
 # santaR
-
-[![Build
-Status](https://travis-ci.org/adwolfer/santaR.svg?branch=master)](https://travis-ci.org/adwolfer/santaR)
+[![R-CMD-check](https://github.com/adwolfer/santaR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/adwolfer/santaR/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check-devel](https://github.com/adwolfer/santaR/actions/workflows/R-CMD-check-devel.yaml/badge.svg)](https://github.com/adwolfer/santaR/actions/workflows/R-CMD-check-devel.yaml)
 [![codecov](https://codecov.io/gh/adwolfer/santaR/branch/master/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR/branch/master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
 
@@ -23,7 +22,7 @@ Interactive package for *Short AsyNchronous Time-series Analysis*
  - biological variability
  - nonlinearity
  
-The reference versions of `santaR` is available on [CRAN](https://cran.r-project.org/web/packages/santaR/index.html).
+The reference versions of `santaR` is available on [CRAN](https://cran.r-project.org/package=santaR).
 Active development and issue tracking take place on the [github page](https://github.com/adwolfer/santaR/tree/master), while an overview of the package, vignettes and documentation are available on the [supporting website](https://adwolfer.github.io/santaR/).
 
 To address the challenges of time-series in Systems Biology, `santaR` (*Short AsyNchronous Time-series
@@ -130,7 +129,7 @@ in the following vignettes:
   - [Automated command line
     analysis](https://adwolfer.github.io/santaR/articles/automated-command-line.html)
   - [Plotting
-    options](https://adwolfer.github.io/santaR/articles/develop/doc/plotting-options.html)
+    options](https://adwolfer.github.io/santaR/articles/plotting-options.html)
   - [Selecting an optimal number of degrees of
     freedom](https://adwolfer.github.io/santaR/articles/selecting-optimal-df.html)
   - [Advanced command line
@@ -183,10 +182,10 @@ scripts and the reporting automated.
 ## Copyright
 
 `santaR` is licensed under the
-[GPLv3](http://choosealicense.com/licenses/gpl-3.0/)
+[GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
 
 As a summary, the GPLv3 license requires attribution, inclusion of
 copyright and license information, disclosure of source code and
 changes. Derivative work must be available under the same terms.
 
-© Arnaud Wolfer (2019)
+© Arnaud Wolfer (2022)
