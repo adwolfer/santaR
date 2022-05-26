@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">santaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@ santaR</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer/santaR" class="external-link">santaR</a></span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## </span>
-<span class="co">## This is santaR version 1.2.0</span></code></pre>
+<span class="co">## This is santaR version 1.2.3</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># data (keep the 3rd variable)</span>
 <span class="va">var1_data</span> <span class="op">&lt;-</span> <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">data</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>
@@ -359,7 +359,7 @@ the eigen-splines (as a guide value for the whole dataset)</li>
 <span class="co">##                  PC1    PC2     PC3     PC4     PC5      PC6</span>
 <span class="co">## R2            0.8281 0.0679 0.05191 0.02942 0.01436 0.008339</span>
 <span class="co">## Cumulative R2 0.8281 0.8960 0.94788 0.97731 0.99166 1.000000</span></code></pre>
-<pre><code><span class="co">## total time: 0.33 secs</span></code></pre>
+<pre><code><span class="co">## total time: 0.3 secs</span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># The projection of each eigen-spline at each time-point:</span>
 <span class="va">var_eigen</span><span class="op">$</span><span class="va">matrix</span></code></pre></div>
@@ -880,15 +880,15 @@ the difference between two groups:</p>
 <code class="sourceCode R"><span class="va">var1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/santaR_pvalue_dist.html">santaR_pvalue_dist</a></span><span class="op">(</span><span class="va">var1</span><span class="op">)</span>
 <span class="co"># p-value</span>
 <span class="va">var1</span><span class="op">$</span><span class="va">general</span><span class="op">$</span><span class="va">pval.dist</span></code></pre></div>
-<pre><code><span class="co">## [1] 0.01298701</span></code></pre>
+<pre><code><span class="co">## [1] 0.00999001</span></code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># lower p-value confidence range</span>
 <span class="va">var1</span><span class="op">$</span><span class="va">general</span><span class="op">$</span><span class="va">pval.dist.l</span></code></pre></div>
-<pre><code><span class="co">## [1] 0.007603209</span></code></pre>
+<pre><code><span class="co">## [1] 0.005433704</span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># upper p-value confidence range</span>
 <span class="va">var1</span><span class="op">$</span><span class="va">general</span><span class="op">$</span><span class="va">pval.dist.u</span></code></pre></div>
-<pre><code><span class="co">## [1] 0.02209818</span></code></pre>
+<pre><code><span class="co">## [1] 0.01829662</span></code></pre>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># curve correlation coefficiant</span>
 <span class="va">var1</span><span class="op">$</span><span class="va">general</span><span class="op">$</span><span class="va">pval.curveCorr</span></code></pre></div>
@@ -930,8 +930,7 @@ degrees of freedom</a></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
