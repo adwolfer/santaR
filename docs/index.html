@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">santaR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
       </span>
     </div>
 
@@ -111,47 +111,16 @@
 <div class="page-header"><h1 id="santar">santaR<a class="anchor" aria-label="anchor" href="#santar"></a>
 </h1></div>
 
-<p>Interactive package for <em>Short AsyNchronous Time-series
-Analysis</em> (SANTA), implemented in <code>R</code> and
-<code>Shiny</code></p>
+<p>Interactive package for <em>Short AsyNchronous Time-series Analysis</em> (SANTA), implemented in <code>R</code> and <code>Shiny</code></p>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><a href="https://adwolfer.github.io/santaR/"><strong>santaR</strong></a> is
-an R package that implements functions for analysis of short
-asynchronous time-series analysis.</p>
-<p><code>santaR</code> can deal with challenges not simultaneously
-addressed by current time-series statistical methods: - missing
-observations - asynchronous sampling - measurement error - low number of
-time points (<em>e.g. 4 to 10</em>) - high number of variables -
-biological variability - nonlinearity</p>
-<p>The reference versions of <code>santaR</code> is available on <a href="https://cran.r-project.org/package=santaR" class="external-link">CRAN</a>. Active
-development and issue tracking take place on the <a href="https://github.com/adwolfer/santaR/tree/master" class="external-link">github page</a>,
-while an overview of the package, vignettes and documentation are
-available on the <a href="https://adwolfer.github.io/santaR/">supporting
-website</a>.</p>
-<p>To address the challenges of time-series in Systems Biology,
-<code>santaR</code> (<em>Short AsyNchronous Time-series Analysis</em>)
-provides a Functional Data Analysis (<em>FDA</em>) approach -<em>where
-the fundamental units of analysis are curves representing each
-individual across time</em>-, in a graphical and automated pipeline for
-robust analysis of short time-series studies.</p>
-<p>Analytes levels are descriptive of the underlying biological state
-and evolve smoothly through time. For a single analyte, the time
-trajectory of each individual is described with a smooth curve estimated
-by smoothing splines. For a group of individuals, a curve representing
-the group mean trajectory is also calculated. These individual and group
-mean curves become the new observational unit for subsequent data
-analysis, that is, the estimation of the intra-class variability and the
-identification of trajectories significantly altered between groups.</p>
-<p>Designed initially for metabolomic, <code>santaR</code> is also
-suited for other Systems Biology disciplines. Implemented in
-<code>R</code> and <code>Shiny</code>, <code>santaR</code> is developed
-as a complete and easy-to-use statistical software package, which
-enables command line and GUI analysis, with fast and parallel automated
-analysis and reporting. Comprehensive plotting options as well as
-automated summaries allow clear identification of significantly altered
-analytes for non-specialist users.</p>
+<p><a href="https://adwolfer.github.io/santaR/"><strong>santaR</strong></a> is an R package that implements functions for analysis of short asynchronous time-series analysis.</p>
+<p><code>santaR</code> can deal with challenges not simultaneously addressed by current time-series statistical methods: - missing observations - asynchronous sampling - measurement error - low number of time points (<em>e.g. 4 to 10</em>) - high number of variables - biological variability - nonlinearity</p>
+<p>The reference versions of <code>santaR</code> is available on <a href="https://cran.r-project.org/package=santaR" class="external-link">CRAN</a>. Active development and issue tracking take place on the <a href="https://github.com/adwolfer/santaR/tree/master" class="external-link">github page</a>, while an overview of the package, vignettes and documentation are available on the <a href="https://adwolfer.github.io/santaR/">supporting website</a>.</p>
+<p>To address the challenges of time-series in Systems Biology, <code>santaR</code> (<em>Short AsyNchronous Time-series Analysis</em>) provides a Functional Data Analysis (<em>FDA</em>) approach -<em>where the fundamental units of analysis are curves representing each individual across time</em>-, in a graphical and automated pipeline for robust analysis of short time-series studies.</p>
+<p>Analytes levels are descriptive of the underlying biological state and evolve smoothly through time. For a single analyte, the time trajectory of each individual is described with a smooth curve estimated by smoothing splines. For a group of individuals, a curve representing the group mean trajectory is also calculated. These individual and group mean curves become the new observational unit for subsequent data analysis, that is, the estimation of the intra-class variability and the identification of trajectories significantly altered between groups.</p>
+<p>Designed initially for metabolomic, <code>santaR</code> is also suited for other Systems Biology disciplines. Implemented in <code>R</code> and <code>Shiny</code>, <code>santaR</code> is developed as a complete and easy-to-use statistical software package, which enables command line and GUI analysis, with fast and parallel automated analysis and reporting. Comprehensive plotting options as well as automated summaries allow clear identification of significantly altered analytes for non-specialist users.</p>
 <p><img src="reference/figures/santaR-approach.jpg"></p>
 </div>
 <div class="section level2">
@@ -165,9 +134,7 @@ analytes for non-specialist users.</p>
 <code class="sourceCode R"><span class="co"># Install devtools</span>
 <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"adwolfer/santaR"</span>, ref<span class="op">=</span><span class="st">"master"</span><span class="op">)</span></code></pre></div>
-<p>If the dependency <a href="https://www.bioconductor.org/packages/release/bioc/html/pcaMethods.html" class="external-link">pcaMethods</a>
-is not successfully installed, it can be installed from
-<code>Bioconductor</code>:</p>
+<p>If the dependency <a href="https://www.bioconductor.org/packages/release/bioc/html/pcaMethods.html" class="external-link">pcaMethods</a> is not successfully installed, it can be installed from <code>Bioconductor</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
@@ -176,73 +143,38 @@ is not successfully installed, it can be installed from
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>To get started <code>santaR</code>’s graphical user interface
-implements all the functions for short asynchronous time-series
-analysis:</p>
+<p>To get started <code>santaR</code>’s graphical user interface implements all the functions for short asynchronous time-series analysis:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/adwolfer/santaR" class="external-link">santaR</a></span><span class="op">)</span>
 
 <span class="fu"><a href="reference/santaR_start_GUI.html">santaR_start_GUI</a></span><span class="op">(</span>browser <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#  To exit press ESC in the command line</span></code></pre></div>
-<p>The graphical user interface is divided in 4 sections, corresponding
-to the main steps of analysis:</p>
-<p><strong>Import</strong>, <strong>DF search</strong>,
-<strong>Analysis</strong> and <strong>Export</strong>:</p>
+<p>The graphical user interface is divided in 4 sections, corresponding to the main steps of analysis:</p>
+<p><strong>Import</strong>, <strong>DF search</strong>, <strong>Analysis</strong> and <strong>Export</strong>:</p>
 <ul>
-<li>The <strong>Import</strong> tab manages input data in comma
-separated value (<em>csv</em>) format or as an <em>RData</em> file
-containing a previous analysis. Once data is imported the <strong>DF
-search</strong> and <strong>Analysis</strong> tabs become
-available.</li>
+<li>The <strong>Import</strong> tab manages input data in comma separated value (<em>csv</em>) format or as an <em>RData</em> file containing a previous analysis. Once data is imported the <strong>DF search</strong> and <strong>Analysis</strong> tabs become available.</li>
 <li>
-<strong>DF search</strong> implements the tools for the selection of
-an optimal number of degrees of freedom (<em>df</em>).</li>
-<li>With the data imported and a pertinent <em>df</em> selected,
-<strong>Analysis</strong> regroups the interface to visualise and
-identify variables significantly altered over time. A plotting interface
-enables the interactive visualisation of the raw data points, individual
-trajectories, group mean curves and confidence bands for all variables,
-which subsequently can be saved. Finally, if inter-group differential
-trajectories have been characterised, all significance testing results
-(with correction for multiple testing) are presented in interactive
-tables.</li>
-<li>The <strong>Export</strong> tab manages the saving of results and
-automated reporting. Fitted data can be saved as an <em>RData</em> file
-for future analysis or reproduction of results. <em>csv</em> tables
-containing significance testing results can also be generated and
-summary plot for each significantly altered variable saved for rapid
-evaluation.</li>
+<strong>DF search</strong> implements the tools for the selection of an optimal number of degrees of freedom (<em>df</em>).</li>
+<li>With the data imported and a pertinent <em>df</em> selected, <strong>Analysis</strong> regroups the interface to visualise and identify variables significantly altered over time. A plotting interface enables the interactive visualisation of the raw data points, individual trajectories, group mean curves and confidence bands for all variables, which subsequently can be saved. Finally, if inter-group differential trajectories have been characterised, all significance testing results (with correction for multiple testing) are presented in interactive tables.</li>
+<li>The <strong>Export</strong> tab manages the saving of results and automated reporting. Fitted data can be saved as an <em>RData</em> file for future analysis or reproduction of results. <em>csv</em> tables containing significance testing results can also be generated and summary plot for each significantly altered variable saved for rapid evaluation.</li>
 </ul>
 <p><img src="reference/figures/README-example-1.png"></p>
 </div>
 <div class="section level2">
 <h2 id="vignettes-and-demo-data">Vignettes and Demo data<a class="anchor" aria-label="anchor" href="#vignettes-and-demo-data"></a>
 </h2>
-<p>More information is available in the graphical user interface as well
-as in the following vignettes:</p>
+<p>More information is available in the graphical user interface as well as in the following vignettes:</p>
 <ul>
-<li><a href="https://adwolfer.github.io/santaR/articles/getting-started.html">Getting
-Started with santaR</a></li>
-<li><a href="https://adwolfer.github.io/santaR/articles/prepare-input-data.html">How
-to prepare input data for santaR</a></li>
-<li><a href="https://adwolfer.github.io/santaR/articles/santaR-GUI.html">santaR
-Graphical user interface use</a></li>
-<li><a href="https://adwolfer.github.io/santaR/articles/theoretical-background.html">santaR
-Theoretical Background</a></li>
-<li><a href="https://adwolfer.github.io/santaR/articles/automated-command-line.html">Automated
-command line analysis</a></li>
-<li><a href="https://adwolfer.github.io/santaR/articles/plotting-options.html">Plotting
-options</a></li>
-<li><a href="https://adwolfer.github.io/santaR/articles/selecting-optimal-df.html">Selecting
-an optimal number of degrees of freedom</a></li>
-<li><a href="https://adwolfer.github.io/santaR/articles/advanced-command-line-functions.html">Advanced
-command line options</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/getting-started.html">Getting Started with santaR</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/prepare-input-data.html">How to prepare input data for santaR</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/santaR-GUI.html">santaR Graphical user interface use</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/theoretical-background.html">santaR Theoretical Background</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/automated-command-line.html">Automated command line analysis</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/plotting-options.html">Plotting options</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/selecting-optimal-df.html">Selecting an optimal number of degrees of freedom</a></li>
+<li><a href="https://adwolfer.github.io/santaR/articles/advanced-command-line-functions.html">Advanced command line options</a></li>
 </ul>
-<p>A dataset containing the concentrations of 22 mediators of
-inflammation over an episode of acute inflammation is also available.
-The mediators have been measured at 7 time-points on 8 subjects,
-concentration values have been unit-variance scaled for each variable. A
-subset of the data is presented below:</p>
+<p>A dataset containing the concentrations of 22 mediators of inflammation over an episode of acute inflammation is also available. The mediators have been measured at 7 time-points on 8 subjects, concentration values have been unit-variance scaled for each variable. A subset of the data is presented below:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Metadata</span>
 <span class="va">acuteInflammation</span><span class="op">$</span><span class="va">meta</span></code></pre></div>
@@ -338,20 +270,14 @@ subset of the data is presented below:</p>
 <div class="section level2">
 <h2 id="other-tips">Other tips<a class="anchor" aria-label="anchor" href="#other-tips"></a>
 </h2>
-<p>The GUI is to be prefered to understand the methodology, select the
-best parameters on a subset of the data before running the command line,
-or to visually explore results.</p>
-<p>If a very high number of variables is to be processed,
-<code>santaR</code>’s command line functions are more efficient, as they
-can be integrated in scripts and the reporting automated.</p>
+<p>The GUI is to be prefered to understand the methodology, select the best parameters on a subset of the data before running the command line, or to visually explore results.</p>
+<p>If a very high number of variables is to be processed, <code>santaR</code>’s command line functions are more efficient, as they can be integrated in scripts and the reporting automated.</p>
 </div>
 <div class="section level2">
 <h2 id="copyright">Copyright<a class="anchor" aria-label="anchor" href="#copyright"></a>
 </h2>
 <p><code>santaR</code> is licensed under the <a href="https://choosealicense.com/licenses/gpl-3.0/" class="external-link">GPLv3</a></p>
-<p>As a summary, the GPLv3 license requires attribution, inclusion of
-copyright and license information, disclosure of source code and
-changes. Derivative work must be available under the same terms.</p>
+<p>As a summary, the GPLv3 license requires attribution, inclusion of copyright and license information, disclosure of source code and changes. Derivative work must be available under the same terms.</p>
 <p>© Arnaud Wolfer (2022)</p>
 </div>
 </div>
@@ -411,8 +337,7 @@ changes. Derivative work must be available under the same terms.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
