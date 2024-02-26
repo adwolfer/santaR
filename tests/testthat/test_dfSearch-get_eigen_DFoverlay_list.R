@@ -2,7 +2,7 @@ context('get_eigen_DFoverlay_list()')
 
 ## set seed and reset on exit
 set.seed(seed=42)
-on.exit(set.seed(seed=NULL)) 
+on.exit(set.seed(seed=NULL))
 
 
 ## Input and expected data
@@ -16,10 +16,10 @@ input_eigen <- evaluate_promise(get_eigen_spline(inputData=input_inputData, ind=
 
 
 test_that('default values, change df', {
-  
+
   # results
   result_DFoverlay  <- get_eigen_DFoverlay_list(input_eigen,manualDf=3,nPC=NA,step=NA,showPt=TRUE,autofit=TRUE)
-  
+
   # Check plot properties
   expect_equal(length(result_DFoverlay), 3)
   # plot #1
@@ -27,14 +27,14 @@ test_that('default values, change df', {
   expect_equal(result_DFoverlay[[1]]$labels$title, "Fit PC 1 varExp=71.1% - df=3 - Auto-df=2")
   expect_equal(result_DFoverlay[[1]]$labels$x, "Time")
   expect_equal(result_DFoverlay[[1]]$labels$y, "Projection")
-  expect_equal(length(result_DFoverlay[[1]]), 9)
+  expect_equal(length(result_DFoverlay[[1]]), length(ggplot2::ggplot()))
 })
 
 test_that('change nPC', {
-  
+
   # results
   result_DFoverlay  <- get_eigen_DFoverlay_list(input_eigen,manualDf=3,nPC=2,step=NA,showPt=TRUE,autofit=TRUE)
-  
+
   # Check plot properties
   expect_equal(length(result_DFoverlay), 2)
   # plot #1
@@ -42,15 +42,15 @@ test_that('change nPC', {
   expect_equal(result_DFoverlay[[1]]$labels$title, "Fit PC 1 varExp=71.1% - df=3 - Auto-df=2")
   expect_equal(result_DFoverlay[[1]]$labels$x, "Time")
   expect_equal(result_DFoverlay[[1]]$labels$y, "Projection")
-  expect_equal(length(result_DFoverlay[[1]]), 9)
+  expect_equal(length(result_DFoverlay[[1]]), length(ggplot2::ggplot()))
 })
 
 test_that('change step', {
   # doesn't change the results that can be accessed
-  
+
   # results
   result_DFoverlay  <- get_eigen_DFoverlay_list(input_eigen,manualDf=3,nPC=NA,step=1,showPt=TRUE,autofit=TRUE)
-  
+
   # Check plot properties
   expect_equal(length(result_DFoverlay), 3)
   # plot #1
@@ -58,15 +58,15 @@ test_that('change step', {
   expect_equal(result_DFoverlay[[1]]$labels$title, "Fit PC 1 varExp=71.1% - df=3 - Auto-df=2")
   expect_equal(result_DFoverlay[[1]]$labels$x, "Time")
   expect_equal(result_DFoverlay[[1]]$labels$y, "Projection")
-  expect_equal(length(result_DFoverlay[[1]]), 9)
+  expect_equal(length(result_DFoverlay[[1]]), length(ggplot2::ggplot()))
 })
 
 test_that('no showPt', {
   # doesn't change the results that can be accessed
-  
+
   # results
   result_DFoverlay  <- get_eigen_DFoverlay_list(input_eigen,manualDf=3,nPC=NA,step=NA,showPt=FALSE,autofit=TRUE)
-  
+
   # Check plot properties
   expect_equal(length(result_DFoverlay), 3)
   # plot #1
@@ -74,14 +74,14 @@ test_that('no showPt', {
   expect_equal(result_DFoverlay[[1]]$labels$title, "Fit PC 1 varExp=71.1% - df=3 - Auto-df=2")
   expect_equal(result_DFoverlay[[1]]$labels$x, "Time")
   expect_equal(result_DFoverlay[[1]]$labels$y, "Projection")
-  expect_equal(length(result_DFoverlay[[1]]), 9)
+  expect_equal(length(result_DFoverlay[[1]]), length(ggplot2::ggplot()))
 })
 
 test_that('no autofit', {
-  
+
   # results
   result_DFoverlay  <- get_eigen_DFoverlay_list(input_eigen,manualDf=3,nPC=NA,step=NA,showPt=TRUE,autofit=FALSE)
-  
+
   # Check plot properties
   expect_equal(length(result_DFoverlay), 3)
   # plot #1
@@ -89,7 +89,7 @@ test_that('no autofit', {
   expect_equal(result_DFoverlay[[1]]$labels$title, "Fit PC 1 varExp=71.1% - df=3")
   expect_equal(result_DFoverlay[[1]]$labels$x, "Time")
   expect_equal(result_DFoverlay[[1]]$labels$y, "Projection")
-  expect_equal(length(result_DFoverlay[[1]]), 9)
+  expect_equal(length(result_DFoverlay[[1]]), length(ggplot2::ggplot()))
 })
 
 
