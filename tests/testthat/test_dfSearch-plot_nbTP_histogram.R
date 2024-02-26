@@ -2,7 +2,7 @@ context('plot_nbTP_histogram()')
 
 ## set seed and reset on exit
 set.seed(seed=42)
-on.exit(set.seed(seed=NULL)) 
+on.exit(set.seed(seed=NULL))
 
 
 ## Input and expected data
@@ -27,28 +27,28 @@ test_that('default values', {
 
   # results (output, warnings and messages)
   result_nbTPHisto  <- plot_nbTP_histogram(input_eigen, dfCutOff=NA)
-  
+
   # Check plot properties
   expect_true(ggplot2::is.ggplot(result_nbTPHisto))
   expect_equal(result_nbTPHisto$labels$title, "Trajectories with #TP < df will be rejected")
   expect_equal(result_nbTPHisto$labels$x, "Number of time-points")
   expect_equal(result_nbTPHisto$labels$y, "Number of trajectories with corresponding TP")
   expect_equal(result_nbTPHisto$data, expected_data)
-  expect_equal(length(result_nbTPHisto), 9)
+  expect_equal(length(result_nbTPHisto), length(ggplot2::ggplot()))
 })
 
 test_that('different number of time-points per spline', {
-  
+
   # results (output, warnings and messages)
   result_nbTPHisto_2  <- plot_nbTP_histogram(input_eigen_2, dfCutOff=NA)
-  
+
   # Check plot properties
   expect_true(ggplot2::is.ggplot(result_nbTPHisto_2))
   expect_equal(result_nbTPHisto_2$labels$title, "Trajectories with #TP < df will be rejected")
   expect_equal(result_nbTPHisto_2$labels$x, "Number of time-points")
   expect_equal(result_nbTPHisto_2$labels$y, "Number of trajectories with corresponding TP")
   expect_equal(result_nbTPHisto_2$data, expected_data_2)
-  expect_equal(length(result_nbTPHisto_2), 9)
+  expect_equal(length(result_nbTPHisto_2), length(ggplot2::ggplot()))
 })
 
 test_that('change dfCuttOff', {
@@ -56,15 +56,15 @@ test_that('change dfCuttOff', {
   # expected data
   tmp_data          <- expected_data
   tmp_data$colFill  <- 1
-  
+
   # results (output, warnings and messages)
   result_nbTPHisto  <- plot_nbTP_histogram(input_eigen, dfCutOff=3)
-  
+
   # Check plot properties
   expect_true(ggplot2::is.ggplot(result_nbTPHisto))
   expect_equal(result_nbTPHisto$labels$title, "Trajectories with #TP < df (0%) will be rejected")
   expect_equal(result_nbTPHisto$labels$x, "Number of time-points / df cut-off")
   expect_equal(result_nbTPHisto$labels$y, "Number of trajectories with corresponding TP")
   expect_equal(result_nbTPHisto$data, tmp_data)
-  expect_equal(length(result_nbTPHisto), 9)
+  expect_equal(length(result_nbTPHisto), length(ggplot2::ggplot()))
 })
