@@ -17,7 +17,7 @@
 #' @param CIpval If TRUE add the upper and lower confidence interval on \emph{p}-value to the output. Default is TRUE.
 #' @param plotAll If TRUE override the \code{plotCutOff} parameter and plot all variables. Default is FALSE.
 #'
-#' @return A list: \code{result$pval.all} \code{data.frame} of \emph{p}-values, with all variables as rows and different \emph{p}-value corrections as columns. \code{result$pval.summary} \code{data.frame} of number of variables with a \emph{p}-value inferior to a cut-off. Different metric and {p}-value correction as rows, different cut-off (\emph{Inf 0.05}, \emph{Inf 0.01}, \emph{Inf 0.001}) as columns.
+#' @return A list: \code{result$pval.all} \code{data.frame} of \emph{p}-values, with all variables as rows and different \emph{p}-value corrections as columns. \code{result$pval.summary} \code{data.frame} of number of variables with a \emph{p}-value inferior to a cut-off. Different metric and \emph{p}-value correction as rows, different cut-off (\emph{Inf 0.05}, \emph{Inf 0.01}, \emph{Inf 0.001}) as columns.
 #'
 #' @examples
 #' ## 2 variables, 56 measurements, 8 subjects, 7 unique time-points

@@ -1,7 +1,7 @@
 
 # santaR
 [![R-CMD-check](https://github.com/adwolfer/santaR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/adwolfer/santaR/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/master/graph/badge.svg)](https://codecov.io/gh/adwolfer/santaR/branch/master)
+[![codecov](https://codecov.io/gh/adwolfer/santaR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/adwolfer/santaR/branch/master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/santaR)](https://cran.r-project.org/package=santaR)
 
 Interactive package for *Short AsyNchronous Time-series Analysis*
