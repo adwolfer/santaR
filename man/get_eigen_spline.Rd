@@ -106,8 +106,8 @@ get_eigen_spline(inputData, ind, time, nPC=NA, scaling="scaling_UV", method="nip
 Graphical implementation with \code{\link{santaR_start_GUI}}
 
 Other DFsearch: 
-\code{\link{get_eigen_DFoverlay_list}()},
 \code{\link{get_eigen_DF}()},
+\code{\link{get_eigen_DFoverlay_list}()},
 \code{\link{get_param_evolution}()},
 \code{\link{plot_nbTP_histogram}()},
 \code{\link{plot_param_evolution}()}

@@ -43,8 +43,8 @@ plot_nbTP_histogram(eigen, dfCutOff=3)
 Graphical implementation with \code{\link{santaR_start_GUI}}
 
 Other DFsearch: 
-\code{\link{get_eigen_DFoverlay_list}()},
 \code{\link{get_eigen_DF}()},
+\code{\link{get_eigen_DFoverlay_list}()},
 \code{\link{get_eigen_spline}()},
 \code{\link{get_param_evolution}()},
 \code{\link{plot_param_evolution}()}
