@@ -2,8 +2,8 @@
 % Please edit documentation in R/santaR.R
 \docType{package}
 \name{santaR}
+\alias{santaR-package}
 \alias{santaR}
-\alias{_PACKAGE}
 \alias{SANTAR}
 \title{santaR: A package for Short AsyNchronous Time-series Analysis in R}
 \description{

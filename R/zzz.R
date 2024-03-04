@@ -1,3 +1,5 @@
+#' @importFrom gridExtra grid.arrange
+#' @importFrom DT datatable
 .onLoad <- function(libname = find.package("santaR"), pkgname = "santaR"){
 
 	# CRAN Note avoidance

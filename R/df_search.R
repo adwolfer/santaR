@@ -530,12 +530,12 @@ get_eigen_DFoverlay_list  <- function(eigen,manualDf=5,nPC=NA,step=NA,showPt=TRU
     for (j in seq(1+step,dim(eigen$matrix)[2],step)) {
       fit     <- stats::smooth.spline( x=as.numeric(colnames(eigen$matrix)), y=eigen$matrix[i,], df=j)
       fitProj <- data.frame(stats::predict(fit, seq( min(fit$x),max(fit$x), ((max(fit$x)-min(fit$x))/250) ) ))
-      p       <- p + ggplot2::geom_line(data=fitProj, ggplot2::aes_string(x="x", y="y"), linetype=2, col="grey" )   
+      p       <- p + ggplot2::geom_line(data=fitProj, ggplot2::aes(x=x, y=y), linetype=2, col="grey" )   
     }
     # overlay manual-df (blue)
     fit     <- stats::smooth.spline( x=as.numeric(colnames(eigen$matrix)), y=eigen$matrix[i,], df=manualDf)
     fitProj <- data.frame(stats::predict(fit, seq( min(fit$x),max(fit$x), ((max(fit$x)-min(fit$x))/250) ) ))
-    p       <- p + ggplot2::geom_line(data=fitProj, ggplot2::aes(x=x, y=y), linetype=4, col="blue", size=1.5  )      
+    p       <- p + ggplot2::geom_line(data=fitProj, ggplot2::aes(x=x, y=y), linetype=4, col="blue", linewidth=1.5  )      
     if(showPt) {
       p     <- p + ggplot2::geom_point(data=data.frame(x=fit$data$x, y=fit$data$y), ggplot2::aes(x=x, y=y), shape=16, size=5, col="green")
     }
@@ -543,7 +543,7 @@ get_eigen_DFoverlay_list  <- function(eigen,manualDf=5,nPC=NA,step=NA,showPt=TRU
     if(autofit) {
       fit     <- stats::smooth.spline( x=as.numeric(colnames(eigen$matrix)), y=eigen$matrix[i,])
       fitProj <- data.frame(stats::predict(fit, seq( min(fit$x),max(fit$x), ((max(fit$x)-min(fit$x))/250) ) ))
-      p       <- p + ggplot2::geom_line(data=fitProj, ggplot2::aes(x=x, y=y), linetype=4, col="red", size=1.5  )
+      p       <- p + ggplot2::geom_line(data=fitProj, ggplot2::aes(x=x, y=y), linetype=4, col="red", linewidth=1.5  )
       p       <- p + ggplot2::theme_bw() + ggplot2::ggtitle(paste("Fit PC ",i," varExp=",round(100*eigen$variance[i],1),"% - df=",manualDf," - Auto-df=",round(fit$df,2), sep="")) + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
     } else {
       p     <- p + ggplot2::theme_bw() + ggplot2::ggtitle(paste("Fit PC ",i," varExp=",round(100*eigen$variance[i],1),"% - df=",manualDf, sep="")) + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))

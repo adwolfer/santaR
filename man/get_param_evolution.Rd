@@ -60,8 +60,8 @@ get_param_evolution(eigen, step=1)
 Graphical implementation with \code{\link{santaR_start_GUI}}
 
 Other DFsearch: 
-\code{\link{get_eigen_DFoverlay_list}()},
 \code{\link{get_eigen_DF}()},
+\code{\link{get_eigen_DFoverlay_list}()},
 \code{\link{get_eigen_spline}()},
 \code{\link{plot_nbTP_histogram}()},
 \code{\link{plot_param_evolution}()}
