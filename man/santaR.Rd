@@ -21,6 +21,7 @@ interface and command line tutorials.
 Useful links:
 \itemize{
   \item \url{https://github.com/adwolfer/santaR}
+  \item \url{https://adwolfer.github.io/santaR/}
   \item Report bugs at \url{https://github.com/adwolfer/santaR/issues/new}
 }
 

@@ -31,3 +31,4 @@ Meta/*
 Rplots.pdf
 tests/testthat/Rplots.pdf
 .idea
+cran-comments.md
