@@ -187,4 +187,4 @@ As a summary, the GPLv3 license requires attribution, inclusion of
 copyright and license information, disclosure of source code and
 changes. Derivative work must be available under the same terms.
 
-© Arnaud Wolfer (2022)
+© Arnaud Wolfer (2024)
